@@ -16,7 +16,11 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('npm')->unique();
             $table->string('password');
+            $table->string('photo')->nullable();
+            $table->enum('role',['user','evaluator','admin'])->default('user');
+            $table->enum('divisi',['MIB','Design','IT'])->default('MIB');
             $table->rememberToken();
             $table->timestamps();
         });
