@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -11,7 +14,59 @@ class MainController extends Controller
      */
     public function index()
     {
-        return view('main.home');
+        return view('login');
+    }
+
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'string|required|email',
+            'password' => 'string|required'
+        ]);
+
+        $userCredential = $request->only('email','password');
+        if(Auth::attempt($userCredential)){
+
+            $route = $this->redirectDash();
+            return redirect($route);
+        }
+        else{
+            return back()->with('loginError','Username & Password is incorrect');
+        }
+
+    }
+
+        public function loadLogin()
+    {
+        if(Auth::user()){
+            $route = $this->redirectDash();
+            return redirect($route);
+        }
+        return view('login');
+    }
+
+        public function redirectDash()
+    {
+        $redirect = '';
+
+        if(Auth::user() && Auth::user()->role == 1){
+            $redirect = '/evaluator/home';
+        }
+        else if(Auth::user() && Auth::user()->role == 2){
+            $redirect = '/admin/home';
+        }
+        else{
+            $redirect = '/pengurus/home';
+        }
+
+        return $redirect;
+    }
+
+    public function logout(Request $request)
+    {
+        $request->session()->flush();
+        Auth::logout();
+        return redirect('/');
     }
 
     /**

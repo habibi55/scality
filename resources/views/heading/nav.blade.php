@@ -229,7 +229,7 @@
         <div class="w-full">Profile</div>
       </a>
 
-      <a href="login.html" class="nav">
+      <a href="{{ route('logout') }}" class="nav">
         <svg class="w-9 mr-1" style="enable-background:new 0 0 24 24;" version="1.1" viewBox="0 0 24 24"
           xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
           <style type="text/css">

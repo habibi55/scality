@@ -18,8 +18,8 @@ class UsersTableSeeder extends Seeder
             'name' => 'Admin Habibi',
             'email' => 'muhamadhabibi14168@gmail.com',
             'npm' => '13119890',
-            'role' => 'admin',
-            'divisi' => 'MIB',
+            'role' => '2',
+            // 'divisi' => 'MIB',
             'password' => Hash::make('2077'), // Use Hash::make() to hash the password
         ]);
     }

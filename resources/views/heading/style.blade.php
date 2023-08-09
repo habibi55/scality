@@ -1,6 +1,4 @@
 @vite('resources/css/app.css')
-<link rel="icon" href="{{ asset('/assets/images/web.png') }}">
-<link rel="icon" href="{{ asset('/assets/images/web.png') }}">
 
 <!-- Logo Web -->
 <link rel="icon" href="{{ asset('/assets/images/web.png') }}">

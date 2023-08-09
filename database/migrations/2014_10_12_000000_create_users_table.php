@@ -19,8 +19,9 @@ return new class extends Migration
             $table->string('npm')->unique();
             $table->string('password');
             $table->string('photo')->nullable();
-            $table->enum('role',['user','evaluator','admin'])->default('user');
-            $table->enum('divisi',['MIB','Design','IT'])->default('MIB');
+            $table->integer('role')->default('0');
+            // kalo bisa divisi, baru dibuka
+            // $table->integer('divisi')->default('0');
             $table->rememberToken();
             $table->timestamps();
         });
