@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scality</title>
+  <title>Scality Deploy</title>
 
   @vite('resources/css/app.css')
   <link rel="icon" href="{{ asset('/assets/images/web.png') }}">
@@ -21,37 +21,35 @@
 
 <body class="font-poppins">
   <div class="flex h-screen">
+    <form class="flex flex-col md:w-2/5 lg:w-3/8 w-full px-10 md:px-28 pb-8 md:pb-32 justify-center gap-4" action="{{route('login')}}" method="post">
+      @csrf
+      <img class="w-44 mx-auto" src="{{ asset('/assets/images/scality rebranding.png') }}" alt="Logo">
 
-    <div class="flex flex-col md:w-2/5 lg:w-3/8 w-full px-10 md:px-28 pb-8 md:pb-32 justify-center gap-4">
-      <form action="{{route('login')}}" method="post">
-        @csrf
-        <img class="w-44 mx-auto" src="{{ asset('/assets/images/scality rebranding.png') }}" alt="Logo">
+      @if(session('loginError'))
+      <div class="w-full bg-white shadow-sm p-4 rounded-md drop-shadow-lg">
+          <span class="text-red-500 font-light">{{ session('loginError') }}</span>
+      </div>
+      @endif
 
-        @if (session('loginError'))
-        <div class="w-full">
-<p>{{ session('loginError') }}</p>
-        </div>
-            
-        @endif
+      <div class="flex flex-col">
+        <label class="text-base" for="email">Email</label>
+        <input name="email" class="border border-gray-300 rounded-lg py-3 px-4 text-sm mt-2" id="email" type="email"
+          placeholder="scality@domain.com" required autofocus>
+      </div>
 
-        <div class="flex flex-col">
-          <label class="text-base" for="email">Email</label>
-          <input name="email" class="border border-gray-300 rounded-lg py-3 px-4 text-sm mt-2" id="email" type="email"
-            placeholder="scality@domain.com" required autofocus>
-        </div>
+      <div class="flex flex-col">
+        <label class="text-base" for="password">Password</label>
+        <input name="password" class="border border-gray-300 rounded-lg py-3 px-4 text-sm mt-2" id="password"
+          type="password" placeholder="At least 8 characters" required autofocus>
+      </div>
 
-        <div class="flex flex-col">
-          <label class="text-base" for="password">Password</label>
-          <input name="password" class="border border-gray-300 rounded-lg py-3 px-4 text-sm mt-2" id="password"
-            type="password" placeholder="At least 8 characters" required autofocus>
-        </div>
+      
 
-        <button type="submit" class="button text-center w-full mt-2">
-          Log In
-        </button>
-      </form>
-
-    </div>
+      <button type="submit" class="button text-center w-full mt-2">
+        Log In
+      </button>
+    </form>
+    
     <div class="hidden md:flex w-3/5 lg:w-5/8 bg-primary_back rounded-3xl p-10 m-5 justify-center items-center">
       <img src="{{ asset('/assets/images/login.svg') }}" alt="">
     </div>
