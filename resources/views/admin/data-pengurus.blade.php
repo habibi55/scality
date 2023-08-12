@@ -49,20 +49,33 @@
         <tbody class="divide-y-8">
           <!-- Rest of your data (refer to https://datatables.net/examples/server_side/ for server side processing)-->
           @foreach ($users as $user)
-              <tr>
+              <tr >
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->npm }}</td>
                 <td>{{ $user->name }}</td>
                 <td>
+                  @if ($user->role == 0)
+                    <div class="flex">
+                      <div class="px-3 text-center text-white rounded-2xl bg-stone-500">Pengurus</div>
+                    </div>
+                  @endif
+
+                  @if ($user->role == 1)
+                    <div class="flex">
+                      <div class="px-3 text-center text-white rounded-2xl bg-sky-500">Evaluator</div>
+                    </div>
+                  @endif
+
                   @if ($user->role == 2)
                     <div class="flex">
                       <div class="px-3 text-center text-white rounded-2xl bg-green-500">Admin</div>
                     </div>
                   @endif
+
                 </td>
                 <td>
                   <div class="flex gap-2">
-                    <div class="rounded-md bg-primary px-4 text-white">Edit</div>
+                    <a href="{{ route('pengurus.edit', $user->id)}}" class="rounded-md bg-primary px-4 text-white">Edit</a>
                     <div class="rounded-md bg-red-500 px-4 text-white">Delete</div>
                   </div>
                 </tr>

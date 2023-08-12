@@ -54,9 +54,12 @@ Route::group(['prefix' => 'admin','middleware'=>['web','isAdmin']],function(){
     Route::post('/profile/{user}',[MainController::class,'update'])->name('profile.update');
     Route::put('/profile/{user}',[MainController::class,'update'])->name('profile.update');
 
+
     Route::get('/data-pengurus',[AdminController::class,'dataPengurus'])->name('data-pengurus');
     Route::get('/tambah-pengurus',[AdminController::class,'tambahPengurus'])->name('tambah-pengurus');
     Route::post('/tambah-pengurus-store',[AdminController::class,'store'])->name('tambah-pengurus-store');
+    Route::get('/edit-pengurus/{id}', [AdminController::class,'edit'])->name('pengurus.edit');
+    Route::put('/edit-pengurus/{id}', [AdminController::class,'update'])->name('pengurus.update');
 
 
 

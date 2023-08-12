@@ -23,18 +23,6 @@ class AdminController extends Controller
     //Function Tambah Pengurus
     public function store(Request $request)
     {
-        // // Validate the form data
-        // $this->validate($request, [
-        //     'name' => 'string|required|min:2',
-        //     'email' => 'string|email|required|max:100|unique:users',
-        //     'npm' => 'string|required|max:100',
-        //     'password' =>'string|required|confirmed|min:8',
-        //     'role' => 'required'
-        // ]);
-
-        // // Create and save the user
-        // $user = User::create(request(['name', 'email','npm,','role','password']));
-
         $user = new User();
 
         $user->name = $request->name;
@@ -48,22 +36,20 @@ class AdminController extends Controller
         return redirect()->route('data-pengurus');
     }
 
-    public function profile()
+    public function edit(string $id)
     {
-        $id = Auth::id();
-        $profile = User::all()->where('id', $id)->firstOrFail();
-        return view('main.profile', compact('profile'));
+        $users = User::findOrFail($id);
+  
+        return view('admin.edit-data-pengurus', compact('users'));
     }
 
-    public function update(User $user, Request $request)
+    public function update(Request $request, string $id)
     {
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'npm' => $request->npm,
-            'updated_at' => now()
-        ]);
-
-        return redirect()->route('profile')->with('success', 'Profile updated successfully.');
+        $users = User::findOrFail($id);
+  
+        $users->update($request->all());
+  
+        return redirect()->route('data-pengurus');
     }
+
 }

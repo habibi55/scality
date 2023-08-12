@@ -34,12 +34,23 @@
   <form class="flex flex-col gap-6" action="{{ route('profile.update', auth()->user()) }} " method="post">
     @csrf
     @method('PUT')
-
-    <div class="flex flex-row w-full gap-6">
     @if(session('success'))
-        <p class="text-success">{{ session('success') }}</p>
+        {{-- <div class="border-2 rounded-md border-green-400 text-green-400 w-1/2">{{ session('success') }}</div> --}}
+        <div class="px-4 py-3 w-5/12 bg-green-400 text-white flex justify-between rounded">
+            <div class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-6" viewBox="0 0 20 20" fill="currentColor">
+                    <path
+                        d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z"
+                    />
+                </svg>
+                <p>{{ session('success') }}</p>
+            </div>
+        </div>
+
     @endif
-    
+
+
+    <div class="flex flex-row w-full gap-6"> 
       <div class="flex flex-col w-full gap-2">
         <div>Full Name</div>
         <input class="border border-gray-300 bg-white rounded-lg py-3 px-4 text-sm " value="{{ $profile->name }}" type="text" name="name" id="name">
@@ -55,10 +66,11 @@
         <div>Email</div>
         <input class="border border-gray-300 bg-white rounded-lg py-3 px-4 text-sm " value="{{ $profile->email }}" type="text" name="email" id="email">
       </div>
-      {{-- <div class="flex flex-col w-full gap-2">
-        <div>Divisi</div>
-        <input class="border border-gray-300 bg-white rounded-lg py-3 px-4 text-sm " value="{{$profile->divisi}}" type="text" name="email" id="email">
-      </div> --}}
+      <div class="flex flex-col w-full gap-2">
+        <div>Password</div>
+         <input name="new-password" class="border border-gray-300 rounded-lg py-3 px-4 text-sm mt-2" id="new-password"
+          type="password" placeholder="Password Baru" autofocus>
+      </div>
     </div>
 
     <div class="flex justify-end">

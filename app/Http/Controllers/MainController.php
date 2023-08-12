@@ -30,6 +30,10 @@ class MainController extends Controller
             'updated_at' => now()
         ]);
 
+        // Ubah Password
+        $user->password = bcrypt($request->get('new-password'));
+        $user->save();
+
         return redirect()->route('profile')->with('success', 'Profile updated successfully.');
     }
 }
