@@ -32,9 +32,9 @@
       @endif
 
       <div class="flex flex-col">
-        <label class="text-base" for="email">Email</label>
-        <input name="email" class="border border-gray-300 rounded-lg py-3 px-4 text-sm mt-2" id="email" type="email"
-          placeholder="scality@domain.com" required autofocus>
+        <label class="text-base" for="npm">NPM</label>
+        <input name="npm" class="border border-gray-300 rounded-lg py-3 px-4 text-sm mt-2" id="npm" type="text"
+          required autofocus>
       </div>
 
       <div class="flex flex-col">

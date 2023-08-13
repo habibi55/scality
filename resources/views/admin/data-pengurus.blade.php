@@ -76,7 +76,19 @@
                 <td>
                   <div class="flex gap-2">
                     <a href="{{ route('pengurus.edit', $user->id)}}" class="rounded-md bg-primary px-4 text-white">Edit</a>
-                    <div class="rounded-md bg-red-500 px-4 text-white">Delete</div>
+
+                    <form action="{{ route('delete-pengurus-destroy', $user->id) }}" method="post">
+                      @csrf
+                      @method('DELETE')
+
+                      @if ($user->role == 2)
+                          
+                      @else
+                        <button type="submit" class="rounded-md bg-red-500 px-4 text-white">Delete</button>
+                      @endif
+                      
+                    </form>
+                    
                   </div>
                 </tr>
           @endforeach

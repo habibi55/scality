@@ -17,17 +17,17 @@ class LandingController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'string|required|email',
+            'npm' => 'string|required',
             'password' => 'string|required'
         ]);
 
-        $userCredential = $request->only('email','password');
+        $userCredential = $request->only('npm','password');
         if(Auth::attempt($userCredential)){
             $route = $this->redirectDash();
             return redirect($route);
         }
         else{
-            return back()->with('loginError','Incorrect email address and / or password!');
+            return back()->with('loginError','NPM atau Password kamu salah');
         }
     }
 

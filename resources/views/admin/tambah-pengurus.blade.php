@@ -34,12 +34,18 @@
       <div class="flex flex-col w-full gap-2">
         <p>NPM</p>
         <input class="p-2 rounded-md border-2" type="text" name="npm" id="npm">
+        @error('npm')
+            <strong>{{ $message }}</strong>
+        @enderror
       </div>
 
       <div class="flex flex-col w-full gap-2">
-          <label class="text-base md:text-xl" for="email">Email</label>
-          <input name="email" class="border border-gray-300 rounded-lg py-3 px-4 text-sm md:text-base mt-2" id="email"
-            type="email" placeholder="name@domain.com" required>
+        <p for="email">Email</p>
+        <input name="email" class="border border-gray-300 rounded-lg py-3 px-4 text-sm md:text-base" id="email"
+          type="email" placeholder="name@domain.com" required>
+        @error('npm')
+          <strong>{{ $message }}</strong>
+        @enderror
       </div>
 
       {{-- <div class="flex flex-col w-full gap-2">
@@ -54,26 +60,27 @@
 
       <div class="flex flex-col w-full gap-2">
         <p>Role</p>
-        <select class="form-create" name="role" id="role">
+        <select class="border border-gray-300 rounded-lg py-3 px-4 text-sm md:text-base" name="role" id="role">
           <option value="0">Pengurus</option>
           <option value="1">Evaluator</option>
           <option value="2">Admin</option>
         </select>
       </div>
 
-      {{-- <div class="flex flex-col w-full gap-2">
-        <p>Password</p>
-        <input class="p-2 rounded-md border-2" type="password" name="" id="">
-      </div> --}}
-        <div class="flex flex-col mt-4">
-          <label class="text-base md:text-xl" for="password">Password</label>
-          <input name="password" class="border border-gray-300 rounded-lg py-3 px-4 text-sm md:text-base mt-2" id="password" type="password" placeholder="At least 8 characters" required>
+        {{-- <div class="flex flex-col gap-2">
+          <p for="password">Password</p>
+          <input name="password" class="border border-gray-300 rounded-lg py-3 px-4 text-sm md:text-base" id="password" type="password" placeholder="At least 8 characters" required> --}}
           {{-- @error('password')
               <span class="invalid-feedback mt-1 font-medium text-red-500" role="alert">
                   <strong>{{ $message }}</strong>
               </span>
           @enderror --}}
-        </div>
+        {{-- </div> --}}
+      
+      <div class="flex flex-col w-full gap-2">
+        <p>Password</p>
+        <div class="border bg-white border-gray-300 rounded-lg py-3 px-4 text-sm md:text-base">Otomatis</div>
+      </div>
 
       <div class="flex justify-end gap-3">
         <a type="button" href="{{ route('data-pengurus') }}"

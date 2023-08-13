@@ -55,7 +55,7 @@
 
       <div class="flex flex-col w-full gap-2">
         <p>Role</p>
-        <select class="form-create" name="role" id="role">
+        <select class="border border-gray-300 rounded-lg py-3 px-4 text-sm md:text-base" name="role" id="role">
           <option value="0" {{ old('status', $users->role) == 0 ? 'selected':'' }} >Pengurus</option>
           <option value="1" {{ old('status', $users->role) == 1 ? 'selected':'' }} >Evaluator</option>
           <option value="2" {{ old('status', $users->role) == 2 ? 'selected':'' }} >Admin</option>

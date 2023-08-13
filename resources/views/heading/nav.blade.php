@@ -1,5 +1,5 @@
 <aside
-  class="hidden md:flex flex-col p-6 justify-between fixed top-0 left-0 z-40 w-72 h-screen transition-transform -translate-x-full sm:translate-x-0">
+  class="hidden md:flex flex-col p-4 justify-between fixed top-0 left-0 z-40 w-72 h-screen transition-transform -translate-x-full sm:translate-x-0">
   <!-- Logo and Nav -->
   <div class="flex flex-col h-5/6 gap-2 mt-2 ">
     <div class="flex flex-col gap-2 font-semibold">
@@ -446,7 +446,7 @@
 
   <!-- Profile -->
   <div class="flex bg-primary_back rounded-md h-20 items-center p-1 gap-1 text-sm" data-te-dropdown-position="dropup">
-    <svg class="w-5/12 h-14 cursor-pointer" id="dropdownTopButton" data-dropdown-toggle="dropdownTop"
+    <svg class="w-4/12 h-14 cursor-pointer" id="dropdownTopButton" data-dropdown-toggle="dropdownTop"
       data-dropdown-placement="top" data-te-dropdown-toggle-ref aria-expanded="false" data-te-ripple-init
       data-te-ripple-color="light" width="100%" height="100%" viewBox="0 0 61.7998 61.7998"
       xmlns="http://www.w3.org/2000/svg">
@@ -479,10 +479,19 @@
         </g>
       </g>
     </svg>
-
-    <div class="flex flex-col text-black w-7/12  h-full justify-center gap-2">
-      <div class="font-bold text-black text-sm">Mr. Habibi</div>
-      <div>Bidang PSDM</div>
+    <div class="flex flex-col text-black w-8/12 h-full justify-center gap-2">
+      <div class="font-bold text-black text-sm">{{ auth()->user()->name }}</div>
+      <div>
+        @if (auth()->user()->role == 0)
+            Pengurus
+        @endif
+        @if (auth()->user()->role == 1)
+            Evaluator
+        @endif
+        @if (auth()->user()->role == 2)
+            Admin
+        @endif
+      </div>
     </div>
   </div>
 </aside>

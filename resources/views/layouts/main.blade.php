@@ -21,7 +21,7 @@
   @stack('before-script')
 
     @include('heading.script')
-    @livewireScripts
+    {{-- @livewireScripts --}}
 
   @stack('after-script')
 
