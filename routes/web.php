@@ -31,38 +31,40 @@ Route::get('/logout',[LandingController::class,'logout'])->name('logout');
 
 /* Pengurus Routes */
 Route::group(['prefix' => 'pengurus','middleware'=>['web','isPengurus']],function(){
-    Route::get('/home',[MainController::class,'home'])->name('home');
-    Route::get('/rapor',[MainController::class,'raporPengurus'])->name('rapor-pengurus');
-    Route::get('/profile',[MainController::class,'profile'])->name('profile');
-    Route::post('/profile/{user}',[MainController::class,'update'])->name('profile.update');
-    Route::put('/profile/{user}',[MainController::class,'update'])->name('profile.update');
-    Route::get('/profile/update-password-form',[MainController::class,'updatePasswordForm'])->name('update-password-form');
-    Route::post('/profile/update-password',[MainController::class,'updatePassword'])->name('update-password');
+    Route::get('/home',[MainController::class,'home'])->name('home-pengurus');
+    Route::get('/rapor',[MainController::class,'rapor'])->name('rapor-pengurus');
+    Route::get('/profile',[MainController::class,'profile'])->name('profile-pengurus');
+    Route::post('/profile/{user}',[MainController::class,'update'])->name('profile.update-pengurus');
+    Route::put('/profile/{user}',[MainController::class,'update'])->name('profile.update-pengurus');
+    Route::get('/profile/update-password-form',[MainController::class,'updatePasswordForm'])->name('update-password-form-pengurus');
+    Route::post('/profile/update-password',[MainController::class,'updatePassword'])->name('update-password-pengurus');
 
 });
 
 /* Evaluator Routes */
 Route::group(['prefix' => 'evaluator','middleware'=>['web','isEvaluator']],function(){
-    Route::get('/home',[MainController::class,'home'])->name('home');
-    Route::get('/rapor',[MainController::class,'rapor'])->name('rapor');
-    Route::get('/profile',[MainController::class,'profile'])->name('profile');
-    Route::post('/profile/{user}',[MainController::class,'update'])->name('profile.update');
-    Route::put('/profile/{user}',[MainController::class,'update'])->name('profile.update');
-    Route::get('/profile/update-password-form',[MainController::class,'updatePasswordForm'])->name('update-password-form');
-    Route::post('/profile/update-password',[MainController::class,'updatePassword'])->name('update-password');
+    Route::get('/home',[MainController::class,'home'])->name('home-evaluator');
+    Route::get('/rapor',[MainController::class,'rapor'])->name('rapor-evaluator');
+    Route::get('/profile',[MainController::class,'profile'])->name('profile-evaluator');
+    Route::get('/penilaian',[MainController::class,'penilaian'])->name('penilaian-evaluator');
+    Route::post('/profile/{user}',[MainController::class,'update'])->name('profile.update-evaluator');
+    Route::put('/profile/{user}',[MainController::class,'update'])->name('profile.update-evaluator');
+    Route::get('/profile/update-password-form',[MainController::class,'updatePasswordForm'])->name('update-password-form-evaluator');
+    Route::post('/profile/update-password',[MainController::class,'updatePassword'])->name('update-password-evaluator');
 
 });
 
 
 /* Admin Routes */
 Route::group(['prefix' => 'admin','middleware'=>['web','isAdmin']],function(){
-    Route::get('/home',[MainController::class,'home'])->name('home');
-    Route::get('/rapor',[MainController::class,'rapor'])->name('rapor');
-    Route::get('/profile',[MainController::class,'profile'])->name('profile');
-    Route::post('/profile/{user}',[MainController::class,'update'])->name('profile.update');
-    Route::put('/profile/{user}',[MainController::class,'update'])->name('profile.update');
-    Route::get('/profile/update-password-form',[MainController::class,'updatePasswordForm'])->name('update-password-form');
-    Route::post('/profile/update-password',[MainController::class,'updatePassword'])->name('update-password');
+    Route::get('/home',[MainController::class,'home'])->name('home-admin');
+    Route::get('/rapor',[MainController::class,'rapor'])->name('rapor-admin');
+    Route::get('/profile',[MainController::class,'profile'])->name('profile-admin');
+    Route::get('/penilaian',[MainController::class,'penilaian'])->name('penilaian-admin');
+    Route::post('/profile/{user}',[MainController::class,'update'])->name('profile.update-admin');
+    Route::put('/profile/{user}',[MainController::class,'update'])->name('profile.update-admin');
+    Route::get('/profile/update-password-form',[MainController::class,'updatePasswordForm'])->name('update-password-form-admin');
+    Route::post('/profile/update-password',[MainController::class,'updatePassword'])->name('update-password-admin');
 
 
 
@@ -75,9 +77,6 @@ Route::group(['prefix' => 'admin','middleware'=>['web','isAdmin']],function(){
     Route::delete('/delete-pengurus-destroy/{id}',[AdminController::class,'destroy'])->name('delete-pengurus-destroy');
     Route::get('/edit-pengurus/{id}', [AdminController::class,'edit'])->name('pengurus.edit');
     Route::put('/edit-pengurus/{id}', [AdminController::class,'update'])->name('pengurus.update');
-
-
-
 });
 
 

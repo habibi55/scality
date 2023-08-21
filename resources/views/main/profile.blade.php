@@ -30,8 +30,18 @@
     </div>
   </div>
 
+  @if (auth()->user()->role == 0)
+    <form class="flex flex-col justify-center items-center gap-6" action="{{ route('profile.update-pengurus', auth()->user()) }} " method="post">
+  @endif
+
+  @if (auth()->user()->role == 1)
+    <form class="flex flex-col justify-center items-center gap-6" action="{{ route('profile.update-evalautor', auth()->user()) }} " method="post">
+  @endif
+
+  @if (auth()->user()->role == 2)
+    <form class="flex flex-col justify-center items-center gap-6" action="{{ route('profile.update-admin', auth()->user()) }} " method="post">
+  @endif
  
-  <form class="flex flex-col justify-center items-center gap-6" action="{{ route('profile.update', auth()->user()) }} " method="post">
     @csrf
     @method('PUT')
     @if(session('success'))
@@ -68,7 +78,17 @@
         Update Profile
       </button>
 
-      <a class="button text-center w-40 mt-2" href="{{ route('update-password-form') }}">Ganti Password</a>
+      @if (auth()->user()->role == 0)
+        <a class="button text-center w-40 mt-2" href="{{ route('update-password-form-pengurus') }}">Ganti Password</a>
+      @endif
+
+      @if (auth()->user()->role == 1)
+        <a class="button text-center w-40 mt-2" href="{{ route('update-password-form-evaluator') }}">Ganti Password</a>
+      @endif
+
+      @if (auth()->user()->role == 2)
+        <a class="button text-center w-40 mt-2" href="{{ route('update-password-form-admin') }}">Ganti Password</a>
+      @endif
     </div>
   </form>
 

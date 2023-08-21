@@ -19,9 +19,9 @@ class MainController extends Controller
         return view('main.rapor');
     }
 
-       public function raporPengurus()
+        public function penilaian()
     {
-        return view('main.rapor');
+        return view('main.penilaian');
     }
 
     public function profile()
@@ -39,8 +39,18 @@ class MainController extends Controller
             'npm' => $request->npm,
             'updated_at' => now()
         ]);
- 
-        return redirect()->route('profile')->with('success', 'Profile updated successfully.');
+
+        if (auth()->user()->role == 0) {
+            return redirect()->route('profile-pengurus')->with('success', 'Profile updated successfully.');
+        }
+
+        if (auth()->user()->role == 0) {
+            return redirect()->route('profile-evaluator')->with('success', 'Profile updated successfully.');
+        }
+
+        if (auth()->user()->role == 0) {
+            return redirect()->route('profile-admin')->with('success', 'Profile updated successfully.');
+        }
     }
 
     public function updatePasswordForm()
@@ -50,23 +60,54 @@ class MainController extends Controller
         return view('main.update-password-form');
     }
     
-    public function updatePassword(Request $request)
+    public function updatePassword(User $user, Request $request)
     {
+        // $request->validate([
+        //     'current_password' => 'required',
+        //     'new_password' => 'required|string|min:8|confirmed',
+        // ]);
+
+        // $user = Auth::user();
+
+        // if (!Hash::check($request->current_password, $user->password)) {
+        //     return back()->withErrors(['current_password' => 'The current password is incorrect.']);
+        // }
+
+        // $user->password = Hash::make($request->new_password);
+        // $user->save();
+
         $request->validate([
             'current_password' => 'required',
-            'new_password' => 'required|string|min:8|confirmed',
+            'new_password' => 'required|confirmed|min:8',
         ]);
 
-        $user = Auth::user();
+        // Get authenticated user
+        $user = auth()->user();
 
+        // Check if current password is correct
         if (!Hash::check($request->current_password, $user->password)) {
-            return back()->withErrors(['current_password' => 'The current password is incorrect.']);
+            return back()->withErrors(['current_password' => 'The current password is incorrect']);
         }
 
-        $user->password = Hash::make($request->new_password);
-        $user->save();
+        // Update user's password
+        $user->update([
+            'password' => Hash::make($request->new_password),
+        ]);
 
-        return redirect()->route('profile')->with('success', 'Profile updated successfully.');
+
+
+
+        if (auth()->user()->role == 0) {
+            return back();
+        }
+
+        if (auth()->user()->role == 0) {
+            return redirect()->route('profile-evaluator')->with('success', 'Profile updated successfully.');
+        }
+
+        if (auth()->user()->role == 0) {
+            return redirect()->route('profile-admin')->with('success', 'Profile updated successfully.');
+        }
 
     }
 }

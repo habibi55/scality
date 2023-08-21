@@ -21,8 +21,21 @@
     </div>
   </div>
 
-  <form class="flex flex-col w-1/3 gap-6" action="{{ route('update-password') }}" method="post">
-  @csrf
+  {{-- <form class="flex flex-col w-1/3 gap-6" action="{{ route('update-password') }}" method="post"> --}}
+
+  @if (auth()->user()->role == 0)
+    <form class="flex flex-col w-1/3 gap-6" action="{{ route('update-password-pengurus') }}" method="post">
+  @endif
+
+  @if (auth()->user()->role == 1)
+    <form class="flex flex-col w-1/3 gap-6" action="{{ route('update-password-evaluator') }}" method="post">
+  @endif
+
+  @if (auth()->user()->role == 2)
+    <form class="flex flex-col w-1/3 gap-6" action="{{ route('update-password-admin') }}" method="post">
+  @endif
+
+    @csrf
     <div class="flex flex-col w-full gap-2">
       <div>Password Sekarang</div>
         <input name="current_password" class="border border-gray-300 rounded-lg py-3 px-4 text-sm" id="current_password"
