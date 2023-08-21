@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::resource('/', LandingController::class);
+// Route::resource('/', LandingController::class);
 Route::get('/login',function(){
 return redirect('/');
 });
@@ -34,6 +34,8 @@ Route::group(['prefix' => 'pengurus','middleware'=>['web','isPengurus']],functio
     Route::get('/profile',[MainController::class,'profile'])->name('profile');
     Route::post('/profile/{user}',[MainController::class,'update'])->name('profile.update');
     Route::put('/profile/{user}',[MainController::class,'update'])->name('profile.update');
+    Route::get('/profile/update-password-form',[MainController::class,'updatePasswordForm'])->name('update-password-form');
+    Route::post('/profile/update-password',[MainController::class,'updatePassword'])->name('update-password');
 
 });
 
@@ -43,6 +45,8 @@ Route::group(['prefix' => 'evaluator','middleware'=>['web','isEvaluator']],funct
     Route::get('/profile',[MainController::class,'profile'])->name('profile');
     Route::post('/profile/{user}',[MainController::class,'update'])->name('profile.update');
     Route::put('/profile/{user}',[MainController::class,'update'])->name('profile.update');
+    Route::get('/profile/update-password-form',[MainController::class,'updatePasswordForm'])->name('update-password-form');
+    Route::post('/profile/update-password',[MainController::class,'updatePassword'])->name('update-password');
 
 });
 
@@ -53,7 +57,13 @@ Route::group(['prefix' => 'admin','middleware'=>['web','isAdmin']],function(){
     Route::get('/profile',[MainController::class,'profile'])->name('profile');
     Route::post('/profile/{user}',[MainController::class,'update'])->name('profile.update');
     Route::put('/profile/{user}',[MainController::class,'update'])->name('profile.update');
+    Route::get('/profile/update-password-form',[MainController::class,'updatePasswordForm'])->name('update-password-form');
+    Route::post('/profile/update-password',[MainController::class,'updatePassword'])->name('update-password');
 
+
+
+    Route::get('/jadwal-absen',[AdminController::class,'jadwalAbsen'])->name('jadwal-absen');
+    Route::get('/tambah-absen',[AdminController::class,'tambahAbsen'])->name('tambah-absen');
     Route::get('/data-pengurus',[AdminController::class,'dataPengurus'])->name('data-pengurus');
     Route::get('/tambah-pengurus',[AdminController::class,'tambahPengurus'])->name('tambah-pengurus');
     Route::post('/tambah-pengurus-store',[AdminController::class,'store'])->name('tambah-pengurus-store');

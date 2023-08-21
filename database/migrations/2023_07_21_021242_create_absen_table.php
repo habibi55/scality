@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('absen', function (Blueprint $table) {
             $table->id();
+            // $table->string('judul');
+            // $table->string('tempat');
             $table->timestamps();
         });
     }

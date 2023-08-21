@@ -4,7 +4,7 @@
 
 <div class="flex flex-col bg-primary_back p-6 gap-6 ml-72 h-screen">
   <div class="flex w-full mt-4">
-    <div class="w-6/12 font-bold text-4xl">Edit Profile</div>
+    <div class="w-6/12 font-bold text-4xl">Update Profile</div>
     <div class="w-6/12 mx-auto">
       <div class="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
         <div class="grid place-items-center h-full w-12 text-gray-300">
@@ -31,7 +31,7 @@
   </div>
 
  
-  <form class="flex flex-col gap-6" action="{{ route('profile.update', auth()->user()) }} " method="post">
+  <form class="flex flex-col justify-center items-center gap-6" action="{{ route('profile.update', auth()->user()) }} " method="post">
     @csrf
     @method('PUT')
     @if(session('success'))
@@ -48,7 +48,7 @@
     @endif
 
 
-    <div class="flex flex-row w-full gap-6"> 
+    <div class="flex flex-col w-1/3 gap-6"> 
       <div class="flex flex-col w-full gap-2">
         <div>Full Name</div>
         <input class="border border-gray-300 bg-white rounded-lg py-3 px-4 text-sm " value="{{ $profile->name }}" type="text" name="name" id="name">
@@ -57,26 +57,22 @@
         <div>NPM</div>
         <input class="border border-gray-300 bg-white rounded-lg py-3 px-4 text-sm " value="{{ $profile->npm }}" type="text" name="npm" id="npm">
       </div>
-    </div>
-
-    <div class="flex flex-row w-full gap-6">
       <div class="flex flex-col w-full gap-2">
         <div>Email</div>
         <input class="border border-gray-300 bg-white rounded-lg py-3 px-4 text-sm " value="{{ $profile->email }}" type="text" name="email" id="email">
       </div>
-      <div class="flex flex-col w-full gap-2">
-        <div>Password</div>
-         <input name="new-password" class="border border-gray-300 rounded-lg py-3 px-4 text-sm" id="new-password"
-          type="password" placeholder="Password Baru" autofocus>
-      </div>
     </div>
 
-    <div class="flex justify-end">
+    <div class="flex flex-col justify-end gap-4">
       <button type="submit" class="button text-center w-40 mt-2">
         Update Profile
       </button>
+
+      <a class="button text-center w-40 mt-2" href="{{ route('update-password-form') }}">Ganti Password</a>
     </div>
   </form>
+
+
 </div>
 
 @endsection

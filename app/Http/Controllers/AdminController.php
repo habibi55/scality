@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\JadwalAbsen;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -66,6 +68,28 @@ class AdminController extends Controller
         $user->delete();
          
         return redirect()->route('data-pengurus');
+    }
+
+    //FUNCTION ABSEN
+    public function jadwalAbsen()
+    {
+
+        return view('admin.jadwal-absen');
+    }
+
+    public function tambahAbsen()
+    {
+        return view('admin.tambah-absen');
+    }
+
+    public function storeAbsen(Request $request)
+    {
+        $jadwal_absen = new JadwalAbsen();
+        $jadwal_absen->judul = $request->judul;
+        $jadwal_absen->tempat = $request->tempat;
+        $jadwal_absen->save();
+
+        return redirect()->route('jadwal-absen');
     }
 
 }

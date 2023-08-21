@@ -29,11 +29,35 @@ class MainController extends Controller
             'npm' => $request->npm,
             'updated_at' => now()
         ]);
+ 
+        return redirect()->route('profile')->with('success', 'Profile updated successfully.');
+    }
 
-        // Ubah Password
-        $user->password = bcrypt($request->get('new-password'));
+    public function updatePasswordForm()
+    {
+        // $id = Auth::id();
+        // $profile = User::all()->where('id', $id)->firstOrFail();
+        return view('main.update-password-form');
+    }
+    
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user = Auth::user();
+
+        if (!Hash::check($request->current_password, $user->password)) {
+            return back()->withErrors(['current_password' => 'The current password is incorrect.']);
+        }
+
+        $user->password = Hash::make($request->new_password);
         $user->save();
 
         return redirect()->route('profile')->with('success', 'Profile updated successfully.');
+
     }
 }
+
