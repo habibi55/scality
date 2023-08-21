@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EvaluatorController;
+use App\Http\Controllers\PengurusController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,7 @@ Route::get('/logout',[LandingController::class,'logout'])->name('logout');
 /* Pengurus Routes */
 Route::group(['prefix' => 'pengurus','middleware'=>['web','isPengurus']],function(){
     Route::get('/home',[MainController::class,'home'])->name('home');
+    Route::get('/rapor',[MainController::class,'raporPengurus'])->name('rapor-pengurus');
     Route::get('/profile',[MainController::class,'profile'])->name('profile');
     Route::post('/profile/{user}',[MainController::class,'update'])->name('profile.update');
     Route::put('/profile/{user}',[MainController::class,'update'])->name('profile.update');
@@ -42,6 +44,7 @@ Route::group(['prefix' => 'pengurus','middleware'=>['web','isPengurus']],functio
 /* Evaluator Routes */
 Route::group(['prefix' => 'evaluator','middleware'=>['web','isEvaluator']],function(){
     Route::get('/home',[MainController::class,'home'])->name('home');
+    Route::get('/rapor',[MainController::class,'rapor'])->name('rapor');
     Route::get('/profile',[MainController::class,'profile'])->name('profile');
     Route::post('/profile/{user}',[MainController::class,'update'])->name('profile.update');
     Route::put('/profile/{user}',[MainController::class,'update'])->name('profile.update');
@@ -54,6 +57,7 @@ Route::group(['prefix' => 'evaluator','middleware'=>['web','isEvaluator']],funct
 /* Admin Routes */
 Route::group(['prefix' => 'admin','middleware'=>['web','isAdmin']],function(){
     Route::get('/home',[MainController::class,'home'])->name('home');
+    Route::get('/rapor',[MainController::class,'rapor'])->name('rapor');
     Route::get('/profile',[MainController::class,'profile'])->name('profile');
     Route::post('/profile/{user}',[MainController::class,'update'])->name('profile.update');
     Route::put('/profile/{user}',[MainController::class,'update'])->name('profile.update');

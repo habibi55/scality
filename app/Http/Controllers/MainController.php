@@ -14,6 +14,16 @@ class MainController extends Controller
         return view('main.home');
     }
 
+    public function rapor()
+    {
+        return view('main.rapor');
+    }
+
+       public function raporPengurus()
+    {
+        return view('main.rapor');
+    }
+
     public function profile()
     {
         $id = Auth::id();

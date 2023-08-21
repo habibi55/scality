@@ -19,7 +19,7 @@
         <div class="w-full">Home</div>
       </a>
 
-      <a href="rapor.html" class="nav">
+      <a href="{{ route('rapor') }}" class="nav">
         <svg class="w-10" viewBox=" 0 0 256 256" xmlns="http://www.w3.org/2000/svg">
           <rect fill="none" height="256" width="256" />
           <rect fill="none" height="136" rx="8" stroke="#000" stroke-linecap="round" stroke-linejoin="round"
@@ -37,6 +37,26 @@
           <line fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="14" x1="128"
             x2="128" y1="48" y2="24" /></svg>
         <div class="w-full">Rapor Diri</div>
+      </a>
+
+      <a href="{{ route('rapor-pengurus') }}" class="nav">
+        <svg class="w-10" viewBox=" 0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+          <rect fill="none" height="256" width="256" />
+          <rect fill="none" height="136" rx="8" stroke="#000" stroke-linecap="round" stroke-linejoin="round"
+            stroke-width="12" width="192" x="32" y="48" />
+          <line fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="12" x1="160"
+            x2="192" y1="184" y2="224" />
+          <line fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="12" x1="96"
+            x2="64" y1="184" y2="224" />
+          <line fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="12" x1="96"
+            x2="96" y1="120" y2="144" />
+          <line fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="12" x1="128"
+            x2="128" y1="104" y2="144" />
+          <line fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="14" x1="160"
+            x2="160" y1="88" y2="144" />
+          <line fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="14" x1="128"
+            x2="128" y1="48" y2="24" /></svg>
+        <div class="w-full">Rapor Diri Pengurus</div>
       </a>
 
       @if(auth()->user()->role == 2)
