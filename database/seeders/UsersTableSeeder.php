@@ -32,24 +32,32 @@ class UsersTableSeeder extends Seeder
     //         'password' => Hash::make('cemara2077'), // Use Hash::make() to hash the password
     //     ]);
 
-        DB::table('users')->insert([
-    [
-        'name' => 'Admin',
-        'email' => 'muhamadhabibi14168@gmail.com',
-        'npm' => '13119890',
-        'role' => '2',
-        // 'divisi' => 'MIB',
-        'password' => Hash::make('cemara2077'),
-    ],
-    [
-        'name' => 'Habibi',
-        'email' => 'habibi@gmail.com',
-        'npm' => '12345678',
-        'role' => '0',
-        // 'divisi' => 'MIB',
-        'password' => Hash::make('cemara2077'),
-    ]
-]);
+    DB::table('users')->insert([
+        [
+            'name' => 'Habibi Pengurus',
+            'email' => 'habibi@gmail.com',
+            'npm' => '12345678',
+            'role' => '0',
+            // 'divisi' => 'MIB',
+            'password' => Hash::make('cemara2077'),
+        ],
+        [
+            'name' => 'Habibi Evaluator',
+            'email' => 'habibi1@gmail.com',
+            'npm' => '00000000',
+            'role' => '1',
+            // 'divisi' => 'MIB',
+            'password' => Hash::make('cemara2077'),
+        ],
+        [
+            'name' => 'Admin',
+            'email' => 'muhamadhabibi14168@gmail.com',
+            'npm' => '13119890',
+            'role' => '2',
+            // 'divisi' => 'MIB',
+            'password' => Hash::make('cemara2077'),
+        ],
+    ]);
 
     }
 }

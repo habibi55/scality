@@ -8,14 +8,15 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class MainController extends Controller
 {
     public function home()
     {
         $jadwal_absen = JadwalAbsen::orderBy('id','ASC')->paginate(10);
-        // $absen = Absen::orderBy('id','ASC')->paginate(10);
         $absen = Absen::where('users_id', Auth::user()->id)->orderBy('id', 'asc')->get();
+
         return view('main.home', compact('jadwal_absen' , 'absen'));
     }
 
@@ -27,26 +28,6 @@ class MainController extends Controller
 
     public function storeAbsen(Request $request)
     {
-        // $request->validate([
-        //     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
-        // ]);
-
-        // $absen = $request->all();
-  
-        // if ($image = $request->file('image')) {
-        //     $destinationPath = 'images/';
-        //     $postImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-        //     $image->move($destinationPath, $postImage);
-        //     $absen['image'] = "$postImage";
-        // }
-  
-        // // Absen::create($absen);
-
-        // $absen = new Absen();
-        // $absen->image = $image;
-        // $absen->users_id = Auth::id();
-        // $absen->save();
-
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
@@ -60,9 +41,6 @@ class MainController extends Controller
         $absen->users_id = Auth::id();
         $absen->save();
 
-
-
-                   
         if (auth()->user()->role == 0) {
             return redirect()->route('home-pengurus');
         }
@@ -74,9 +52,7 @@ class MainController extends Controller
         if (auth()->user()->role == 2) {
             return redirect()->route('home-admin');
         }
-
     }
-
 
 
     public function rapor()
@@ -123,7 +99,6 @@ class MainController extends Controller
     {
         return view('main.update-password-form');
     }
-    
     public function updatePassword(Request $request)
     {    
         // cek password Lama
@@ -140,7 +115,6 @@ class MainController extends Controller
         ]);
 
   
-
         if (auth()->user()->role == 0) {
             return redirect()->route('update-password-form-pengurus')->with('success', 'Profile updated successfully.');
         }
