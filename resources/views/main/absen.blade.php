@@ -35,7 +35,6 @@
           <form class="flex flex-col p-5 gap-4" action="{{ route('store-absen-admin') }}" method="POST" enctype="multipart/form-data">
       @endif
 
-
         @csrf
         <div class="flex items-center">
           <div class="w-16">
@@ -50,10 +49,7 @@
         </div>
 
         <div class="flex flex-col gap-3">
-          {{-- <input id="image" type="file" name="image"
-            class="w-full rounded-lg bg-slate-100 p-2  @error('photo') is-invalid @enderror" autocomplete="photo"
-            value="{{ old('photo') }}"> --}}
-            <input type="file" name="image" class="form-control" placeholder="image">
+            <input type="file" name="image" id="image" class="form-control" placeholder="image">
         </div>
 
         <div class="flex justify-end gap-3">

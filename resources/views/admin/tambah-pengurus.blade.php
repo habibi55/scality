@@ -67,6 +67,35 @@
         </select>
       </div>
 
+      <div class="flex flex-col w-full gap-2">
+        <p>Jabatan</p>
+        <select class="border border-gray-300 rounded-lg py-3 px-4 text-sm md:text-base" name="jabatan" id="jabatan">
+          <option value="0">Staff</option>
+          <option value="1">Kepala</option>
+          <option value="2">Supervisor</option>
+        </select>
+      </div>
+
+      <div class="flex flex-col w-full gap-2">
+        <p>Departemen</p>
+        <select class="border border-gray-300 rounded-lg py-3 px-4 text-sm md:text-base" name="departemen" id="departemen">
+          <option value="0">Dept A</option>
+          <option value="1">Dept B</option>
+        </select>
+      </div>
+     
+      <div class="flex flex-col w-full gap-2">
+        <p>Bidang</p>
+        <select class="border border-gray-300 rounded-lg py-3 px-4 text-sm md:text-base" name="bidang" id="bidang">
+          <option value="0">Dept A - Bidang A</option>
+          <option value="1">Dept A - Bidang B</option>
+
+          <option value="2">Dept B - Bidang C</option>
+          <option value="3">Dept B - Bidang D</option>
+          <option value="4">Dept B - Bidang E</option>
+        </select>
+      </div>
+
         {{-- <div class="flex flex-col gap-2">
           <p for="password">Password</p>
           <input name="password" class="border border-gray-300 rounded-lg py-3 px-4 text-sm md:text-base" id="password" type="password" placeholder="At least 8 characters" required> --}}

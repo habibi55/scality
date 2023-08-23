@@ -20,6 +20,9 @@ return new class extends Migration
             $table->string('password');
             $table->string('photo')->nullable();
             $table->integer('role')->default('0');
+            $table->integer('jabatan')->default('0');
+            $table->integer('departemen')->default('0');
+            $table->integer('bidang')->default('0');
             // kalo bisa divisi, baru dibuka
             // $table->integer('divisi')->default('0');
             $table->rememberToken();

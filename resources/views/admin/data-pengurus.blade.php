@@ -41,9 +41,11 @@
           <tr>
             <th data-priority="1">Name</th>
             <th data-priority="2">NPM</th>
-            <th data-priority="3">Divisi</th>
-            <th data-priority="4">Role</th>
-            <th class="w-1/5" data-priority="5">Action</th>
+            <th data-priority="3">Jabatan</th>
+            <th data-priority="4">Departemen</th>
+            <th data-priority="5">Bidang</th>
+            <th data-priority="6">Role</th>
+            <th class="w-1/5" data-priority="7">Action</th>
           </tr>
         </thead>
         <tbody class="divide-y-8">
@@ -52,7 +54,67 @@
               <tr>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->npm }}</td>
-                <td>{{ $user->name }}</td>
+                <td>
+                  @if ($user->jabatan == 2)
+                    <div class="flex">
+                      <div class="px-3 text-center text-white rounded-2xl bg-stone-500">Supervisor</div>
+                    </div>
+                  @endif
+                  @if ($user->jabatan == 1)
+                    <div class="flex">
+                      <div class="px-3 text-center text-white rounded-2xl bg-stone-500">Kepala</div>
+                    </div>
+                  @endif
+                  @if ($user->jabatan == 0)
+                    <div class="flex">
+                      <div class="px-3 text-center text-white rounded-2xl bg-stone-500">Staff</div>
+                    </div>
+                  @endif
+                </td>
+                <td>
+                  @if ($user->departemen == 0)
+                    <div class="flex">
+                      <div class="px-3 text-center text-white rounded-2xl bg-stone-500">Departemen A</div>
+                    </div>
+                  @endif
+                  @if ($user->departemen == 1)
+                    <div class="flex">
+                      <div class="px-3 text-center text-white rounded-2xl bg-stone-500">Departemen B</div>
+                    </div>
+                  @endif
+                </td>
+
+                <td>
+                  @if ($user->bidang == 0)
+                    <div class="flex">
+                      <div class="px-3 text-center text-white rounded-2xl bg-purple-500">Bidang A</div>
+                    </div>
+                  @endif
+                  @if ($user->bidang == 1)
+                    <div class="flex">
+                      <div class="px-3 text-center text-white rounded-2xl bg-purple-500">Bidang B</div>
+                    </div>
+                  @endif
+                  @if ($user->bidang == 2)
+                    <div class="flex">
+                      <div class="px-3 text-center text-white rounded-2xl bg-purple-500">Bidang C</div>
+                    </div>
+                  @endif
+                  @if ($user->bidang == 3)
+                    <div class="flex">
+                      <div class="px-3 text-center text-white rounded-2xl bg-purple-500">Bidang D</div>
+                    </div>
+                  @endif
+                  @if ($user->bidang == 4)
+                    <div class="flex">
+                      <div class="px-3 text-center text-white rounded-2xl bg-purple-500">Bidang E</div>
+                    </div>
+                  @endif
+                </td>
+
+
+
+
                 <td>
                   @if ($user->role == 0)
                     <div class="flex">
@@ -72,6 +134,18 @@
                     </div>
                   @endif
                 </td>
+
+
+
+
+
+
+
+
+
+
+
+
                 <td>
                   <div class="flex gap-2">
                     <a href="{{ route('pengurus.edit', $user->id)}}" class="rounded-md bg-primary px-4 text-white">Edit</a>

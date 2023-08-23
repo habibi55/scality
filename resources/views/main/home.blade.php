@@ -248,18 +248,16 @@
           </svg>
         </div>
         <div class="text-2xl font-semibold">Hasil Absen</div>        
-      </div>
+      </div>   
 
-      
-
-      <div class="form-isi flex-col items-start">
+      <div class="flex-col items-start p-4">
         <ul class="list-decimal">
-        @foreach ($absen as $absen)
+          @foreach ($absen as $absen)
           <li class="">
             <div> {{  date("j F, Y H:i",strtotime($absen->created_at)) ?? '' }}</div>
             <img class="max-h-96 object-contain mb-2" src="/images/{{ $absen->image }}" width="500px">
           </li>
-        @endforeach
+          @endforeach
         </ul>
       </div>
     </div>

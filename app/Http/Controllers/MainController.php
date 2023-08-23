@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class MainController extends Controller
 {
@@ -64,6 +65,8 @@ class MainController extends Controller
     {
         return view('main.penilaian');
     }
+
+    
 
     public function profile()
     {

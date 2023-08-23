@@ -15,46 +15,102 @@ class UsersTableSeeder extends Seeder
      */
     public function run(): void
     {
-    //     User::createMany([
-    //         'name' => 'Admin',
-    //         'email' => 'muhamadhabibi14168@gmail.com',
-    //         'npm' => '13119890',
-    //         'role' => '2',
-    //         // 'divisi' => 'MIB',
-    //         'password' => Hash::make('cemara2077'), // Use Hash::make() to hash the password
-    //     ],
-    // [
-    //         'name' => 'Habibi',
-    //         'email' => 'habibi@gmail.com',
-    //         'npm' => '12345678',
-    //         'role' => '0',
-    //         // 'divisi' => 'MIB',
-    //         'password' => Hash::make('cemara2077'), // Use Hash::make() to hash the password
-    //     ]);
 
     DB::table('users')->insert([
         [
             'name' => 'Habibi Pengurus',
-            'email' => 'habibi@gmail.com',
-            'npm' => '12345678',
+            'email' => 'habibi1@gmail.com',
+            'npm' => '0000000',
             'role' => '0',
-            // 'divisi' => 'MIB',
+            'departemen' => '0',
+            'bidang' => '0',
+            'jabatan' => '0',
+            'password' => Hash::make('cemara2077'),
+        ],
+
+
+        [
+            'name' => 'Habibi Evaluator',
+            'email' => 'habibi2@gmail.com',
+            'npm' => '1111111',
+            'role' => '1',
+            'jabatan' => '2',
+            'departemen' => '0',
+            'bidang' => '0',
             'password' => Hash::make('cemara2077'),
         ],
         [
-            'name' => 'Habibi Evaluator',
-            'email' => 'habibi1@gmail.com',
-            'npm' => '00000000',
+            'name' => 'Raisya Evaluator',
+            'email' => 'habibi3@gmail.com',
+            'npm' => '22222222',
             'role' => '1',
-            // 'divisi' => 'MIB',
+            'jabatan' => '2',
+            'departemen' => '1',
+            'bidang' => '0',
             'password' => Hash::make('cemara2077'),
         ],
+
+        [
+            'name' => 'Raisya Evaluator',
+            'email' => 'habibi4@gmail.com',
+            'npm' => '33333333',
+            'role' => '1',
+            'jabatan' => '1',
+            'departemen' => '0',
+            'bidang' => '0',
+            'password' => Hash::make('cemara2077'),
+        ],
+            [
+            'name' => 'Raisya Evaluator',
+            'email' => 'habibi5@gmail.com',
+            'npm' => '44444444',
+            'role' => '1',
+            'jabatan' => '1',
+            'departemen' => '0',
+            'bidang' => '1',
+            'password' => Hash::make('cemara2077'),
+        ],
+            [
+            'name' => 'Raisya Evaluator',
+            'email' => 'habibi6@gmail.com',
+            'npm' => '55555555',
+            'role' => '1',
+            'jabatan' => '1',
+            'departemen' => '1',
+            'bidang' => '2',
+            'password' => Hash::make('cemara2077'),
+        ],
+        [
+            'name' => 'Raisya Evaluator',
+            'email' => 'habibi7@gmail.com',
+            'npm' => '66666666',
+            'role' => '1',
+            'jabatan' => '1',
+            'departemen' => '1',
+            'bidang' => '3',
+            'password' => Hash::make('cemara2077'),
+        ],
+        [
+            'name' => 'Raisya Evaluator',
+            'email' => 'habibi8@gmail.com',
+            'npm' => '77777777',
+            'role' => '1',
+            'jabatan' => '1',
+            'departemen' => '1',
+            'bidang' => '4',
+            'password' => Hash::make('cemara2077'),
+        ],
+
+
+
         [
             'name' => 'Admin',
             'email' => 'muhamadhabibi14168@gmail.com',
             'npm' => '13119890',
             'role' => '2',
-            // 'divisi' => 'MIB',
+            'jabatan' => '2',
+            'departemen' => '0',
+            'bidang' => '0',
             'password' => Hash::make('cemara2077'),
         ],
     ]);

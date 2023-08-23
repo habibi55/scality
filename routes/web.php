@@ -51,7 +51,7 @@ Route::group(['prefix' => 'pengurus','middleware'=>['web','isPengurus']],functio
 /* Evaluator Routes */
 Route::group(['prefix' => 'evaluator','middleware'=>['web','isEvaluator']],function(){
     Route::get('/home',[MainController::class,'home'])->name('home-evaluator');
-        Route::get('/absen',[MainController::class,'absen'])->name('absen-evaluator');
+    Route::get('/absen',[MainController::class,'absen'])->name('absen-evaluator');
     Route::post('/absen',[MainController::class,'storeAbsen'])->name('store-absen-evaluator');
     Route::get('/rapor',[MainController::class,'rapor'])->name('rapor-evaluator');
     Route::get('/profile',[MainController::class,'profile'])->name('profile-evaluator');
