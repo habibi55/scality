@@ -49,7 +49,7 @@
         <tbody class="divide-y-8">
           <!-- Rest of your data (refer to https://datatables.net/examples/server_side/ for server side processing)-->
           @foreach ($users as $user)
-              <tr >
+              <tr>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->npm }}</td>
                 <td>{{ $user->name }}</td>
@@ -71,7 +71,6 @@
                       <div class="px-3 text-center text-white rounded-2xl bg-green-500">Admin</div>
                     </div>
                   @endif
-
                 </td>
                 <td>
                   <div class="flex gap-2">
@@ -86,9 +85,8 @@
                       @else
                         <button type="submit" class="rounded-md bg-red-500 px-4 text-white">Delete</button>
                       @endif
-                      
+                </td>
                     </form>
-                    
                   </div>
                 </tr>
           @endforeach

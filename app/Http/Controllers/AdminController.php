@@ -6,7 +6,6 @@ use App\Models\JadwalAbsen;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 
 class AdminController extends Controller
@@ -66,23 +65,23 @@ class AdminController extends Controller
     {
         $user = User::findOrFail($id);
         $user->delete();
-         
+
         return redirect()->route('data-pengurus');
     }
 
     //FUNCTION ABSEN
     public function jadwalAbsen()
     {
-
-        return view('admin.jadwal-absen');
+        $jadwal_absen = JadwalAbsen::orderBy('id','ASC')->paginate(10);
+        return view('admin.jadwal-absen', compact('jadwal_absen'));
     }
 
-    public function tambahAbsen()
+    public function tambahJadwalAbsen()
     {
-        return view('admin.tambah-absen');
+        return view('admin.tambah-jadwal-absen');
     }
 
-    public function storeAbsen(Request $request)
+    public function storeJadwalAbsen(Request $request)
     {
         $jadwal_absen = new JadwalAbsen();
         $jadwal_absen->judul = $request->judul;
@@ -90,6 +89,21 @@ class AdminController extends Controller
         $jadwal_absen->save();
 
         return redirect()->route('jadwal-absen');
+    }
+
+    public function editJadwalAbsen()
+    {
+        
+    }
+
+    public function updateJadwalAbsen()
+    {
+        
+    }
+
+    public function destroyJadwalAbsen()
+    {
+        
     }
 
 }

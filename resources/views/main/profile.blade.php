@@ -71,6 +71,11 @@
         <div>Email</div>
         <input class="border border-gray-300 bg-white rounded-lg py-3 px-4 text-sm " value="{{ $profile->email }}" type="text" name="email" id="email">
       </div>
+      <div class="flex flex-col w-full gap-2">
+        <div>Password Sekarang</div>
+          <input name="current_password" class="border border-gray-300 rounded-lg py-3 px-4 text-sm" id="current_password"
+          type="password" placeholder="Password Sekarang" required autofocus>
+      </div>
     </div>
 
     <div class="flex flex-col justify-end gap-4">
@@ -78,7 +83,7 @@
         Update Profile
       </button>
 
-      @if (auth()->user()->role == 0)
+      {{-- @if (auth()->user()->role == 0)
         <a class="button text-center w-40 mt-2" href="{{ route('update-password-form-pengurus') }}">Ganti Password</a>
       @endif
 
@@ -88,7 +93,7 @@
 
       @if (auth()->user()->role == 2)
         <a class="button text-center w-40 mt-2" href="{{ route('update-password-form-admin') }}">Ganti Password</a>
-      @endif
+      @endif --}}
     </div>
   </form>
 

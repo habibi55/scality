@@ -21,7 +21,7 @@
     </div>
   </div>
 
-  <a href=""
+  <a href="{{ route('tambah-jadwal-absen') }}"
     class="flex gap-2 py-3 w-64 bg-white rounded-lg justify-center items-center hover:bg-gray-100 hover:duration-200 shadow-md hover:cursor-pointer">
     <svg class="w-6" height="100%" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1"
       viewBox="0 0 512 512" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
@@ -41,57 +41,19 @@
           <tr>
             <th data-priority="1">Judul</th>
             <th data-priority="2">Tempat</th>
-            <th data-priority="3">Tanggal</th>
+            {{-- <th data-priority="3">Tanggal</th>
             <th data-priority="4">Role</th>
-            <th class="w-1/5" data-priority="5">Action</th>
+            <th class="w-1/5" data-priority="5">Action</th> --}}
           </tr>
         </thead>
         <tbody class="divide-y-8">
           <!-- Rest of your data (refer to https://datatables.net/examples/server_side/ for server side processing)-->
-          {{-- @foreach ($users as $user)
-              <tr >
-                <td>{{ $user->name }}</td>
-                <td>{{ $user->npm }}</td>
-                <td>{{ $user->name }}</td>
-                <td>
-                  @if ($user->role == 0)
-                    <div class="flex">
-                      <div class="px-3 text-center text-white rounded-2xl bg-stone-500">Pengurus</div>
-                    </div>
-                  @endif
-
-                  @if ($user->role == 1)
-                    <div class="flex">
-                      <div class="px-3 text-center text-white rounded-2xl bg-sky-500">Evaluator</div>
-                    </div>
-                  @endif
-
-                  @if ($user->role == 2)
-                    <div class="flex">
-                      <div class="px-3 text-center text-white rounded-2xl bg-green-500">Admin</div>
-                    </div>
-                  @endif
-
-                </td>
-                <td>
-                  <div class="flex gap-2">
-                    <a href="{{ route('pengurus.edit', $user->id)}}" class="rounded-md bg-primary px-4 text-white">Edit</a>
-
-                    <form action="{{ route('delete-pengurus-destroy', $user->id) }}" method="post">
-                      @csrf
-                      @method('DELETE')
-
-                      @if ($user->role == 2)
-                          
-                      @else
-                        <button type="submit" class="rounded-md bg-red-500 px-4 text-white">Delete</button>
-                      @endif
-                      
-                    </form>
-                    
-                  </div>
-                </tr>
-          @endforeach --}}
+          @foreach ($jadwal_absen as $jadwal_absen)
+              <tr>
+                <td>{{ $jadwal_absen->judul }}</td>
+                <td>{{ $jadwal_absen->tempat }}</td>
+              </tr>
+          @endforeach
 
         </tbody>
 

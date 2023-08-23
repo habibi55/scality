@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Role::class,'id','role');
     }
+
+    public function absen()
+    {
+        return $this->hasMany('App\Models\Absen', 'users_id');
+    }
 }
