@@ -49,13 +49,18 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function roles()
-    {
-        return $this->hasOne(Role::class,'id','role');
-    }
+    // public function roles()
+    // {
+    //     return $this->hasOne(Role::class,'id','role');
+    // }
 
     public function absen()
     {
         return $this->hasMany('App\Models\Absen', 'users_id');
+    }
+
+    public function penilaian()
+    {
+        return $this->hasMany('App\Models\Penilaian', 'users_id');
     }
 }

@@ -57,7 +57,7 @@
                 <td>
                   @if ($user->jabatan == 2)
                     <div class="flex">
-                      <div class="px-3 text-center text-white rounded-2xl bg-stone-500">Supervisor</div>
+                      <div class="px-3 text-center text-white rounded-2xl bg-blue-500">Supervisor</div>
                     </div>
                   @endif
                   @if ($user->jabatan == 1)

@@ -61,9 +61,25 @@ class MainController extends Controller
         return view('main.rapor');
     }
 
-        public function penilaian()
+    public function penilaian()
     {
-        return view('main.penilaian');
+        // $users = User::orderBy('id','ASC')->paginate(10);
+        // $users = User::where('jabatan', 1)->where('bidang', 0)->orderBy('id', 'asc')->get();
+        // $users = User::where('jabatan', 1)->where('bidang', 1)->orderBy('id', 'asc')->get();
+
+        $users = User::where('jabatan', 1)
+        ->whereIn('bidang', [0, 1])
+        ->orderBy('id', 'asc')
+        ->get();
+
+
+        return view('main.penilaian', compact('users'));
+    }
+
+    public function storePenilaian()
+    {
+
+        
     }
 
     

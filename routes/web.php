@@ -70,21 +70,18 @@ Route::group(['prefix' => 'admin','middleware'=>['web','isAdmin']],function(){
     Route::get('/home',[MainController::class,'home'])->name('home-admin');
     Route::get('/absen',[MainController::class,'absen'])->name('absen-admin');
     Route::post('/absen',[MainController::class,'storeAbsen'])->name('store-absen-admin');
-
-
-
     Route::get('/rapor',[MainController::class,'rapor'])->name('rapor-admin');
-    Route::get('/profile',[MainController::class,'profile'])->name('profile-admin');
     Route::get('/penilaian',[MainController::class,'penilaian'])->name('penilaian-admin');
+    Route::get('/penilaian-store',[MainController::class,'storePenilaian'])->name('store-penilaian-admin');
+
+    Route::get('/profile',[MainController::class,'profile'])->name('profile-admin');
     Route::post('/profile/{user}',[MainController::class,'update'])->name('profile.update-admin');
     Route::put('/profile/{user}',[MainController::class,'update'])->name('profile.update-admin');
-    // Route::get('/profile/update-password-form',[MainController::class,'updatePasswordForm'])->name('update-password-form-admin');
-    // Route::post('/profile/update-password',[MainController::class,'updatePassword'])->name('update-password-admin');
+
 
     Route::get('/jadwal-absen',[AdminController::class,'jadwalAbsen'])->name('jadwal-absen');
     Route::get('/tambah-jadwal-absen',[AdminController::class,'tambahJadwalAbsen'])->name('tambah-jadwal-absen');
     Route::post('/tambah-jadwal-absen',[AdminController::class,'storeJadwalAbsen'])->name('store-jadwal-absen');
-
     Route::get('/data-pengurus',[AdminController::class,'dataPengurus'])->name('data-pengurus');
     Route::get('/tambah-pengurus',[AdminController::class,'tambahPengurus'])->name('tambah-pengurus');
     Route::post('/tambah-pengurus-store',[AdminController::class,'store'])->name('tambah-pengurus-store');

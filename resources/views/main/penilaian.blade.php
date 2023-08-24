@@ -75,30 +75,33 @@
   </div>
 
   <div class="flex flex-col bg-white p-4 rounded-lg w-2/4 text-sm leading-relaxed">
-    <form class="w-full" action="" method="get">
+    <form class="w-full" action="{{ route('store-penilaian-admin') }}" method="POST">
+
       <ul class="list-decimal flex flex-col pl-4 gap-6">
-        <li>
+        @foreach ($users as $user)
+         <li>
           <div class="flex flex-col gap-4">
-            <p class="font-semibold">Muhamad Habibi</p>
+            <p class="font-semibold">{{ $user->name }}</p>
+            <p class="font-semibold">{{ $user->npm }}</p>
             <div class="flex gap-12">
               <p class="w-40">Tanggung Jawab</p>
-              <input class="w-5" type="radio" name="tg" id="1">
-              <input class="w-5" type="radio" name="tg" id="2">
-              <input class="w-5" type="radio" name="tg" id="3">
-              <input class="w-5" type="radio" name="tg" id="4">
-              <input class="w-5" type="radio" name="tg" id="5">
+              <input class="w-5" type="radio" name="a" id="0">
+              <input class="w-5" type="radio" name="a" id="1">
+              <input class="w-5" type="radio" name="a" id="2">
+              <input class="w-5" type="radio" name="a" id="3">
+              <input class="w-5" type="radio" name="a" id="4">
             </div>
 
             <div class="flex gap-12">
               <p class="w-40">Keaktifan</p>
-              <input class="w-5" type="radio" name="keak" id="1">
-              <input class="w-5" type="radio" name="keak" id="2">
-              <input class="w-5" type="radio" name="keak" id="3">
-              <input class="w-5" type="radio" name="keak" id="4">
-              <input class="w-5" type="radio" name="keak" id="5">
+              <input class="w-5" type="radio" name="b" id="0">
+              <input class="w-5" type="radio" name="b" id="1">
+              <input class="w-5" type="radio" name="b" id="2">
+              <input class="w-5" type="radio" name="b" id="3">
+              <input class="w-5" type="radio" name="b" id="4">
             </div>
 
-            <div class="flex gap-12">
+            {{-- <div class="flex gap-12">
               <p class="w-40">Komunikasi</p>
               <input class="w-5" type="radio" name="kom" id="1">
               <input class="w-5" type="radio" name="kom" id="2">
@@ -150,7 +153,7 @@
               <input class="w-5" type="radio" name="ps" id="3">
               <input class="w-5" type="radio" name="ps" id="4">
               <input class="w-5" type="radio" name="ps" id="5">
-            </div>
+            </div> --}}
 
             <div class="flex flex-col gap-2">
               <p class="font-semibold">Keterangan Penilaian</p>
@@ -161,6 +164,9 @@
             </div>
           </div>
         </li>
+        
+
+        @endforeach
 
         <li>
           <div class="flex flex-col gap-4">
@@ -252,6 +258,8 @@
           type="reset">Cancel</button>
         <button class="button px-6 mt-4" type="submit">Submit</button>
       </div>
+
+      
 
     </form>
   </div>
