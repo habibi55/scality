@@ -75,100 +75,54 @@
   </div>
 
   <div class="flex flex-col bg-white p-4 rounded-lg w-2/4 text-sm leading-relaxed">
-    <form class="w-full" action="{{ route('store-penilaian-admin') }}" method="POST">
 
-      <ul class="list-decimal flex flex-col pl-4 gap-6">
-        @foreach ($users as $user)
-         <li>
+    <ul class="list-decimal flex flex-col pl-4 gap-6">
+      @foreach ($users as $user)
+      <form class="w-full" action="{{ route('store-penilaian-admin') }}" method="POST">
+      @csrf
+        <li>
           <div class="flex flex-col gap-4">
             <p class="font-semibold">{{ $user->name }}</p>
             <p class="font-semibold">{{ $user->npm }}</p>
             <div class="flex gap-12">
               <p class="w-40">Tanggung Jawab</p>
-              <input class="w-5" type="radio" name="a" id="0">
-              <input class="w-5" type="radio" name="a" id="1">
-              <input class="w-5" type="radio" name="a" id="2">
-              <input class="w-5" type="radio" name="a" id="3">
-              <input class="w-5" type="radio" name="a" id="4">
+              <input class="w-5" type="radio" name="p1" id="0" value="1">
+              <input class="w-5" type="radio" name="p1" id="1" value="2">
+              <input class="w-5" type="radio" name="p1" id="2" value="3">
+              <input class="w-5" type="radio" name="p1" id="3" value="4">
+              <input class="w-5" type="radio" name="p1" id="4" value="5">
             </div>
 
             <div class="flex gap-12">
               <p class="w-40">Keaktifan</p>
-              <input class="w-5" type="radio" name="b" id="0">
-              <input class="w-5" type="radio" name="b" id="1">
-              <input class="w-5" type="radio" name="b" id="2">
-              <input class="w-5" type="radio" name="b" id="3">
-              <input class="w-5" type="radio" name="b" id="4">
+              <input class="w-5" type="radio" name="p2" id="5" value="1">
+              <input class="w-5" type="radio" name="p2" id="6" value="2">
+              <input class="w-5" type="radio" name="p2" id="7" value="3">
+              <input class="w-5" type="radio" name="p2" id="8" value="4">
+              <input class="w-5" type="radio" name="p2" id="9" value="5">
             </div>
 
-            {{-- <div class="flex gap-12">
-              <p class="w-40">Komunikasi</p>
-              <input class="w-5" type="radio" name="kom" id="1">
-              <input class="w-5" type="radio" name="kom" id="2">
-              <input class="w-5" type="radio" name="kom" id="3">
-              <input class="w-5" type="radio" name="kom" id="4">
-              <input class="w-5" type="radio" name="kom" id="5">
-            </div>
-
-            <div class="flex gap-12">
-              <p class="w-40">Kedisiplinan</p>
-              <input class="w-5" type="radio" name="ked" id="1">
-              <input class="w-5" type="radio" name="ked" id="2">
-              <input class="w-5" type="radio" name="ked" id="3">
-              <input class="w-5" type="radio" name="ked" id="4">
-              <input class="w-5" type="radio" name="ked" id="5">
-            </div>
-
-            <div class="flex gap-12">
-              <p class="w-40">Kontribusi</p>
-              <input class="w-5" type="radio" name="kont" id="1">
-              <input class="w-5" type="radio" name="kont" id="2">
-              <input class="w-5" type="radio" name="kont" id="3">
-              <input class="w-5" type="radio" name="kont" id="4">
-              <input class="w-5" type="radio" name="kont" id="5">
-            </div>
-
-            <div class="flex gap-12">
-              <p class="w-40">Sikap</p>
-              <input class="w-5" type="radio" name="sik" id="1">
-              <input class="w-5" type="radio" name="sik" id="2">
-              <input class="w-5" type="radio" name="sik" id="3">
-              <input class="w-5" type="radio" name="sik" id="4">
-              <input class="w-5" type="radio" name="sik" id="5">
-            </div>
-
-            <div class="flex gap-12">
-              <p class="w-40">Inisiatif</p>
-              <input class="w-5" type="radio" name="in" id="1">
-              <input class="w-5" type="radio" name="in" id="2">
-              <input class="w-5" type="radio" name="in" id="3">
-              <input class="w-5" type="radio" name="in" id="4">
-              <input class="w-5" type="radio" name="in" id="5">
-            </div>
-
-            <div class="flex gap-12">
-              <p class="w-40">Problem Solving</p>
-              <input class="w-5" type="radio" name="ps" id="1">
-              <input class="w-5" type="radio" name="ps" id="2">
-              <input class="w-5" type="radio" name="ps" id="3">
-              <input class="w-5" type="radio" name="ps" id="4">
-              <input class="w-5" type="radio" name="ps" id="5">
-            </div> --}}
-
-            <div class="flex flex-col gap-2">
+            {{-- <div class="flex flex-col gap-2">
               <p class="font-semibold">Keterangan Penilaian</p>
               <p>Kolom ini digunakan untuk memberikan kesimpulan, kritik ataupun saran, sehingga dapat
                 dijadikan sebagai
                 evaluasi pengurus supaya lebih baik kedepan nya.</p>
-              <input class="flex border-b p-2 rounded-md " name="keterangan" type="text" placeholder="Jawaban Kamu">
+              <input class="flex border-b p-2 rounded-md " name="keterangan" id="keterangan" type="text" placeholder="Jawaban Kamu">
+            </div> --}}
+
+            <div class="flex justify-end gap-2">
+              <button class="rounded-lg bg-red-500 hover:bg-red-700 duration-150 cursor-pointer text-white px-6 mt-4"
+                type="reset">Cancel</button>
+              <button class="button px-6 mt-4" type="submit">Submit</button>
             </div>
           </div>
         </li>
-        
+      </form>
+      @endforeach
+    </ul>
 
-        @endforeach
 
-        <li>
+    {{--<li>
           <div class="flex flex-col gap-4">
             <p class="font-semibold">Khairul Adi</p>
             <div class="flex gap-12">
@@ -251,18 +205,22 @@
               <input class="flex border-b p-2 rounded-md " name="keterangan" type="text" placeholder="Jawaban Kamu">
             </div>
           </div>
-        </li>
-      </ul>
-      <div class="flex justify-end gap-2">
-        <button class="rounded-lg bg-red-500 hover:bg-red-700 duration-150 cursor-pointer text-white px-6 mt-4"
-          type="reset">Cancel</button>
-        <button class="button px-6 mt-4" type="submit">Submit</button>
-      </div>
-
-      
-
-    </form>
+      </li> --}}
   </div>
 </div>
+
+<script>
+document.getElementById("mySelect").addEventListener("change", function() {
+  // Get the selected value
+  var selectedValue = this.value;
+  
+  // Show or hide the form based on the selected value
+  if (selectedValue === "2") {
+    document.getElementById("myForm").style.display = "block";
+  } else {
+    document.getElementById("myForm").style.display = "none";
+  }
+});
+</script>
 
 @endsection

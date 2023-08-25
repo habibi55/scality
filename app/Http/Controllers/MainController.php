@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Absen;
 use App\Models\JadwalAbsen;
+use App\Models\Penilaian;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -63,9 +64,6 @@ class MainController extends Controller
 
     public function penilaian()
     {
-        // $users = User::orderBy('id','ASC')->paginate(10);
-        // $users = User::where('jabatan', 1)->where('bidang', 0)->orderBy('id', 'asc')->get();
-        // $users = User::where('jabatan', 1)->where('bidang', 1)->orderBy('id', 'asc')->get();
 
         $users = User::where('jabatan', 1)
         ->whereIn('bidang', [0, 1])
@@ -76,10 +74,34 @@ class MainController extends Controller
         return view('main.penilaian', compact('users'));
     }
 
-    public function storePenilaian()
+    public function storePenilaian(Request $request)
     {
 
-        
+        $penilaian = new Penilaian();
+        // $user = User::where('jabatan', 1)->whereIn('bidang', [0, 1])->first();
+        // if ($user) {
+        //         $penilaian->users_id = $user->id;
+        // }
+        $penilaian->users_id = Auth::id();
+
+        $penilaian->p1 = $request->p1;
+        $penilaian->p2 = $request->p2;
+        $penilaian->save();
+
+
+
+
+
+
+
+
+        if (auth()->user()->role == 1) {
+            return redirect()->route('home-evaluator');
+        }
+
+        if (auth()->user()->role == 2) {
+            return redirect()->route('home-admin');
+        }
     }
 
     

@@ -72,7 +72,7 @@ Route::group(['prefix' => 'admin','middleware'=>['web','isAdmin']],function(){
     Route::post('/absen',[MainController::class,'storeAbsen'])->name('store-absen-admin');
     Route::get('/rapor',[MainController::class,'rapor'])->name('rapor-admin');
     Route::get('/penilaian',[MainController::class,'penilaian'])->name('penilaian-admin');
-    Route::get('/penilaian-store',[MainController::class,'storePenilaian'])->name('store-penilaian-admin');
+    Route::post('/penilaian-store',[MainController::class,'storePenilaian'])->name('store-penilaian-admin');
 
     Route::get('/profile',[MainController::class,'profile'])->name('profile-admin');
     Route::post('/profile/{user}',[MainController::class,'update'])->name('profile.update-admin');

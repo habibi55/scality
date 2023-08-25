@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('penilaians', function (Blueprint $table) {
             $table->id();
             $table->foreignId('users_id')->constrained('users');
-            $table->integer('a')->default('0');
-            $table->integer('b')->default('0');
+            $table->integer('p1')->default('0');
+            $table->integer('p2')->default('0');
             $table->timestamps();
         });
     }

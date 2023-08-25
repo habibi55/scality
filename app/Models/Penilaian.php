@@ -10,10 +10,11 @@ class Penilaian extends Model
     use HasFactory;
 
     protected $fillable = [
+        // P1 = Penilaian 1
         
         'users_id',
-        'a',
-        'b'
+        'p1',
+        'p2'
     ];
 
     public function user()
