@@ -59,8 +59,16 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Absen', 'users_id');
     }
 
+    // public function penilaian()
+    // {
+    //     return $this->hasMany('App\Models\Penilaian', 'users_id','receiver_id');
+    // }
+
     public function penilaian()
     {
-        return $this->hasMany('App\Models\Penilaian', 'users_id');
+        return $this->hasMany('App\Models\Penilaian', 'users_id')
+                    ->where('receiver_id', $this->id);
     }
+
+
 }

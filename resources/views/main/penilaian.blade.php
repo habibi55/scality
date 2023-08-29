@@ -21,58 +21,80 @@
     </div>
   </div>
 
-  <div class="flex flex-col bg-white p-4 rounded-lg w-2/3">
-    <p class="font-semibold text-lg">Bulan Penilaian : Januari</p>
-  </div>
-
-  <div class="flex flex-col bg-white p-4 rounded-lg w-2/3">
-    <p class="font-semibold text-lg">Deskripsi Range dan Indikator Penilaian</p>
-    <div class="w-full flex flex-col gap-4 text-sm leading-relaxed">
-      <div class="flex flex-col">
-        <p>Range Penilaian : 1 - 5</p>
-        <p>Dengan range nilai pada setiap indikator sebagai berikut :</p>
-        <p>1 = Buruk</p>
-        <p>2 = Kurang</p>
-        <p>3 = Cukup</p>
-        <p>4 = Baik</p>
-        <p>5 = Sangat Baik</p>
+  <div class="flex flex-row gap-6">
+    <div class="flex flex-col rounded-lg gap-6">
+      <div class="flex bg-white p-4 rounded-lg">
+        <p class="font-semibold text-lg">Bulan Penilaian : Januari</p>
       </div>
 
-      <div class="flex flex-col">
-        <p>Range penilaian dapat didasarkan pada tolak ukur di setiap pemenuhan indikator, yaitu :</p>
-        <p>Buruk = 0 - 20%</p>
-        <p>Kurang = 21 - 40%</p>
-        <p>Cukup = 41 - 60%</p>
-        <p>Baik = 61 - 80%</p>
-        <p>Sangat Baik = 81 - 100%</p>
-      </div>
+      <div class="flex flex-col bg-white p-4 rounded-lg">
+        <p class="font-semibold text-lg">Deskripsi Range dan Indikator Penilaian</p>
+        <div class="w-full flex flex-col gap-4 text-sm leading-relaxed">
+          <div class="flex flex-col">
+            <p>Range Penilaian : 1 - 5</p>
+            <p>Dengan range nilai pada setiap indikator sebagai berikut :</p>
+            <p>1 = Buruk</p>
+            <p>2 = Kurang</p>
+            <p>3 = Cukup</p>
+            <p>4 = Baik</p>
+            <p>5 = Sangat Baik</p>
+          </div>
 
-      <div class="flex flex-col">
-        <p>Indikator Penilaian :</p>
-        <ul class="list-decimal pl-4">
-          <li>Tanggung Jawab : Untuk mengukur pemenuhan tanggung jawab dari peran yang dijalankan sebagai pengurus BEM
-            FIKTI UG.</li>
-          <li>Keaktifan : Aktif menyampaikan pendapatnya dan aktif bertanya apabila terdapat sesuatu yang di rasa
-            kurang
-            mengerti saat diskusi</li>
-          <li>Komunikasi : Memiliki komunikasi yang baik antar sesama pengurus sehingga tidak terjadi misscom dan lost
-            contact</li>
-          <li>Kedisiplinan : Ketepatan waktu dalam menjalankan tugas dan menghadiri rapat, serta taat terhadap
-            perturan
-            yang berlaku.</li>
-          <li>Kontribusi : Keterlibatan atau keikutsertaan secara langsung dalam diskusi maupun kegiatan yang diadakan
-            oleh BEM FIKTI UG.</li>
-          <li>Sikap : Mempunyai sikap yang sopan santun terhadap sesama pengurus BEM FIKTI UG</li>
-          <li>Inisiatif : Inisiatif membantu pemecahan masalah dan Inisiatif melakukan hal-hal baru yang berdampak
-            positif serta memberikan hasil yang nyata baik pada proker, biro/dept/AU ataupun dalam ruang lingkup
-            kerjanya
-            masing-masing.</li>
-          <li>Problem solving : Mempunyai cara pemecahan masalah yang baik dan kreatif selama menjalankan kewajibannya
-            sebagai pengurus BEM FIKTI UG, sehingga masalah yang ada dapat segera di tuntaskan.</li>
-        </ul>
+          <div class="flex flex-col">
+            <p>Range penilaian dapat didasarkan pada tolak ukur di setiap pemenuhan indikator, yaitu :</p>
+            <p>Buruk = 0 - 20%</p>
+            <p>Kurang = 21 - 40%</p>
+            <p>Cukup = 41 - 60%</p>
+            <p>Baik = 61 - 80%</p>
+            <p>Sangat Baik = 81 - 100%</p>
+          </div>
+
+          <div class="flex flex-col">
+            <p>Indikator Penilaian :</p>
+            <ul class="list-decimal pl-4">
+              <li>Tanggung Jawab : Untuk mengukur pemenuhan tanggung jawab dari peran yang dijalankan sebagai pengurus BEM
+                FIKTI UG.</li>
+              <li>Keaktifan : Aktif menyampaikan pendapatnya dan aktif bertanya apabila terdapat sesuatu yang di rasa
+                kurang
+                mengerti saat diskusi</li>
+              <li>Komunikasi : Memiliki komunikasi yang baik antar sesama pengurus sehingga tidak terjadi misscom dan lost
+                contact</li>
+              <li>Kedisiplinan : Ketepatan waktu dalam menjalankan tugas dan menghadiri rapat, serta taat terhadap
+                perturan
+                yang berlaku.</li>
+              <li>Kontribusi : Keterlibatan atau keikutsertaan secara langsung dalam diskusi maupun kegiatan yang diadakan
+                oleh BEM FIKTI UG.</li>
+              <li>Sikap : Mempunyai sikap yang sopan santun terhadap sesama pengurus BEM FIKTI UG</li>
+              <li>Inisiatif : Inisiatif membantu pemecahan masalah dan Inisiatif melakukan hal-hal baru yang berdampak
+                positif serta memberikan hasil yang nyata baik pada proker, biro/dept/AU ataupun dalam ruang lingkup
+                kerjanya
+                masing-masing.</li>
+              <li>Problem solving : Mempunyai cara pemecahan masalah yang baik dan kreatif selama menjalankan kewajibannya
+                sebagai pengurus BEM FIKTI UG, sehingga masalah yang ada dapat segera di tuntaskan.</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
+
+
+    <div class="flex flex-col bg-white p-4 rounded-lg w-1/3">
+      <div>Hasil Penilaian</div>
+      <ul class="list-decimal p-4">
+        @foreach ($penilaian as $penilaian)
+        <li>
+          <p>{{ $penilaian->p1 }}</p>
+          <p>{{ $penilaian->p2 }}</p>
+        </li>
+        @endforeach
+
+
+      </ul>
+    </div>
+
   </div>
+
+
 
   <div class="flex flex-col bg-white p-4 rounded-lg w-2/4 text-sm leading-relaxed">
 
@@ -207,7 +229,10 @@
           </div>
       </li> --}}
   </div>
+
 </div>
+
+
 
 <script>
 document.getElementById("mySelect").addEventListener("change", function() {

@@ -13,12 +13,19 @@ class Penilaian extends Model
         // P1 = Penilaian 1
         
         'users_id',
+        'receiver_id',
         'p1',
         'p2'
     ];
 
+    // public function user()
+    // {
+    //     return $this->belongsTo('App\Models\User', 'users_id', 'receiver_id', 'id');
+    // }
+
     public function user()
     {
-        return $this->belongsTo('App\Models\User', 'users_id', 'id');
+        return $this->belongsTo('App\Models\User', 'users_id')
+                    ->where('receiver_id', $this->id);
     }
 }

@@ -70,30 +70,27 @@ class MainController extends Controller
         ->orderBy('id', 'asc')
         ->get();
 
+        $penilaian = Penilaian::where('users_id', 'receiver_id', Auth::user()->id)->orderBy('id', 'asc')->get();
 
-        return view('main.penilaian', compact('users'));
+        $penilaian = Penilaian::where('users_id', Auth::user()->id)
+        ->orWhere('receiver_id', Auth::user()->id)
+        ->orderBy('id', 'asc')
+        ->get();
+
+
+        return view('main.penilaian', compact('users', 'penilaian'));
     }
 
-    public function storePenilaian(Request $request)
+    public function storePenilaian(Request $request, User $user)
     {
 
         $penilaian = new Penilaian();
-        // $user = User::where('jabatan', 1)->whereIn('bidang', [0, 1])->first();
-        // if ($user) {
-        //         $penilaian->users_id = $user->id;
-        // }
         $penilaian->users_id = Auth::id();
-
+        $penilaian->receiver_id = User::where('npm', '33333333')->first()->id;
+        // $penilaian->receiver_id = User::where('npm', $user->npm)->first()->id;
         $penilaian->p1 = $request->p1;
         $penilaian->p2 = $request->p2;
         $penilaian->save();
-
-
-
-
-
-
-
 
         if (auth()->user()->role == 1) {
             return redirect()->route('home-evaluator');
@@ -102,9 +99,7 @@ class MainController extends Controller
         if (auth()->user()->role == 2) {
             return redirect()->route('home-admin');
         }
-    }
-
-    
+    }   
 
     public function profile()
     {
