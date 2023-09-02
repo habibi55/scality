@@ -99,13 +99,32 @@
   <div class="flex flex-col bg-white p-4 rounded-lg w-2/4 text-sm leading-relaxed">
 
     <ul class="list-decimal flex flex-col pl-4 gap-6">
-      @foreach ($users as $user)
-      <form class="w-full" action="{{ route('store-penilaian-admin') }}" method="POST">
+    {{-- @foreach ($users as $user) --}}
+      @if (auth()->user()->role == 1)
+          <form class="w-full" action="{{ route('store-penilaian-evaluator') }}" method="POST">
+      @endif
+
+      @if (auth()->user()->role == 2)
+          <form class="w-full" action="{{ route('store-penilaian-admin') }}" method="POST">
+      @endif
+      
       @csrf
         <li>
           <div class="flex flex-col gap-4">
-            <p class="font-semibold">{{ $user->name }}</p>
-            <p class="font-semibold">{{ $user->npm }}</p>
+            {{-- <p class="font-semibold">{{ $user->name }}</p>
+            <p class="font-semibold">{{ $user->npm }}</p> --}}
+
+            <select name="receiver_id" id="receiver_id">
+              @foreach ($users as $user)
+                  <option value="{{ $user->id }}">{{ $user->npm }}</option>
+              @endforeach          
+            </select>
+
+          {{-- <select name="languages" id="lang">
+            <option value="select">Select a language</option>
+            <option value="javascript">JavaScript</option>
+          </select> --}}
+
             <div class="flex gap-12">
               <p class="w-40">Tanggung Jawab</p>
               <input class="w-5" type="radio" name="p1" id="0" value="1">
@@ -140,7 +159,7 @@
           </div>
         </li>
       </form>
-      @endforeach
+    {{-- @endforeach --}}
     </ul>
 
 

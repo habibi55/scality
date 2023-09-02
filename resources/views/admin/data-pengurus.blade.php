@@ -55,9 +55,9 @@
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->npm }}</td>
                 <td>
-                  @if ($user->jabatan == 2)
+                  @if ($user->jabatan == 0)
                     <div class="flex">
-                      <div class="px-3 text-center text-white rounded-2xl bg-blue-500">Supervisor</div>
+                      <div class="px-3 text-center text-white rounded-2xl bg-stone-500">Staff</div>
                     </div>
                   @endif
                   @if ($user->jabatan == 1)
@@ -65,9 +65,9 @@
                       <div class="px-3 text-center text-white rounded-2xl bg-stone-500">Kepala</div>
                     </div>
                   @endif
-                  @if ($user->jabatan == 0)
+                  @if ($user->jabatan == 2)
                     <div class="flex">
-                      <div class="px-3 text-center text-white rounded-2xl bg-stone-500">Staff</div>
+                      <div class="px-3 text-center text-white rounded-2xl bg-blue-500">Supervisor</div>
                     </div>
                   @endif
                 </td>
@@ -112,39 +112,23 @@
                   @endif
                 </td>
 
-
-
-
                 <td>
                   @if ($user->role == 0)
                     <div class="flex">
                       <div class="px-3 text-center text-white rounded-2xl bg-stone-500">Pengurus</div>
                     </div>
                   @endif
-
                   @if ($user->role == 1)
                     <div class="flex">
                       <div class="px-3 text-center text-white rounded-2xl bg-sky-500">Evaluator</div>
                     </div>
                   @endif
-
                   @if ($user->role == 2)
                     <div class="flex">
                       <div class="px-3 text-center text-white rounded-2xl bg-green-500">Admin</div>
                     </div>
                   @endif
                 </td>
-
-
-
-
-
-
-
-
-
-
-
 
                 <td>
                   <div class="flex gap-2">

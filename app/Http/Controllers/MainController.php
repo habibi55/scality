@@ -64,30 +64,37 @@ class MainController extends Controller
 
     public function penilaian()
     {
+        // $users = User::where('jabatan', 'jabatan'-1)
+        // ->whereIn('departemen', 'departemen' = user()->departemen )
+        // // ->whereIn('bidang', [0, 1])
+        // ->orderBy('id', 'asc')s
+        // ->get();
 
-        $users = User::where('jabatan', 1)
-        ->whereIn('bidang', [0, 1])
+        $jabatan = auth()->user()->jabatan - 1;
+        $users = User::where('jabatan', $jabatan)
+        ->whereIn('departemen', [auth()->user()->departemen])
         ->orderBy('id', 'asc')
         ->get();
 
-        $penilaian = Penilaian::where('users_id', 'receiver_id', Auth::user()->id)->orderBy('id', 'asc')->get();
+        // $penilaian = Penilaian::where('users_id', 'receiver_id', Auth::user()->id)->orderBy('id', 'asc')->get();
 
+        // Hasil Penilaian
         $penilaian = Penilaian::where('users_id', Auth::user()->id)
         ->orWhere('receiver_id', Auth::user()->id)
         ->orderBy('id', 'asc')
         ->get();
 
-
         return view('main.penilaian', compact('users', 'penilaian'));
+        // return view('main.penilaian', compact('users'));
     }
 
     public function storePenilaian(Request $request, User $user)
     {
-
         $penilaian = new Penilaian();
         $penilaian->users_id = Auth::id();
-        $penilaian->receiver_id = User::where('npm', '33333333')->first()->id;
+        // $penilaian->receiver_id = User::where('npm', '33333333')->first()->id;
         // $penilaian->receiver_id = User::where('npm', $user->npm)->first()->id;
+        $penilaian->receiver_id = $request->receiver_id;
         $penilaian->p1 = $request->p1;
         $penilaian->p2 = $request->p2;
         $penilaian->save();

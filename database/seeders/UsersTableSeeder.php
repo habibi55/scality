@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
         [
             'name' => 'Habibi Pengurus',
             'email' => 'habibi1@gmail.com',
-            'npm' => '0000000',
+            'npm' => '00000000',
             'role' => '0',
             'departemen' => '0',
             'bidang' => '0',
@@ -32,7 +32,7 @@ class UsersTableSeeder extends Seeder
         [
             'name' => 'Habibi Evaluator',
             'email' => 'habibi2@gmail.com',
-            'npm' => '1111111',
+            'npm' => '11111111',
             'role' => '1',
             'jabatan' => '2',
             'departemen' => '0',
@@ -46,7 +46,7 @@ class UsersTableSeeder extends Seeder
             'role' => '1',
             'jabatan' => '2',
             'departemen' => '1',
-            'bidang' => '0',
+            'bidang' => '4',
             'password' => Hash::make('cemara2077'),
         ],
 

@@ -22,9 +22,7 @@
   </div>
 
   <!-- Data Diri -->
- 
-
-    <form class="flex flex-col w-1/2 gap-4" action="{{ route('tambah-pengurus-store') }}" method="post">
+   <form class="flex flex-col w-1/2 gap-4" action="{{ route('tambah-pengurus-store') }}" method="post">
     @csrf
       <div class="flex flex-col w-full gap-2">
         <p>Nama Lengkap</p>

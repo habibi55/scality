@@ -20,8 +20,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
 // Route::resource('/', LandingController::class);
 Route::get('/login',function(){
 return redirect('/');
@@ -36,8 +34,8 @@ Route::group(['prefix' => 'pengurus','middleware'=>['web','isPengurus']],functio
     Route::get('/home',[MainController::class,'home'])->name('home-pengurus');
     Route::get('/absen',[MainController::class,'absen'])->name('absen-pengurus');
     Route::post('/absen',[MainController::class,'storeAbsen'])->name('store-absen-pengurus');
-
     Route::get('/rapor',[MainController::class,'rapor'])->name('rapor-pengurus');
+
     Route::get('/profile',[MainController::class,'profile'])->name('profile-pengurus');
     Route::post('/profile/{user}',[MainController::class,'update'])->name('profile.update-pengurus');
     Route::put('/profile/{user}',[MainController::class,'update'])->name('profile.update-pengurus');
@@ -45,7 +43,6 @@ Route::group(['prefix' => 'pengurus','middleware'=>['web','isPengurus']],functio
     // Route::get('/profile/update-password-form',[MainController::class,'updatePasswordForm'])->name('update-password-form-pengurus');
     // Route::post('/profile/update-password',[MainController::class,'update'])->name('update-password-pengurus');
     // Route::put('/profile/update-password',[MainController::class,'update'])->name('update-password-pengurus');
-
 });
 
 /* Evaluator Routes */
@@ -54,14 +51,15 @@ Route::group(['prefix' => 'evaluator','middleware'=>['web','isEvaluator']],funct
     Route::get('/absen',[MainController::class,'absen'])->name('absen-evaluator');
     Route::post('/absen',[MainController::class,'storeAbsen'])->name('store-absen-evaluator');
     Route::get('/rapor',[MainController::class,'rapor'])->name('rapor-evaluator');
-    Route::get('/profile',[MainController::class,'profile'])->name('profile-evaluator');
     Route::get('/penilaian',[MainController::class,'penilaian'])->name('penilaian-evaluator');
+    Route::post('/penilaian-store',[MainController::class,'storePenilaian'])->name('store-penilaian-evaluator');
+
+    Route::get('/profile',[MainController::class,'profile'])->name('profile-evaluator');
     Route::post('/profile/{user}',[MainController::class,'update'])->name('profile.update-evaluator');
     Route::put('/profile/{user}',[MainController::class,'update'])->name('profile.update-evaluator');
 
     // Route::get('/profile/update-password-form',[MainController::class,'updatePasswordForm'])->name('update-password-form-evaluator');
     // Route::post('/profile/update-password',[MainController::class,'updatePassword'])->name('update-password-evaluator');
-
 });
 
 

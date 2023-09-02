@@ -35,7 +35,7 @@
   @endif
 
   @if (auth()->user()->role == 1)
-    <form class="flex flex-col justify-center items-center gap-6" action="{{ route('profile.update-evalautor', auth()->user()) }} " method="post">
+    <form class="flex flex-col justify-center items-center gap-6" action="{{ route('profile.update-evaluator', auth()->user()) }} " method="post">
   @endif
 
   @if (auth()->user()->role == 2)
