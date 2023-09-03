@@ -81,85 +81,84 @@
     <div class="flex flex-col bg-white p-4 rounded-lg w-1/3">
       <div>Hasil Penilaian</div>
       <ul class="list-decimal p-4">
-        @foreach ($penilaian as $penilaian)
-        <li>
-          <p>{{ $penilaian->p1 }}</p>
-          <p>{{ $penilaian->p2 }}</p>
-        </li>
+
+        @foreach ($penilaian as $item)
+          @if (auth()->user()->role == 1)
+          <form action="{{ route('delete-penilaian-evaluator', $item->id) }}" method="POST">
+          @endif
+
+          @if (auth()->user()->role == 2)
+          <form action="{{ route('delete-penilaian-admin', $item->id) }}" method="POST">
+          @endif
+
+          @csrf
+          @method('DELETE')
+          <li>
+            <p>{{ $item->p1 }}</p>
+            <p>{{ $item->p2 }}</p>
+            
+          </li>
+          <button type="submit" class="rounded-md bg-red-500 px-4 text-white">Delete</button>
+          </form>
         @endforeach
-
-
       </ul>
     </div>
-
   </div>
 
-
-
   <div class="flex flex-col bg-white p-4 rounded-lg w-2/4 text-sm leading-relaxed">
-
     <ul class="list-decimal flex flex-col pl-4 gap-6">
-    {{-- @foreach ($users as $user) --}}
       @if (auth()->user()->role == 1)
-          <form class="w-full" action="{{ route('store-penilaian-evaluator') }}" method="POST">
+        <form class="w-full" action="{{ route('store-penilaian-evaluator') }}" method="POST">
       @endif
 
       @if (auth()->user()->role == 2)
-          <form class="w-full" action="{{ route('store-penilaian-admin') }}" method="POST">
+        <form class="w-full" action="{{ route('store-penilaian-admin') }}" method="POST">
       @endif
       
       @csrf
-        <li>
-          <div class="flex flex-col gap-4">
-            {{-- <p class="font-semibold">{{ $user->name }}</p>
-            <p class="font-semibold">{{ $user->npm }}</p> --}}
+      @foreach ($users as $user)
+      <li>
+        <div class="flex flex-col gap-4">
+          <select name="receiver_id" id="receiver_id">
+            @foreach ($users as $user)
+                <option value="{{ $user->id }}">{{ $user->npm }}</option>
+            @endforeach          
+          </select>
 
-            <select name="receiver_id" id="receiver_id">
-              @foreach ($users as $user)
-                  <option value="{{ $user->id }}">{{ $user->npm }}</option>
-              @endforeach          
-            </select>
-
-          {{-- <select name="languages" id="lang">
-            <option value="select">Select a language</option>
-            <option value="javascript">JavaScript</option>
-          </select> --}}
-
-            <div class="flex gap-12">
-              <p class="w-40">Tanggung Jawab</p>
-              <input class="w-5" type="radio" name="p1" id="0" value="1">
-              <input class="w-5" type="radio" name="p1" id="1" value="2">
-              <input class="w-5" type="radio" name="p1" id="2" value="3">
-              <input class="w-5" type="radio" name="p1" id="3" value="4">
-              <input class="w-5" type="radio" name="p1" id="4" value="5">
-            </div>
-
-            <div class="flex gap-12">
-              <p class="w-40">Keaktifan</p>
-              <input class="w-5" type="radio" name="p2" id="5" value="1">
-              <input class="w-5" type="radio" name="p2" id="6" value="2">
-              <input class="w-5" type="radio" name="p2" id="7" value="3">
-              <input class="w-5" type="radio" name="p2" id="8" value="4">
-              <input class="w-5" type="radio" name="p2" id="9" value="5">
-            </div>
-
-            {{-- <div class="flex flex-col gap-2">
-              <p class="font-semibold">Keterangan Penilaian</p>
-              <p>Kolom ini digunakan untuk memberikan kesimpulan, kritik ataupun saran, sehingga dapat
-                dijadikan sebagai
-                evaluasi pengurus supaya lebih baik kedepan nya.</p>
-              <input class="flex border-b p-2 rounded-md " name="keterangan" id="keterangan" type="text" placeholder="Jawaban Kamu">
-            </div> --}}
-
-            <div class="flex justify-end gap-2">
-              <button class="rounded-lg bg-red-500 hover:bg-red-700 duration-150 cursor-pointer text-white px-6 mt-4"
-                type="reset">Cancel</button>
-              <button class="button px-6 mt-4" type="submit">Submit</button>
-            </div>
+          <div class="flex gap-12">
+            <p class="w-40">Tanggung Jawab</p>
+            <input class="w-5" type="radio" name="p1" id="0" value="1">
+            <input class="w-5" type="radio" name="p1" id="1" value="2">
+            <input class="w-5" type="radio" name="p1" id="2" value="3">
+            <input class="w-5" type="radio" name="p1" id="3" value="4">
+            <input class="w-5" type="radio" name="p1" id="4" value="5">
           </div>
-        </li>
+
+          <div class="flex gap-12">
+            <p class="w-40">Keaktifan</p>
+            <input class="w-5" type="radio" name="p2" id="5" value="1">
+            <input class="w-5" type="radio" name="p2" id="6" value="2">
+            <input class="w-5" type="radio" name="p2" id="7" value="3">
+            <input class="w-5" type="radio" name="p2" id="8" value="4">
+            <input class="w-5" type="radio" name="p2" id="9" value="5">
+          </div>
+
+          {{-- <div class="flex flex-col gap-2">
+            <p class="font-semibold">Keterangan Penilaian</p>
+            <p>Kolom ini digunakan untuk memberikan kesimpulan, kritik ataupun saran, sehingga dapat
+              dijadikan sebagai
+              evaluasi pengurus supaya lebih baik kedepan nya.</p>
+            <input class="flex border-b p-2 rounded-md " name="keterangan" id="keterangan" type="text" placeholder="Jawaban Kamu">
+          </div> --}}
+        </div>
+      </li>
+      @endforeach
+        <div class="flex justify-end gap-2">
+          <button class="rounded-lg bg-red-500 hover:bg-red-700 duration-150 cursor-pointer text-white px-6 mt-4"
+            type="reset">Cancel</button>
+          <button class="button px-6 mt-4" type="submit">Submit</button>
+        </div>
       </form>
-    {{-- @endforeach --}}
     </ul>
 
 

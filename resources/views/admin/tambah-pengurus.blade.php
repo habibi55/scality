@@ -93,17 +93,7 @@
           <option value="4">Dept B - Bidang E</option>
         </select>
       </div>
-
-        {{-- <div class="flex flex-col gap-2">
-          <p for="password">Password</p>
-          <input name="password" class="border border-gray-300 rounded-lg py-3 px-4 text-sm md:text-base" id="password" type="password" placeholder="At least 8 characters" required> --}}
-          {{-- @error('password')
-              <span class="invalid-feedback mt-1 font-medium text-red-500" role="alert">
-                  <strong>{{ $message }}</strong>
-              </span>
-          @enderror --}}
-        {{-- </div> --}}
-      
+    
       <div class="flex flex-col w-full gap-2">
         <p>Password</p>
         <div class="border bg-white border-gray-300 rounded-lg py-3 px-4 text-sm md:text-base">Otomatis</div>

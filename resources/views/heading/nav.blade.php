@@ -671,7 +671,7 @@
     </svg>
     <div class="flex flex-col text-black w-8/12 h-full justify-center gap-2">
       <div class="font-bold text-black text-sm">{{ auth()->user()->name }}</div>
-      <div>
+      {{-- <div>
         @if (auth()->user()->role == 0)
             Pengurus
         @endif
@@ -681,7 +681,7 @@
         @if (auth()->user()->role == 2)
             Admin
         @endif
-      </div>
+      </div> --}}
     </div>
   </div>
 </aside>

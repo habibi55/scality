@@ -56,7 +56,6 @@ class MainController extends Controller
         }
     }
 
-
     public function rapor()
     {
         return view('main.rapor');
@@ -64,19 +63,11 @@ class MainController extends Controller
 
     public function penilaian()
     {
-        // $users = User::where('jabatan', 'jabatan'-1)
-        // ->whereIn('departemen', 'departemen' = user()->departemen )
-        // // ->whereIn('bidang', [0, 1])
-        // ->orderBy('id', 'asc')s
-        // ->get();
-
         $jabatan = auth()->user()->jabatan - 1;
         $users = User::where('jabatan', $jabatan)
         ->whereIn('departemen', [auth()->user()->departemen])
         ->orderBy('id', 'asc')
         ->get();
-
-        // $penilaian = Penilaian::where('users_id', 'receiver_id', Auth::user()->id)->orderBy('id', 'asc')->get();
 
         // Hasil Penilaian
         $penilaian = Penilaian::where('users_id', Auth::user()->id)
@@ -85,15 +76,12 @@ class MainController extends Controller
         ->get();
 
         return view('main.penilaian', compact('users', 'penilaian'));
-        // return view('main.penilaian', compact('users'));
     }
 
     public function storePenilaian(Request $request, User $user)
     {
         $penilaian = new Penilaian();
         $penilaian->users_id = Auth::id();
-        // $penilaian->receiver_id = User::where('npm', '33333333')->first()->id;
-        // $penilaian->receiver_id = User::where('npm', $user->npm)->first()->id;
         $penilaian->receiver_id = $request->receiver_id;
         $penilaian->p1 = $request->p1;
         $penilaian->p2 = $request->p2;
@@ -106,7 +94,21 @@ class MainController extends Controller
         if (auth()->user()->role == 2) {
             return redirect()->route('home-admin');
         }
-    }   
+    }
+    
+    public function destroyPenilaian($id)
+    {
+        $penilaian = Penilaian::findOrFail($id);
+        $penilaian->delete();
+
+        if (auth()->user()->role == 1) {
+            return redirect()->route('penilaian-evaluator');
+        }
+
+        if (auth()->user()->role == 2) {
+            return redirect()->route('penilaian-admin');
+        }
+    }
 
     public function profile()
     {
