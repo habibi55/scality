@@ -24,7 +24,7 @@ class UsersTableSeeder extends Seeder
             'role' => '2',
             'jabatan' => '2',
             'departemen' => '0',
-            'bidang' => '0',
+            'bidang' => NULL,
             'password' => Hash::make('cemara2077'),
         ],
 
@@ -35,7 +35,7 @@ class UsersTableSeeder extends Seeder
             'role' => '1',
             'jabatan' => '2',
             'departemen' => '0',
-            'bidang' => '0',
+            'bidang' => NULL,
             'password' => Hash::make('cemara2077'),
         ],
 

@@ -131,11 +131,11 @@ class MainController extends Controller
             return redirect()->route('profile-pengurus')->with('success', 'Profile updated successfully.');
         }
 
-        if (auth()->user()->role == 0) {
+        if (auth()->user()->role == 1) {
             return redirect()->route('profile-evaluator')->with('success', 'Profile updated successfully.');
         }
 
-        if (auth()->user()->role == 0) {
+        if (auth()->user()->role == 2) {
             return redirect()->route('profile-admin')->with('success', 'Profile updated successfully.');
         }
     }

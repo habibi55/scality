@@ -64,7 +64,7 @@
 
     <div class="flex">  
       <div>New Password</div>
-      <input type="password" name="new_password" id="newPassword">
+      <input type="password" name="new_password" id="new_password">
     </div>
 
     <div class="flex">  

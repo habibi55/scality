@@ -57,7 +57,6 @@
       </div>
     @endif
 
-
     <div class="flex flex-col w-1/3 gap-6"> 
       <div class="flex flex-col w-full gap-2">
         <div>Full Name</div>
@@ -73,7 +72,7 @@
       </div>
       <div class="flex flex-col w-full gap-2">
         <div>Password Sekarang</div>
-          <input name="current_password" class="border border-gray-300 rounded-lg py-3 px-4 text-sm" id="current_password"
+          <input name="new_password" class="border border-gray-300 rounded-lg py-3 px-4 text-sm" id="new_password"
           type="password" placeholder="Password Sekarang" required autofocus>
       </div>
     </div>
@@ -96,8 +95,6 @@
       @endif --}}
     </div>
   </form>
-
-
 </div>
 
 @endsection
