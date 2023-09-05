@@ -231,9 +231,6 @@
             </div>
             @endforeach
           @endif
-
-
-
       </div>
 
       {{-- Rapor Diri --}}
@@ -252,8 +249,9 @@
           <div class="flex-col items-start p-4">
             <ul class="list-decimal">
               @foreach ($absen as $absen)
-              <li class="">
+              <li>
                 <div> {{  date("j F, Y H:i",strtotime($absen->created_at)) ?? '' }}</div>
+                
                 <img class="max-h-96 object-contain mb-2" src="/images/{{ $absen->image }}" width="500px">
               </li>
               @endforeach

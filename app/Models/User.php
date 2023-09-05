@@ -56,18 +56,17 @@ class User extends Authenticatable
 
     public function absen()
     {
-        return $this->hasMany('App\Models\Absen', 'users_id');
+        return $this->hasMany(Absen::class, 'users_id');
     }
 
-    // public function penilaian()
-    // {
-    //     return $this->hasMany('App\Models\Penilaian', 'users_id','receiver_id');
-    // }
-
-    public function penilaian()
+    public function user()
     {
-        return $this->hasMany('App\Models\Penilaian', 'users_id')
-                    ->where('receiver_id', $this->id);
+        return $this->hasMany(Penilaian::class, 'users_id');
+    }
+
+    public function receiver()
+    {
+        return $this->hasMany(Penilaian::class, 'receiver_id');;
     }
 
 

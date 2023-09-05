@@ -69,30 +69,43 @@ class MainController extends Controller
         ->orderBy('id', 'asc')
         ->get();
 
+         
+
         // Hasil Penilaian
         $penilaian = Penilaian::where('users_id', Auth::user()->id)
-        ->orWhere('receiver_id', Auth::user()->id)
+        ->orWhere('receiver_id')
         ->orderBy('id', 'asc')
         ->get();
+
 
         return view('main.penilaian', compact('users', 'penilaian'));
     }
 
-    public function storePenilaian(Request $request, User $user)
+    public function storePenilaian(Request $request)
     {
         $penilaian = new Penilaian();
         $penilaian->users_id = Auth::id();
-        $penilaian->receiver_id = $request->receiver_id;
+        
+
+        $users = explode('|', $_POST['receiver_id']);
+        $id = $users[0];
+        $name = $users[1];
+
+        $penilaian->receiver_id = $id;
+        $penilaian->receiver_name = $name;
+
+        // $penilaian->receiver_name = $request->receiver_name;
         $penilaian->p1 = $request->p1;
         $penilaian->p2 = $request->p2;
         $penilaian->save();
 
+
         if (auth()->user()->role == 1) {
-            return redirect()->route('home-evaluator');
+            return redirect()->route('penilaian-evaluator');
         }
 
         if (auth()->user()->role == 2) {
-            return redirect()->route('home-admin');
+            return redirect()->route('penilaian-admin');
         }
     }
     

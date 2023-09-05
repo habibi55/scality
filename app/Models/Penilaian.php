@@ -14,18 +14,24 @@ class Penilaian extends Model
         
         'users_id',
         'receiver_id',
+        'receiver_name',
         'p1',
-        'p2'
+        'p2',
     ];
-
-    // public function user()
-    // {
-    //     return $this->belongsTo('App\Models\User', 'users_id', 'receiver_id', 'id');
-    // }
 
     public function user()
     {
-        return $this->belongsTo('App\Models\User', 'users_id')
-                    ->where('receiver_id', $this->id);
+        return $this->belongsTo(User::class, 'users_id');
     }
+
+    public function receiver()
+    {
+        return $this->belongsTo(User::class, 'receiver_id');                    
+    }
+
+    // public function receiverName()
+    // {
+    //     return $this->belongsTo(User::class, 'receiver_name');                    
+    // }
+
 }

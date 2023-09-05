@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('users_id')->constrained('users');
             $table->foreignId('receiver_id')->constrained('users');
+            $table->string('receiver_name');
             $table->integer('p1')->default('0');
             $table->integer('p2')->default('0');
             $table->timestamps();

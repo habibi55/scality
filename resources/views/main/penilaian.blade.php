@@ -94,6 +94,7 @@
           @csrf
           @method('DELETE')
           <li>
+            <p>{{ $item->receiver_name }}</p>
             <p>{{ $item->p1 }}</p>
             <p>{{ $item->p2 }}</p>
             
@@ -113,17 +114,26 @@
 
       @if (auth()->user()->role == 2)
         <form class="w-full" action="{{ route('store-penilaian-admin') }}" method="POST">
-      @endif
-      
+      @endif      
       @csrf
+      
       @foreach ($users as $user)
       <li>
         <div class="flex flex-col gap-4">
+          
           <select name="receiver_id" id="receiver_id">
             @foreach ($users as $user)
-                <option value="{{ $user->id }}">{{ $user->npm }}</option>
-            @endforeach          
+                <option value="{{ $user->id }}|{{ $user->name }}">{{ $user->name }}</option>
+            @endforeach   
           </select>
+
+
+          {{-- <select name="receiver_name" id="receiver_name">
+            @foreach ($users as $user)
+                <option value="{{ $user->name }}">{{ $user->name }}</option>
+            @endforeach   
+          </select> --}}
+         
 
           <div class="flex gap-12">
             <p class="w-40">Tanggung Jawab</p>
@@ -152,13 +162,16 @@
           </div> --}}
         </div>
       </li>
-      @endforeach
+
         <div class="flex justify-end gap-2">
           <button class="rounded-lg bg-red-500 hover:bg-red-700 duration-150 cursor-pointer text-white px-6 mt-4"
             type="reset">Cancel</button>
           <button class="button px-6 mt-4" type="submit">Submit</button>
         </div>
       </form>
+      @endforeach
+
+      
     </ul>
 
 
