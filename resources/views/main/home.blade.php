@@ -262,7 +262,7 @@
                   <li>
                     <div> {{  date("j F, Y H:i",strtotime($item->created_at)) ?? '' }}</div>
                     
-                    <img class="max-h-96 object-contain mb-2" src="/images/{{ $item->image }}" width="500px">
+                    <img class="max-h-80 object-contain mb-2" src="/images/{{ $item->image }}" width="500px">
                   </li>
                   @endforeach
                 </ul>
@@ -273,7 +273,7 @@
     </div>
 
     {{-- Rapor Diri --}}
-    <div class="w-4/12 rounded-xl bg-white h-full p-4">
+    <div class="w-4/12 rounded-xl bg-white  p-4">
       <div class="text-2xl font-semibold">Hasil Rapor Diri</div>
 
     </div>
