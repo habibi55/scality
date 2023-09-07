@@ -31,15 +31,15 @@
   </div>
 
   @if (auth()->user()->role == 0)
-    <form class="flex flex-col justify-center items-center gap-6" action="{{ route('profile.update-pengurus', auth()->user()) }} " method="post">
+    <form class="flex flex-col justify-center items-center gap-6" action="{{ route('profile.update-pengurus', auth()->user()) }}" method="post">
   @endif
 
   @if (auth()->user()->role == 1)
-    <form class="flex flex-col justify-center items-center gap-6" action="{{ route('profile.update-evaluator', auth()->user()) }} " method="post">
+    <form class="flex flex-col justify-center items-center gap-6" action="{{ route('profile.update-evaluator', auth()->user()) }}" method="post">
   @endif
 
   @if (auth()->user()->role == 2)
-    <form class="flex flex-col justify-center items-center gap-6" action="{{ route('profile.update-admin', auth()->user()) }} " method="post">
+    <form class="flex flex-col justify-center items-center gap-6" action="{{ route('profile.update-admin', auth()->user()) }}" method="post">
   @endif
  
     @csrf
@@ -70,11 +70,11 @@
         <div>Email</div>
         <input class="border border-gray-300 bg-white rounded-lg py-3 px-4 text-sm " value="{{ $profile->email }}" type="text" name="email" id="email">
       </div>
-      <div class="flex flex-col w-full gap-2">
+      {{-- <div class="flex flex-col w-full gap-2">
         <div>Password Sekarang</div>
           <input name="new_password" class="border border-gray-300 rounded-lg py-3 px-4 text-sm" id="new_password"
           type="password" placeholder="Password Sekarang" required autofocus>
-      </div>
+      </div> --}}
     </div>
 
     <div class="flex flex-col justify-end gap-4">
@@ -82,17 +82,17 @@
         Update Profile
       </button>
 
-      {{-- @if (auth()->user()->role == 0)
-        <a class="button text-center w-40 mt-2" href="{{ route('update-password-form-pengurus') }}">Ganti Password</a>
+      @if (auth()->user()->role == 0)
+        <a class="button text-center w-40 mt-2" href="{{ route('profile-password-pengurus') }}">Ganti Password</a>
       @endif
 
       @if (auth()->user()->role == 1)
-        <a class="button text-center w-40 mt-2" href="{{ route('update-password-form-evaluator') }}">Ganti Password</a>
+        <a class="button text-center w-40 mt-2" href="{{ route('profile-password-evaluator') }}">Ganti Password</a>
       @endif
 
       @if (auth()->user()->role == 2)
-        <a class="button text-center w-40 mt-2" href="{{ route('update-password-form-admin') }}">Ganti Password</a>
-      @endif --}}
+        <a class="button text-center w-40 mt-2" href="{{ route('profile-password-admin') }}">Ganti Password</a>
+      @endif
     </div>
   </form>
 </div>

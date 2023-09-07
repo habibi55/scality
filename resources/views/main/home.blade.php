@@ -34,7 +34,7 @@
 </div>
 
 <!-- Main -->
-<div class="flex flex-col bg-primary_back p-6 gap-6 ml-72 h-screen">
+<div class="flex flex-col bg-primary_back p-6 gap-6 ml-72 h-full">
   <div class="flex w-full mt-4">
     <div class="w-8/12 font-bold text-4xl">Home</div>
   </div>
@@ -43,7 +43,6 @@
     <div class="flex flex-col w-8/12 gap-4">
       {{-- Rapat --}}
       <div class="rounded-xl bg-white">
-
           @if ($jadwal_absen->isEmpty())
             <div class="flex flex-col h-40 bg-white rounded-xl justify-center items-center text-3xl font-bold">
               <svg class="h-20 stroke-2 stroke-black fill-primary" id="Layer_1" style="enable-background:new 0 0 128 128;" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><style type="text/css">
@@ -275,6 +274,15 @@
     {{-- Rapor Diri --}}
     <div class="w-4/12 rounded-xl bg-white  p-4">
       <div class="text-2xl font-semibold">Hasil Rapor Diri</div>
+        <ul class="list-decimal p-4">
+          @foreach ($rapors as $rapor)
+            <li>
+              <p>{{ $rapor->receiver_name }}</p>
+              <p>{{ $rapor->p1 }}</p>
+              <p>{{ $rapor->p2 }}</p>
+            </li>
+          @endforeach
+        </ul>
 
     </div>
   </div>

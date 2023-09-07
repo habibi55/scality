@@ -23,15 +23,15 @@
 
 
   @if (auth()->user()->role == 0)
-    <form class="flex flex-col w-1/3 gap-6" action="{{ route('update-password-pengurus') }}" method="post"> 
+    <form class="flex flex-col w-1/3 gap-6" action="{{ route('profile-update-password-pengurus', auth()->user()) }}" method="post"> 
   @endif
 
   @if (auth()->user()->role == 1)
-    <form class="flex flex-col w-1/3 gap-6" action="{{ route('update-password-evaluator') }}" method="post">
+    <form class="flex flex-col w-1/3 gap-6" action="{{ route('profile-update-password-evaluator', auth()->user()) }}" method="post">
   @endif
 
   @if (auth()->user()->role == 2)
-    <form class="flex flex-col w-1/3 gap-6" action="{{ route('update-password-admin') }}" method="post">
+    <form class="flex flex-col w-1/3 gap-6" action="{{ route('profile-update-password-admin', auth()->user()) }}" method="post">
   @endif
 
     @csrf
@@ -57,7 +57,7 @@
       </div>
     @endif
 
-    <div class="flex">  
+    {{-- <div class="flex">  
       <div>Old Password</div>
       <input type="password" name="old_password" id="oldPassword">
     </div>
@@ -70,14 +70,17 @@
     <div class="flex">  
       <div>Repeat Password</div>
       <input type="password" name="repeat_password" id="repeatPassword">
+    </div> --}}
+
+    <div class="flex flex-col w-full gap-2">
+      <div>Password Sekarang</div>
+        <input name="new_password" class="border border-gray-300 rounded-lg py-3 px-4 text-sm" id="new_password"
+        type="password" placeholder="Password Sekarang" required autofocus>
     </div>
 
     <div>
-      <button class="btn btn-light" type="submit">Save</button>
+      <button class="btn btn-light" type="submit">Update Password</button>
     </div>
-
-
-
 
     {{-- <div class="flex flex-col w-full gap-2">
       <div>Password Sekarang</div>

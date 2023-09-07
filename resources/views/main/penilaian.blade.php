@@ -5,20 +5,6 @@
 <div class="flex flex-col bg-primary_back p-6 gap-6 ml-72 h-full">
   <div class="flex w-full mt-4">
     <div class="w-8/12 font-semibold text-4xl">Penilaian Bulanan Pengurus - Bidang Manajemen Kontrol</div>
-    <div class="w-4/12 mx-auto">
-      <div class="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
-        <div class="grid place-items-center h-full w-12 text-gray-300">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-        </div>
-
-        <input class="peer h-full w-full border-0 text-sm text-gray-700 pr-2" type="text" id="search"
-          placeholder="Search something.." />
-      </div>
-    </div>
   </div>
 
   <div class="flex flex-row gap-6">
@@ -77,29 +63,26 @@
       </div>
     </div>
 
-
     <div class="flex flex-col bg-white p-4 rounded-lg w-1/3">
       <div>Hasil Penilaian</div>
       <ul class="list-decimal p-4">
-
         @foreach ($penilaian as $item)
           @if (auth()->user()->role == 1)
-          <form action="{{ route('delete-penilaian-evaluator', $item->id) }}" method="POST">
+            <form action="{{ route('delete-penilaian-evaluator', $item->id) }}" method="POST">
           @endif
 
           @if (auth()->user()->role == 2)
-          <form action="{{ route('delete-penilaian-admin', $item->id) }}" method="POST">
+            <form action="{{ route('delete-penilaian-admin', $item->id) }}" method="POST">
           @endif
 
-          @csrf
-          @method('DELETE')
-          <li>
-            <p>{{ $item->receiver_name }}</p>
-            <p>{{ $item->p1 }}</p>
-            <p>{{ $item->p2 }}</p>
-            
-          </li>
-          <button type="submit" class="rounded-md bg-red-500 px-4 text-white">Delete</button>
+            @csrf
+            @method('DELETE')
+            <li>
+              <p>{{ $item->receiver_name }}</p>
+              <p>{{ $item->p1 }}</p>
+              <p>{{ $item->p2 }}</p>
+            </li>
+            <button type="submit" class="rounded-md bg-red-500 px-4 text-white">Delete</button>
           </form>
         @endforeach
       </ul>
@@ -108,70 +91,59 @@
 
   <div class="flex flex-col bg-white p-4 rounded-lg w-2/4 text-sm leading-relaxed">
     <ul class="list-decimal flex flex-col pl-4 gap-6">
-      @if (auth()->user()->role == 1)
-        <form class="w-full" action="{{ route('store-penilaian-evaluator') }}" method="POST">
-      @endif
-
-      @if (auth()->user()->role == 2)
-        <form class="w-full" action="{{ route('store-penilaian-admin') }}" method="POST">
-      @endif      
-      @csrf
-      
       @foreach ($users as $user)
-      <li>
-        <div class="flex flex-col gap-4">
-          
-          <select name="receiver_id" id="receiver_id">
-            @foreach ($users as $user)
-                <option value="{{ $user->id }}|{{ $user->name }}">{{ $user->name }}</option>
-            @endforeach   
-          </select>
+        @if (auth()->user()->role == 1)
+          <form class="w-full" action="{{ route('store-penilaian-evaluator') }}" method="POST">
+        @endif
 
+        @if (auth()->user()->role == 2)
+          <form class="w-full" action="{{ route('store-penilaian-admin') }}" method="POST">
+        @endif      
+        @csrf
+              
+        <li>
+          <div class="flex flex-col gap-4">
+            <select name="receiver_id" id="receiver_id">
+              @foreach ($users as $user)
+                  <option value="{{ $user->id }}|{{ $user->name }}">{{ $user->name }}</option>
+              @endforeach   
+            </select>
 
-          {{-- <select name="receiver_name" id="receiver_name">
-            @foreach ($users as $user)
-                <option value="{{ $user->name }}">{{ $user->name }}</option>
-            @endforeach   
-          </select> --}}
-         
+            <div class="flex gap-12">
+              <p class="w-40">Tanggung Jawab</p>
+              <input class="w-5" type="radio" name="p1" id="0" value="1">
+              <input class="w-5" type="radio" name="p1" id="1" value="2">
+              <input class="w-5" type="radio" name="p1" id="2" value="3">
+              <input class="w-5" type="radio" name="p1" id="3" value="4">
+              <input class="w-5" type="radio" name="p1" id="4" value="5">
+            </div>
 
-          <div class="flex gap-12">
-            <p class="w-40">Tanggung Jawab</p>
-            <input class="w-5" type="radio" name="p1" id="0" value="1">
-            <input class="w-5" type="radio" name="p1" id="1" value="2">
-            <input class="w-5" type="radio" name="p1" id="2" value="3">
-            <input class="w-5" type="radio" name="p1" id="3" value="4">
-            <input class="w-5" type="radio" name="p1" id="4" value="5">
+            <div class="flex gap-12">
+              <p class="w-40">Keaktifan</p>
+              <input class="w-5" type="radio" name="p2" id="5" value="1">
+              <input class="w-5" type="radio" name="p2" id="6" value="2">
+              <input class="w-5" type="radio" name="p2" id="7" value="3">
+              <input class="w-5" type="radio" name="p2" id="8" value="4">
+              <input class="w-5" type="radio" name="p2" id="9" value="5">
+            </div>
+
+            {{-- <div class="flex flex-col gap-2">
+              <p class="font-semibold">Keterangan Penilaian</p>
+              <p>Kolom ini digunakan untuk memberikan kesimpulan, kritik ataupun saran, sehingga dapat
+                dijadikan sebagai
+                evaluasi pengurus supaya lebih baik kedepan nya.</p>
+              <input class="flex border-b p-2 rounded-md " name="keterangan" id="keterangan" type="text" placeholder="Jawaban Kamu">
+            </div> --}}
           </div>
+        </li>
 
-          <div class="flex gap-12">
-            <p class="w-40">Keaktifan</p>
-            <input class="w-5" type="radio" name="p2" id="5" value="1">
-            <input class="w-5" type="radio" name="p2" id="6" value="2">
-            <input class="w-5" type="radio" name="p2" id="7" value="3">
-            <input class="w-5" type="radio" name="p2" id="8" value="4">
-            <input class="w-5" type="radio" name="p2" id="9" value="5">
+          <div class="flex justify-end gap-2">
+            <button class="rounded-lg bg-red-500 hover:bg-red-700 duration-150 cursor-pointer text-white px-6 mt-4"
+              type="reset">Cancel</button>
+            <button class="button px-6 mt-4" type="submit">Submit</button>
           </div>
-
-          {{-- <div class="flex flex-col gap-2">
-            <p class="font-semibold">Keterangan Penilaian</p>
-            <p>Kolom ini digunakan untuk memberikan kesimpulan, kritik ataupun saran, sehingga dapat
-              dijadikan sebagai
-              evaluasi pengurus supaya lebih baik kedepan nya.</p>
-            <input class="flex border-b p-2 rounded-md " name="keterangan" id="keterangan" type="text" placeholder="Jawaban Kamu">
-          </div> --}}
-        </div>
-      </li>
-
-        <div class="flex justify-end gap-2">
-          <button class="rounded-lg bg-red-500 hover:bg-red-700 duration-150 cursor-pointer text-white px-6 mt-4"
-            type="reset">Cancel</button>
-          <button class="button px-6 mt-4" type="submit">Submit</button>
-        </div>
-      </form>
-      @endforeach
-
-      
+        </form>
+      @endforeach     
     </ul>
 
 
