@@ -6,15 +6,18 @@ use App\Models\Absen;
 use App\Models\JadwalAbsen;
 use App\Models\Penilaian;
 use App\Models\User;
+
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 
 class MainController extends Controller
 {
-    public function home()
+    public function home(Request $request)
     {
         //Show Jadwal Absen
         $jadwal_absen = JadwalAbsen::orderBy('id','ASC')->paginate(10);
@@ -23,9 +26,22 @@ class MainController extends Controller
         $absen = Absen::where('users_id', Auth::user()->id)->orderBy('id', 'asc')->get();
 
         //Show Hasil Rapor Diri
-        $rapors = Penilaian::where('receiver_id', Auth::user()->id)->orderBy('id', 'asc')->get();
+        $rapors = Penilaian::where('receiver_id', Auth::user()->id)->orderBy('id', 'asc')->get();       
 
         return view('main.home', compact('jadwal_absen' , 'absen', 'rapors'));
+    }
+
+    public function exportRapor(Request $request)
+    {
+         //Show Hasil Rapor Diri
+        $rapors = Penilaian::where('receiver_id', Auth::user()->id)->orderBy('id', 'asc')->get();
+
+        // Load the view and pass the data
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadView('main.rapor', ['rapors' => $rapors]);
+
+        // Download the PDF file
+        return $pdf->download('rapors.pdf');
     }
 
     public function absen()
@@ -64,7 +80,10 @@ class MainController extends Controller
 
     public function rapor()
     {
-        return view('main.rapor');
+         //Show Hasil Rapor Diri
+        $rapors = Penilaian::where('receiver_id', Auth::user()->id)->orderBy('id', 'asc')->get();       
+
+        return view('main.rapor', compact('rapors'));
     }
 
     public function penilaian()
@@ -80,7 +99,7 @@ class MainController extends Controller
         $penilaian = Penilaian::where('users_id', Auth::user()->id)
         ->orWhere('receiver_id')
         ->orderBy('id', 'asc')
-        ->get();
+        ->get();      
 
         return view('main.penilaian', compact('users', 'penilaian'));
     }
@@ -179,11 +198,6 @@ class MainController extends Controller
             return redirect()->route('profile-admin')->with('success', 'Profile updated successfully.');
         }
     }
-
-    // public function updatePasswordForm()
-    // {
-    //     return view('main.update-password-form');
-    // }
 
     // public function updatePassword(Request $request)
     // {    

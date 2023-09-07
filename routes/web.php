@@ -35,11 +35,7 @@ Route::group(['prefix' => 'pengurus','middleware'=>['web','isPengurus']],functio
     Route::get('/absen',[MainController::class,'absen'])->name('absen-pengurus');
     Route::post('/absen',[MainController::class,'storeAbsen'])->name('store-absen-pengurus');
     Route::get('/rapor',[MainController::class,'rapor'])->name('rapor-pengurus');
-
-    // Route::get('/profile',[MainController::class,'profile'])->name('profile-pengurus');
-    // Route::post('/profile/{user}',[MainController::class,'update'])->name('profile.update-pengurus');
-    // Route::put('/profile/{user}',[MainController::class,'update'])->name('profile.update-pengurus');
-
+    Route::get('/export-rapor',[MainController::class,'exportRapor'])->name('export-rapor-pengurus');
     Route::get('/profile',[MainController::class,'profile'])->name('profile-pengurus');
     Route::post('/profile/{user}',[MainController::class,'update'])->name('profile.update-pengurus');
     Route::put('/profile/{user}',[MainController::class,'update'])->name('profile.update-pengurus');
@@ -59,14 +55,11 @@ Route::group(['prefix' => 'evaluator','middleware'=>['web','isEvaluator']],funct
     Route::get('/absen',[MainController::class,'absen'])->name('absen-evaluator');
     Route::post('/absen',[MainController::class,'storeAbsen'])->name('store-absen-evaluator');
     Route::get('/rapor',[MainController::class,'rapor'])->name('rapor-evaluator');
+    Route::get('/export-rapor',[MainController::class,'exportRapor'])->name('export-rapor-evaluator');
     Route::get('/penilaian',[MainController::class,'penilaian'])->name('penilaian-evaluator');
     Route::post('/penilaian-store',[MainController::class,'storePenilaian'])->name('store-penilaian-evaluator');
     Route::post('/delete-penilaian/{id}',[MainController::class,'destroyPenilaian'])->name('delete-penilaian-evaluator');
     Route::delete('/delete-penilaian/{id}',[MainController::class,'destroyPenilaian'])->name('delete-penilaian-evaluator');
-
-    // Route::get('/profile',[MainController::class,'profile'])->name('profile-evaluator');
-    // Route::post('/profile/{user}',[MainController::class,'update'])->name('profile.update-evaluator');
-    // Route::put('/profile/{user}',[MainController::class,'update'])->name('profile.update-evaluator');
 
     Route::get('/profile',[MainController::class,'profile'])->name('profile-evaluator');
     Route::post('/profile/{user}',[MainController::class,'update'])->name('profile.update-evaluator');
@@ -84,6 +77,7 @@ Route::group(['prefix' => 'admin','middleware'=>['web','isAdmin']],function(){
     Route::get('/absen',[MainController::class,'absen'])->name('absen-admin');
     Route::post('/absen',[MainController::class,'storeAbsen'])->name('store-absen-admin');
     Route::get('/rapor',[MainController::class,'rapor'])->name('rapor-admin');
+    Route::get('/export-rapor',[MainController::class,'exportRapor'])->name('export-rapor-admin');
     Route::get('/penilaian',[MainController::class,'penilaian'])->name('penilaian-admin');
     Route::post('/penilaian-store',[MainController::class,'storePenilaian'])->name('store-penilaian-admin');
     Route::post('/delete-penilaian/{id}',[MainController::class,'destroyPenilaian'])->name('delete-penilaian-admin');
