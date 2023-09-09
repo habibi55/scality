@@ -5,20 +5,6 @@
 <div class="flex flex-col bg-primary_back p-6 gap-6 ml-72 h-screen">
   <div class="flex w-full mt-4">
     <div class="w-8/12 font-bold text-4xl">Jadwal Absen</div>
-    <div class="w-4/12 mx-auto">
-      <div class="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
-        <div class="grid place-items-center h-full w-12 text-gray-300">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-        </div>
-
-        <input class="w-full border-0 focus:outline-0 text-sm text-gray-700 pr-2" type="text" id="search"
-          placeholder="Search something.." />
-      </div>
-    </div>
   </div>
 
   <a href="{{ route('tambah-jadwal-absen') }}"
@@ -42,6 +28,7 @@
             <th data-priority="1">Judul</th>
             <th data-priority="2">Tempat</th>
             <th data-priority="3">Waktu</th>
+            <th data-priority="4">Action</th>
             {{-- <th data-priority="3">Tanggal</th>
             <th data-priority="4">Role</th>
             <th class="w-1/5" data-priority="5">Action</th> --}}
@@ -49,11 +36,22 @@
         </thead>
         <tbody class="divide-y-8">
           <!-- Rest of your data (refer to https://datatables.net/examples/server_side/ for server side processing)-->
-          @foreach ($jadwal_absen as $jadwal_absen)
+          @foreach ($jadwal_absen as $jadwal)
               <tr>
-                <td>{{ $jadwal_absen->judul }}</td>
-                <td>{{ $jadwal_absen->tempat }}</td>
-                <td>{{ \Carbon\Carbon::parse($jadwal_absen->waktu)->isoFormat('dddd, D MMMM Y H\\:i') }}</td>
+                <td>{{ $jadwal->judul }}</td>
+                <td>{{ $jadwal->tempat }}</td>
+                <td>{{ \Carbon\Carbon::parse($jadwal->waktu)->isoFormat('dddd, D MMMM Y') }} ({{ \Carbon\Carbon::parse($jadwal->waktu)->format('H:i') }})</td>
+                <td>
+                  <div class="flex gap-2">
+                    <a href="{{ route('edit-jadwal-absen', $jadwal->id)}}" class="rounded-md bg-primary px-4 text-white">Edit</a>
+
+                    <form action="{{ route('delete-jadwal-absen-destroy', $jadwal->id) }}" method="post">
+                      @csrf
+                      @method('DELETE')
+                        <button type="submit" class="rounded-md bg-red-500 px-4 text-white">Delete</button>
+                      </form>
+                    </div>
+                </td>
               </tr>
           @endforeach
 

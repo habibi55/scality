@@ -97,19 +97,27 @@ class AdminController extends Controller
         return redirect()->route('jadwal-absen');
     }
 
-    public function editJadwalAbsen()
+    public function editJadwalAbsen(string $id)
     {
-        
+        $jadwal_absens = JadwalAbsen::findOrFail($id);
+
+        return view('admin.edit-jadwal-absen', compact('jadwal_absens'));
     }
 
-    public function updateJadwalAbsen()
+    public function updateJadwalAbsen(Request $request, string $id)
     {
-        
+        $jadwal_absens = JadwalAbsen::findOrFail($id);
+        $jadwal_absens->update($request->all());
+  
+        return redirect()->route('jadwal-absen');
     }
 
-    public function destroyJadwalAbsen()
+    public function destroyJadwalAbsen($id)
     {
-        
+        $jadwal_absens = JadwalAbsen::findOrFail($id);
+        $jadwal_absens->delete();
+
+        return redirect()->route('jadwal-absen');
     }
 
 }

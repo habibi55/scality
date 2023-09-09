@@ -87,13 +87,19 @@ Route::group(['prefix' => 'admin','middleware'=>['web','isAdmin']],function(){
     Route::get('/jadwal-absen',[AdminController::class,'jadwalAbsen'])->name('jadwal-absen');
     Route::get('/tambah-jadwal-absen',[AdminController::class,'tambahJadwalAbsen'])->name('tambah-jadwal-absen');
     Route::post('/tambah-jadwal-absen',[AdminController::class,'storeJadwalAbsen'])->name('store-jadwal-absen');
+    Route::get('/edit-jadwal-absen/{id}', [AdminController::class,'editJadwalAbsen'])->name('edit-jadwal-absen');
+    Route::put('/edit-jadwal-absen/{id}', [AdminController::class,'updateJadwalAbsen'])->name('update-jadwal-absen');
+    Route::post('/delete-jadwal-absen-destroy/{id}',[AdminController::class,'destroyJadwalAbsen'])->name('delete-jadwal-absen-destroy');
+    Route::delete('/delete-jadwal-absen-destroy/{id}',[AdminController::class,'destroyJadwalAbsen'])->name('delete-jadwal-absen-destroy');
+
+
     Route::get('/data-pengurus',[AdminController::class,'dataPengurus'])->name('data-pengurus');
     Route::get('/tambah-pengurus',[AdminController::class,'tambahPengurus'])->name('tambah-pengurus');
     Route::post('/tambah-pengurus-store',[AdminController::class,'store'])->name('tambah-pengurus-store');
-    Route::post('/delete-pengurus-destroy/{id}',[AdminController::class,'destroy'])->name('delete-pengurus-destroy');
-    Route::delete('/delete-pengurus-destroy/{id}',[AdminController::class,'destroy'])->name('delete-pengurus-destroy');
     Route::get('/edit-pengurus/{id}', [AdminController::class,'edit'])->name('pengurus.edit');
     Route::put('/edit-pengurus/{id}', [AdminController::class,'update'])->name('pengurus.update');
+    Route::post('/delete-pengurus-destroy/{id}',[AdminController::class,'destroy'])->name('delete-pengurus-destroy');
+    Route::delete('/delete-pengurus-destroy/{id}',[AdminController::class,'destroy'])->name('delete-pengurus-destroy');
 });
 
 

@@ -39,6 +39,17 @@
     <div class="w-8/12 font-bold text-4xl">Home</div>
   </div>
 
+  {{-- <a href="{{ route('tambah-jadwal-absen') }}"
+    class="flex gap-2 py-3 w-64 bg-white rounded-lg justify-center items-center hover:bg-gray-100 hover:duration-200 shadow-md hover:cursor-pointer">
+    <svg class="w-6" height="100%" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1"
+      viewBox="0 0 512 512" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+      <path
+        d="M417.4,224H288V94.6c0-16.9-14.3-30.6-32-30.6c-17.7,0-32,13.7-32,30.6V224H94.6C77.7,224,64,238.3,64,256  c0,17.7,13.7,32,30.6,32H224v129.4c0,16.9,14.3,30.6,32,30.6c17.7,0,32-13.7,32-30.6V288h129.4c16.9,0,30.6-14.3,30.6-32  C448,238.3,434.3,224,417.4,224z" />
+    </svg>
+    <p class="font-semibold">Tambah Jadwal Absen</p>
+  </a> --}}
+
   <div class="flex w-full gap-4">
     <div class="flex flex-col w-8/12 gap-4">
       {{-- Rapat --}}
@@ -207,7 +218,6 @@
                           </g>
                         </g>
                       </svg>
-                      {{-- <div class="text-lg font-semibold ml-1">10:00 WIB</div> --}}
                       <div class="text-lg font-semibold">{{ \Carbon\Carbon::parse($jadwal->waktu)->format('H:i') }}</div>
                     </div>
                   </div>

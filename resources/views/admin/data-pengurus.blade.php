@@ -143,9 +143,11 @@
                       @else
                         <button type="submit" class="rounded-md bg-red-500 px-4 text-white">Delete</button>
                       @endif
+                      </form>
+                    </div>
                 </td>
-                    </form>
-                  </div>
+                    
+                  
                 </tr>
           @endforeach
 

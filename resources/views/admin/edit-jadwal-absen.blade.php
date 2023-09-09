@@ -8,21 +8,22 @@
   </div>
 
   <!-- Data Diri -->
-     <form class="flex flex-col w-1/2 gap-4" action="{{ route('tambah-jadwal-absen') }}" method="post">
+     <form class="flex flex-col w-1/2 gap-4" action="{{ route('edit-jadwal-absen', $jadwal_absens->id) }}" method="post">
       @csrf
+      @method('PUT')
       <div class="flex flex-col w-full gap-2">
         <p>Judul</p>
-        <input class="p-2 rounded-md border-2" type="text" name="judul" id="judul">
+        <input class="p-2 rounded-md border-2" type="text" name="judul" id="judul" value="{{ $jadwal_absens->judul }}">
       </div>
 
       <div class="flex flex-col w-full gap-2">
         <p>Tempat</p>
-        <input class="p-2 rounded-md border-2" type="text" name="tempat" id="tempat">
+        <input class="p-2 rounded-md border-2" type="text" name="tempat" id="tempat" value="{{ $jadwal_absens->tempat }}">
       </div>
 
       <div class="flex flex-col w-full gap-2">
         <p>Tanggal dan Waktu</p>
-        <input class="p-2 rounded-md border-2" type="datetime-local" name="waktu" id="waktu">
+        <input class="p-2 rounded-md border-2" type="datetime-local" name="waktu" id="waktu" value="{{ $jadwal_absens->waktu }}">
       </div>
       
       <div class="flex justify-end gap-3">
