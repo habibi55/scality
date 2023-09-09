@@ -12,11 +12,8 @@ class JadwalAbsen extends Model
         protected $fillable = [
         'judul',
         'tempat',
-        'waktu'
+        'waktu',
+        'status'
     ];
 
-    // public function judul()
-    // {
-    //     return $this->hasMany(Absen::class, 'jadwal_absen_id');
-    // }
 }

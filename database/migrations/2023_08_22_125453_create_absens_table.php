@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('absens', function (Blueprint $table) {
             $table->id();
             $table->foreignId('users_id')->constrained('users');
-            // $table->foreignId('jadwal_absen_id')->constrained('jadwal_absens');
             $table->string('judul');
             $table->string('image');
             $table->timestamps();

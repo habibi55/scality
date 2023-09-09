@@ -1,6 +1,15 @@
 @extends('layouts.main')
 
 @section('content')
+<style>
+  input:checked {
+    background-color: #22c55e; /* bg-green-500 */
+  }
+
+  input:checked ~ span:last-child {
+    --tw-translate-x: 1.75rem; /* translate-x-7 */
+  }
+</style>
 
 <div class="flex flex-col bg-primary_back p-6 gap-6 ml-72 h-screen">
   <div class="flex w-full mt-4">
@@ -27,32 +36,41 @@
           <tr>
             <th data-priority="1">Judul</th>
             <th data-priority="2">Tempat</th>
-            <th data-priority="3">Waktu</th>
-            <th data-priority="4">Action</th>
-            {{-- <th data-priority="3">Tanggal</th>
-            <th data-priority="4">Role</th>
-            <th class="w-1/5" data-priority="5">Action</th> --}}
+            <th data-priority="3">Tanggal dan Waktu</th>
+            <th data-priority="4">Status</th>
+            <th data-priority="5">Action</th>
+
           </tr>
         </thead>
         <tbody class="divide-y-8">
           <!-- Rest of your data (refer to https://datatables.net/examples/server_side/ for server side processing)-->
           @foreach ($jadwal_absen as $jadwal)
-              <tr>
-                <td>{{ $jadwal->judul }}</td>
-                <td>{{ $jadwal->tempat }}</td>
-                <td>{{ \Carbon\Carbon::parse($jadwal->waktu)->isoFormat('dddd, D MMMM Y') }} ({{ \Carbon\Carbon::parse($jadwal->waktu)->format('H:i') }})</td>
-                <td>
-                  <div class="flex gap-2">
-                    <a href="{{ route('edit-jadwal-absen', $jadwal->id)}}" class="rounded-md bg-primary px-4 text-white">Edit</a>
+            <tr>
+              <td>{{ $jadwal->judul }}</td>
+              <td>{{ $jadwal->tempat }}</td>
+              <td>{{ \Carbon\Carbon::parse($jadwal->waktu)->isoFormat('dddd, D MMMM Y') }} ({{ \Carbon\Carbon::parse($jadwal->waktu)->format('H:i') }})</td>
+              <td>
+                @if ($jadwal->status == 1 )
+                    ON
+                @endif
 
-                    <form action="{{ route('delete-jadwal-absen-destroy', $jadwal->id) }}" method="post">
-                      @csrf
-                      @method('DELETE')
-                        <button type="submit" class="rounded-md bg-red-500 px-4 text-white">Delete</button>
-                      </form>
-                    </div>
-                </td>
-              </tr>
+                @if ($jadwal->status == 0)
+                    OFF
+                @endif
+                
+              </td>
+              <td>
+                <div class="flex gap-2">
+                  <a href="{{ route('edit-jadwal-absen', $jadwal->id)}}" class="rounded-md bg-primary px-4 text-white">Edit</a>
+
+                  <form action="{{ route('delete-jadwal-absen-destroy', $jadwal->id) }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                      <button type="submit" class="rounded-md bg-red-500 px-4 text-white">Delete</button>
+                    </form>
+                  </div>
+              </td>
+            </tr>
           @endforeach
 
         </tbody>

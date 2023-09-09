@@ -24,6 +24,11 @@
         <p>Tanggal dan Waktu</p>
         <input class="p-2 rounded-md border-2" type="datetime-local" name="waktu" id="waktu">
       </div>
+
+      <div class="flex flex-col w-full gap-2">
+        <p>Status</p>
+        <input class="p-2 rounded-md border-2" type="checkbox" name="status" id="status" value="1">
+      </div>
       
       <div class="flex justify-end gap-3">
         <button type="reset"

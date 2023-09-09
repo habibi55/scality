@@ -92,6 +92,7 @@ class AdminController extends Controller
         $jadwal_absen->judul = $request->judul;
         $jadwal_absen->tempat = $request->tempat;
         $jadwal_absen->waktu = $request->waktu;
+        $jadwal_absen->status = $request->status;
         $jadwal_absen->save();
 
         return redirect()->route('jadwal-absen');
@@ -107,7 +108,9 @@ class AdminController extends Controller
     public function updateJadwalAbsen(Request $request, string $id)
     {
         $jadwal_absens = JadwalAbsen::findOrFail($id);
-        $jadwal_absens->update($request->all());
+        $data = $request->all();
+        $data['status'] = $request->has('status') ? 1 : 0;
+        $jadwal_absens->update($data);
   
         return redirect()->route('jadwal-absen');
     }
