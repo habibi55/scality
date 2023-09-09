@@ -81,6 +81,13 @@
               <p>{{ $item->receiver_name }}</p>
               <p>{{ $item->p1 }}</p>
               <p>{{ $item->p2 }}</p>
+              <p>{{ $item->p3 }}</p>
+              <p>{{ $item->p4 }}</p>
+              <p>{{ $item->p5 }}</p>
+              <p>{{ $item->p6 }}</p>
+              <p>{{ $item->p7 }}</p>
+              <p>{{ $item->p8 }}</p>
+              <p>{{ $item->keterangan }}</p>
             </li>
             <button type="submit" class="rounded-md bg-red-500 px-4 text-white">Delete</button>
           </form>
@@ -89,8 +96,8 @@
     </div>
   </div>
 
-  <div class="flex flex-col bg-white p-4 rounded-lg w-2/4 text-sm leading-relaxed">
-    <ul class="list-decimal flex flex-col pl-4 gap-6">
+
+    <ul class="flex flex-col list-decimal gap-6 bg-white p-4 rounded-lg w-2/4 text-sm leading-relaxed">
       @foreach ($users as $user)
         @if (auth()->user()->role == 1)
           <form class="w-full" action="{{ route('store-penilaian-evaluator') }}" method="POST">
@@ -101,7 +108,7 @@
         @endif      
         @csrf
               
-        <li>
+        <li class="m-2">
           <div class="flex flex-col gap-4">
             <select name="receiver_id" id="receiver_id">
               @foreach ($users as $user)
@@ -127,21 +134,77 @@
               <input class="w-5" type="radio" name="p2" id="9" value="5">
             </div>
 
-            {{-- <div class="flex flex-col gap-2">
+            <div class="flex gap-12">
+              <p class="w-40">Komunikasi</p>
+              <input class="w-5" type="radio" name="p3" id="10" value="1">
+              <input class="w-5" type="radio" name="p3" id="11" value="2">
+              <input class="w-5" type="radio" name="p3" id="12" value="3">
+              <input class="w-5" type="radio" name="p3" id="13" value="4">
+              <input class="w-5" type="radio" name="p3" id="14" value="5">
+            </div>
+
+            <div class="flex gap-12">
+              <p class="w-40">Kedisiplinan</p>
+              <input class="w-5" type="radio" name="p4" id="15" value="1">
+              <input class="w-5" type="radio" name="p4" id="16" value="2">
+              <input class="w-5" type="radio" name="p4" id="17" value="3">
+              <input class="w-5" type="radio" name="p4" id="18" value="4">
+              <input class="w-5" type="radio" name="p4" id="19" value="5">
+            </div>
+
+            <div class="flex gap-12">
+              <p class="w-40">Kontribusi</p>
+              <input class="w-5" type="radio" name="p5" id="20" value="1">
+              <input class="w-5" type="radio" name="p5" id="21" value="2">
+              <input class="w-5" type="radio" name="p5" id="22" value="3">
+              <input class="w-5" type="radio" name="p5" id="23" value="4">
+              <input class="w-5" type="radio" name="p5" id="24" value="5">
+            </div>
+
+            <div class="flex gap-12">
+              <p class="w-40">Sikap</p>
+              <input class="w-5" type="radio" name="p6" id="25" value="1">
+              <input class="w-5" type="radio" name="p6" id="26" value="2">
+              <input class="w-5" type="radio" name="p6" id="27" value="3">
+              <input class="w-5" type="radio" name="p6" id="28" value="4">
+              <input class="w-5" type="radio" name="p6" id="29" value="5">
+            </div>
+
+            <div class="flex gap-12">
+              <p class="w-40">Inisiatif</p>
+              <input class="w-5" type="radio" name="p7" id="30" value="1">
+              <input class="w-5" type="radio" name="p7" id="31" value="2">
+              <input class="w-5" type="radio" name="p7" id="32" value="3">
+              <input class="w-5" type="radio" name="p7" id="33" value="4">
+              <input class="w-5" type="radio" name="p7" id="34" value="5">
+            </div>
+
+            <div class="flex gap-12">
+              <p class="w-40">Problem Solving</p>
+              <input class="w-5" type="radio" name="p8" id="35" value="1">
+              <input class="w-5" type="radio" name="p8" id="36" value="2">
+              <input class="w-5" type="radio" name="p8" id="37" value="3">
+              <input class="w-5" type="radio" name="p8" id="38" value="4">
+              <input class="w-5" type="radio" name="p8" id="39" value="5">
+            </div>
+
+            <div class="flex flex-col gap-2">
               <p class="font-semibold">Keterangan Penilaian</p>
               <p>Kolom ini digunakan untuk memberikan kesimpulan, kritik ataupun saran, sehingga dapat
                 dijadikan sebagai
                 evaluasi pengurus supaya lebih baik kedepan nya.</p>
-              <input class="flex border-b p-2 rounded-md " name="keterangan" id="keterangan" type="text" placeholder="Jawaban Kamu">
-            </div> --}}
+              <textarea class="flex border-b p-2 rounded-md border-2 border-gray-500" name="keterangan" id="keterangan" rows="5" placeholder="Jawaban Kamu">
+              </textarea>
+            </div>
+            
+            <div class="flex justify-end gap-2">
+              <button class="rounded-lg bg-red-500 hover:bg-red-700 duration-150 cursor-pointer text-white px-6 mt-4"
+                type="reset">Cancel</button>
+              <button class="button px-6 mt-4" type="submit">Submit</button>
+            </div>
           </div>
         </li>
 
-          <div class="flex justify-end gap-2">
-            <button class="rounded-lg bg-red-500 hover:bg-red-700 duration-150 cursor-pointer text-white px-6 mt-4"
-              type="reset">Cancel</button>
-            <button class="button px-6 mt-4" type="submit">Submit</button>
-          </div>
         </form>
       @endforeach     
     </ul>
@@ -230,8 +293,8 @@
               <input class="flex border-b p-2 rounded-md " name="keterangan" type="text" placeholder="Jawaban Kamu">
             </div>
           </div>
-      </li> --}}
-  </div>
+    </li> --}}
+  
 
 </div>
 

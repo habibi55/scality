@@ -47,6 +47,7 @@ class MainController extends Controller
     public function absen()
     {
         $jadwal_absen = JadwalAbsen::orderBy('id','ASC')->paginate(10);
+
         return view('main.absen', compact('jadwal_absen'));
     }
         
@@ -84,9 +85,19 @@ class MainController extends Controller
     public function rapor()
     {
          //Show Hasil Rapor Diri
-        $rapors = Penilaian::where('receiver_id', Auth::user()->id)->orderBy('id', 'asc')->get();       
+        $rapors = Penilaian::where('receiver_id', Auth::user()->id)->orderBy('id', 'asc')->get();  
+        
+            //  $users = User::select(DB::raw("COUNT(*) as count"), DB::raw("MONTHNAME(created_at) as month_name"))
+            //         ->whereYear('created_at', date('Y'))
+            //         ->groupBy(DB::raw("Month(created_at)"))
+            //         ->pluck('count', 'month_name');
+ 
+        $labels = $rapors->keys();
+        $data = $rapors->values();
+              
+        // return view('chart', compact('labels', 'data'));
 
-        return view('main.rapor', compact('rapors'));
+        return view('main.rapor', compact('rapors','labels', 'data'));
     }
 
     public function penilaian()
@@ -120,6 +131,13 @@ class MainController extends Controller
         $penilaian->receiver_name = $name;
         $penilaian->p1 = $request->p1;
         $penilaian->p2 = $request->p2;
+        $penilaian->p3 = $request->p3;
+        $penilaian->p4 = $request->p4;
+        $penilaian->p5 = $request->p5;
+        $penilaian->p6 = $request->p6;
+        $penilaian->p7 = $request->p7;
+        $penilaian->p8 = $request->p8;
+        $penilaian->keterangan = $request->keterangan;
         $penilaian->save();
 
         if (auth()->user()->role == 1) {
@@ -129,6 +147,13 @@ class MainController extends Controller
         if (auth()->user()->role == 2) {
             return redirect()->route('penilaian-admin');
         }
+    }
+
+    public function editPenilaian(string $id)
+    {
+        $penilaians = Penilaian::findOrFail($id);
+
+        // return view('admin.edit-jadwal-absen', compact('penilaians'));
     }
     
     public function destroyPenilaian($id)
@@ -149,6 +174,7 @@ class MainController extends Controller
     {
         $id = Auth::id();
         $profile = User::all()->where('id', $id)->firstOrFail();
+
         return view('main.profile', compact('profile'));
     }
 
@@ -178,6 +204,7 @@ class MainController extends Controller
     {
         $id = Auth::id();
         $profile = User::all()->where('id', $id)->firstOrFail();
+
         return view('main.profile-password', compact('profile'));
     }
 

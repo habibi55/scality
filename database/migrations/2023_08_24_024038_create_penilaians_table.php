@@ -18,6 +18,13 @@ return new class extends Migration
             $table->string('receiver_name');
             $table->integer('p1')->default('0');
             $table->integer('p2')->default('0');
+            $table->integer('p3')->default('0');
+            $table->integer('p4')->default('0');
+            $table->integer('p5')->default('0');
+            $table->integer('p6')->default('0');
+            $table->integer('p7')->default('0');
+            $table->integer('p8')->default('0');
+            $table->string('keterangan');
             $table->timestamps();
         });
     }

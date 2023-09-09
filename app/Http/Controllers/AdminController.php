@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-
     public function dataPengurus() 
     {
         $users = User::orderBy('id','ASC')->paginate(10);
@@ -35,6 +34,7 @@ class AdminController extends Controller
         $user->jabatan = $request->jabatan;
         $user->role = $request->role;
         $user->password = Hash::make('cemara2077');
+        $user->save();
 
         $request->validate([
         'npm' => 'required|unique:users|max:8',
@@ -43,9 +43,7 @@ class AdminController extends Controller
         ], [
             'npm.unique' => 'NPM ini sudah pernah diambil',
             'email.unique' => 'Email ini sudah pernah diambil',
-        ]);
-
-        $user->save();
+        ]);       
 
         return redirect()->route('data-pengurus');
     }
