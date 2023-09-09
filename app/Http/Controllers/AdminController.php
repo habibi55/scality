@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\JadwalAbsen;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 

@@ -39,14 +39,9 @@ Route::group(['prefix' => 'pengurus','middleware'=>['web','isPengurus']],functio
     Route::get('/profile',[MainController::class,'profile'])->name('profile-pengurus');
     Route::post('/profile/{user}',[MainController::class,'update'])->name('profile.update-pengurus');
     Route::put('/profile/{user}',[MainController::class,'update'])->name('profile.update-pengurus');
-
     Route::get('/profile/password',[MainController::class,'profilePassword'])->name('profile-password-pengurus');
-    Route::post('/profile/{user}',[MainController::class,'profileUpdatePassword'])->name('profile-update-password-pengurus');
-    Route::put('/profile/{user}',[MainController::class,'profileUpdatePassword'])->name('profile-update-password-pengurus');
-
-    // Route::get('/profile/update-password-form',[MainController::class,'updatePasswordForm'])->name('update-password-form-pengurus');
-    // Route::post('/profile/update-password',[MainController::class,'update'])->name('update-password-pengurus');
-    // Route::put('/profile/update-password',[MainController::class,'update'])->name('update-password-pengurus');
+    Route::post('/profile/password/{user}',[MainController::class,'profileUpdatePassword'])->name('profile-update-password-pengurus');
+    Route::put('/profile/password/{user}',[MainController::class,'profileUpdatePassword'])->name('profile-update-password-pengurus');
 });
 
 /* Evaluator Routes */
@@ -64,10 +59,9 @@ Route::group(['prefix' => 'evaluator','middleware'=>['web','isEvaluator']],funct
     Route::get('/profile',[MainController::class,'profile'])->name('profile-evaluator');
     Route::post('/profile/{user}',[MainController::class,'update'])->name('profile.update-evaluator');
     Route::put('/profile/{user}',[MainController::class,'update'])->name('profile.update-evaluator');
-
     Route::get('/profile/password',[MainController::class,'profilePassword'])->name('profile-password-evaluator');
-    Route::post('/profile/{user}',[MainController::class,'profileUpdatePassword'])->name('profile-update-password-evaluator');
-    Route::put('/profile/{user}',[MainController::class,'profileUpdatePassword'])->name('profile-update-password-evaluator');
+    Route::post('/profile/password/{user}',[MainController::class,'profileUpdatePassword'])->name('profile-update-password-evaluator');
+    Route::put('/profile/password/{user}',[MainController::class,'profileUpdatePassword'])->name('profile-update-password-evaluator');
 });
 
 
@@ -85,7 +79,6 @@ Route::group(['prefix' => 'admin','middleware'=>['web','isAdmin']],function(){
     Route::get('/profile',[MainController::class,'profile'])->name('profile-admin');
     Route::post('/profile/{user}',[MainController::class,'update'])->name('profile.update-admin');
     Route::put('/profile/{user}',[MainController::class,'update'])->name('profile.update-admin');
-
     Route::get('/profile/password',[MainController::class,'profilePassword'])->name('profile-password-admin');
     Route::post('/profile/password/{user}',[MainController::class,'profileUpdatePassword'])->name('profile-update-password-admin');
     Route::put('/profile/password/{user}',[MainController::class,'profileUpdatePassword'])->name('profile-update-password-admin');

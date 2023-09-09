@@ -46,16 +46,6 @@
         @enderror
       </div>
 
-      {{-- <div class="flex flex-col w-full gap-2">
-        <p>Divisi</p>
-        <select class="form-create" name="role" id="role">
-          <option value="">-- Pilih Divisi --</option>
-          <option value="1">MIB</option>
-          <option value="2">Kedamaian</option>
-          <option value="3">Admin</option>
-        </select>
-      </div> --}}
-
       <div class="flex flex-col w-full gap-2">
         <p>Role</p>
         <select class="border border-gray-300 rounded-lg py-3 px-4 text-sm md:text-base" name="role" id="role">

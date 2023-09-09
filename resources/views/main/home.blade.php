@@ -213,7 +213,6 @@
                   </div>
 
                   <div class="flex flex-row w-full mt-4">
-
                     @if (auth()->user()->role == 0)
                       <a href="{{ route('absen-pengurus') }}" class="w-44 bg-primary hover:bg-primary_hover duration-150 text-white text-center rounded-md cursor-pointer py-2">
                     @endif
@@ -262,10 +261,11 @@
                 <ul class="list-decimal">
                   @foreach ($absen as $item)
                   <li>
-                    <div> {{  date("j F, Y H:i",strtotime($item->created_at)) ?? '' }}</div>
-                    
+                    <div class="font-semibold">Absen {{ $item->judul }} - {{ \Carbon\Carbon::parse($item->waktu)->isoFormat('dddd, D MMMM Y') }}</div>
+                    <div>Waktu Absen : {{ \Carbon\Carbon::parse($item->created_at)->format('H:i') }}</div>
                     <img class="max-h-80 object-contain mb-2" src="/images/{{ $item->image }}" width="500px">
                   </li>
+                  
                   @endforeach
                 </ul>
               </div>
@@ -296,7 +296,6 @@
               @if (auth()->user()->role == 2)
                 <a href="{{ route("export-rapor-admin") }}">Download PDF</a>
               @endif
-
             </li>
           @endforeach
         </ul>

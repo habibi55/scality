@@ -5,20 +5,6 @@
 <div class="flex flex-col bg-primary_back h-screen p-6 gap-6 ml-72">
   <div class="flex w-full mt-4">
     <div class="w-6/12 font-bold text-4xl">Pengisian Absen</div>
-    <div class="w-6/12 mx-auto">
-      <div class="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
-        <div class="grid place-items-center h-full w-12 text-gray-300">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-        </div>
-
-        <input class="peer h-full w-full border-0 text-sm text-gray-700 pr-2" type="text" id="search"
-          placeholder="Search something.." />
-      </div>
-    </div>
   </div>
 
   <div class="flex">
@@ -52,9 +38,16 @@
             <input type="file" name="image" id="image" class="form-control" placeholder="image">
         </div>
 
+        @foreach ($jadwal_absen as $jadwal)
+        <div class="">
+          <input type="text" name="judul" id="judul" value="{{ $jadwal->judul }}">
+        </div>
+        @endforeach
+        
+
         <div class="flex justify-end gap-3">
-          <a type="button" href="dashboard.html"
-            class="rounded-md text-white bg-red-400 px-4 py-2 font-medium hover:bg-red-500">Cancel</a>
+          <button type="reset"
+            class="rounded-md text-white bg-red-400 px-4 py-2 font-medium hover:bg-red-500">Cancel</button>
           <button type="submit"
             class="text-white rounded-md bg-primary px-4 py-2 font-medium hover:opacity-80 duration-300">Submit</button>
         </div>

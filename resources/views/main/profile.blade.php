@@ -70,11 +70,6 @@
         <div>Email</div>
         <input class="border border-gray-300 bg-white rounded-lg py-3 px-4 text-sm " value="{{ $profile->email }}" type="text" name="email" id="email">
       </div>
-      {{-- <div class="flex flex-col w-full gap-2">
-        <div>Password Sekarang</div>
-          <input name="new_password" class="border border-gray-300 rounded-lg py-3 px-4 text-sm" id="new_password"
-          type="password" placeholder="Password Sekarang" required autofocus>
-      </div> --}}
     </div>
 
     <div class="flex flex-col justify-end gap-4">

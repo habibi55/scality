@@ -53,7 +53,7 @@
               <tr>
                 <td>{{ $jadwal_absen->judul }}</td>
                 <td>{{ $jadwal_absen->tempat }}</td>
-                <td>{{ $jadwal_absen->time }}</td>
+                <td>{{ \Carbon\Carbon::parse($jadwal_absen->waktu)->isoFormat('dddd, D MMMM Y H\\:i') }}</td>
               </tr>
           @endforeach
 

@@ -14,4 +14,9 @@ class JadwalAbsen extends Model
         'tempat',
         'waktu'
     ];
+
+    // public function judul()
+    // {
+    //     return $this->hasMany(Absen::class, 'jadwal_absen_id');
+    // }
 }

@@ -24,7 +24,6 @@ class MainController extends Controller
 
         //Show Pengisian Absen
         $absen = Absen::where('users_id', Auth::user()->id)->orderBy('id', 'asc')->get();
-        
 
         //Show Hasil Rapor Diri
         $rapors = Penilaian::where('receiver_id', Auth::user()->id)->orderBy('id', 'asc')->get();       
@@ -43,13 +42,12 @@ class MainController extends Controller
 
         // Download the PDF file
         return $pdf->download("Penilaian {$rapors->first()->receiver_name}.pdf");
-        // return view('main.export-rapor', compact('rapors'));
-
     }
 
     public function absen()
     {
-        return view('main.absen');
+        $jadwal_absen = JadwalAbsen::orderBy('id','ASC')->paginate(10);
+        return view('main.absen', compact('jadwal_absen'));
     }
         
 
@@ -66,6 +64,8 @@ class MainController extends Controller
         $absen = new Absen();
         $absen->image = $imageName;
         $absen->users_id = Auth::id();
+        // $absen->jadwal_absen_id = JadwalAbsen::id();
+        $absen->judul = $request->judul;
         $absen->save();
 
         if (auth()->user()->role == 0) {
@@ -158,7 +158,6 @@ class MainController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'npm' => $request->npm,
-            // 'password' => Hash::make($request->new_password),
             'updated_at' => now()
         ]);
 
