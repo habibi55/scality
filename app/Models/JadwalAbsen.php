@@ -12,5 +12,6 @@ class JadwalAbsen extends Model
         protected $fillable = [
         'judul',
         'tempat',
+        'waktu'
     ];
 }

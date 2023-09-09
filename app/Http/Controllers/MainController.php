@@ -7,13 +7,13 @@ use App\Models\JadwalAbsen;
 use App\Models\Penilaian;
 use App\Models\User;
 
-use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Storage;
+use Spatie\Browsershot\Browsershot;
+
 
 class MainController extends Controller
 {
@@ -24,6 +24,7 @@ class MainController extends Controller
 
         //Show Pengisian Absen
         $absen = Absen::where('users_id', Auth::user()->id)->orderBy('id', 'asc')->get();
+        
 
         //Show Hasil Rapor Diri
         $rapors = Penilaian::where('receiver_id', Auth::user()->id)->orderBy('id', 'asc')->get();       
@@ -31,17 +32,19 @@ class MainController extends Controller
         return view('main.home', compact('jadwal_absen' , 'absen', 'rapors'));
     }
 
-    public function exportRapor(Request $request)
+    public function exportRapor()
     {
-         //Show Hasil Rapor Diri
+        //Show Hasil Rapor Diri
         $rapors = Penilaian::where('receiver_id', Auth::user()->id)->orderBy('id', 'asc')->get();
 
         // Load the view and pass the data
         $pdf = App::make('dompdf.wrapper');
-        $pdf->loadView('main.rapor', ['rapors' => $rapors]);
+        $pdf->loadView('main.export-rapor', ['rapors' => $rapors]);
 
         // Download the PDF file
-        return $pdf->download('rapors.pdf');
+        return $pdf->download("Penilaian {$rapors->first()->receiver_name}.pdf");
+        // return view('main.export-rapor', compact('rapors'));
+
     }
 
     public function absen()

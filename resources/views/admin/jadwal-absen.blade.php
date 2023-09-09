@@ -41,6 +41,7 @@
           <tr>
             <th data-priority="1">Judul</th>
             <th data-priority="2">Tempat</th>
+            <th data-priority="3">Waktu</th>
             {{-- <th data-priority="3">Tanggal</th>
             <th data-priority="4">Role</th>
             <th class="w-1/5" data-priority="5">Action</th> --}}
@@ -52,6 +53,7 @@
               <tr>
                 <td>{{ $jadwal_absen->judul }}</td>
                 <td>{{ $jadwal_absen->tempat }}</td>
+                <td>{{ $jadwal_absen->time }}</td>
               </tr>
           @endforeach
 

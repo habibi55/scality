@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('judul');
             $table->string('tempat');
+            $table->dateTime('waktu');
             $table->timestamps();
         });
     }

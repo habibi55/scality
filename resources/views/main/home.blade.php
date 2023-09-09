@@ -183,7 +183,8 @@
                           <rect height="5" width="5" x="28" y="50" />
                         </g>
                       </svg>
-                      <div class="text-lg font-semibold">Kamis,17 Januari 2023</div>
+                      <div class="text-lg font-semibold">{{ \Carbon\Carbon::parse($jadwal->waktu)->isoFormat('dddd, D MMMM Y') }}</div>
+                      
                     </div>
                   </div>
 
@@ -206,7 +207,8 @@
                           </g>
                         </g>
                       </svg>
-                      <div class="text-lg font-semibold ml-1">10:00 WIB</div>
+                      {{-- <div class="text-lg font-semibold ml-1">10:00 WIB</div> --}}
+                      <div class="text-lg font-semibold">{{ \Carbon\Carbon::parse($jadwal->waktu)->format('H:i') }}</div>
                     </div>
                   </div>
 

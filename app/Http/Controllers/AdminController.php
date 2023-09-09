@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\JadwalAbsen;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 
 class AdminController extends Controller
 {
+
     public function dataPengurus() 
     {
         $users = User::orderBy('id','ASC')->paginate(10);
@@ -76,6 +78,7 @@ class AdminController extends Controller
     public function jadwalAbsen()
     {
         $jadwal_absen = JadwalAbsen::orderBy('id','ASC')->paginate(10);
+ 
         return view('admin.jadwal-absen', compact('jadwal_absen'));
     }
 
@@ -89,6 +92,7 @@ class AdminController extends Controller
         $jadwal_absen = new JadwalAbsen();
         $jadwal_absen->judul = $request->judul;
         $jadwal_absen->tempat = $request->tempat;
+        $jadwal_absen->waktu = $request->waktu;
         $jadwal_absen->save();
 
         return redirect()->route('jadwal-absen');

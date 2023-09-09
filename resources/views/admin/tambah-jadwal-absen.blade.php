@@ -33,6 +33,11 @@
         <p>Tempat</p>
         <input class="p-2 rounded-md border-2" type="text" name="tempat" id="tempat">
       </div>
+
+      <div class="flex flex-col w-full gap-2">
+        <p>Tanggal dan Waktu</p>
+        <input class="p-2 rounded-md border-2" type="datetime-local" name="waktu" id="waktu">
+      </div>
       
       <div class="flex justify-end gap-3">
         <a type="button" href="{{ route('data-pengurus') }}"
