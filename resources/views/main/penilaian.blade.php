@@ -81,7 +81,7 @@
             <li>
               <div class="flex flex-col">
                 <p>{{ $item->receiver_name }}</p>
-                <canvas height="200" id="myChart"></canvas>
+                <canvas height="150" id="myChart"></canvas>
                 <p>{{ $item->p1 }}</p>
                 <p>{{ $item->p2 }}</p>
                 <p>{{ $item->p3 }}</p>
@@ -294,3 +294,4 @@ document.getElementById("mySelect").addEventListener("change", function() {
 });
 </script>
 
+@endsection

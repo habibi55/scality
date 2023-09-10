@@ -119,22 +119,22 @@ class MainController extends Controller
         ->get();
 
         // Show Hasil Chart
-        $rapors = Penilaian::where('users_id', Auth::user()->id)
+        $rapor = Penilaian::where('users_id', Auth::user()->id)
         ->orWhere('receiver_id')
         ->get();  
  
         $data = [
-            'p1' => $rapors->pluck('p1'),
-            'p2' => $rapors->pluck('p2'),
-            'p3' => $rapors->pluck('p3'),
-            'p4' => $rapors->pluck('p4'),
-            'p5' => $rapors->pluck('p5'),
-            'p6' => $rapors->pluck('p6'),
-            'p7' => $rapors->pluck('p7'),
-            'p8' => $rapors->pluck('p8'),
+            'p1' => $rapor->pluck('p1'),
+            'p2' => $rapor->pluck('p2'),
+            'p3' => $rapor->pluck('p3'),
+            'p4' => $rapor->pluck('p4'),
+            'p5' => $rapor->pluck('p5'),
+            'p6' => $rapor->pluck('p6'),
+            'p7' => $rapor->pluck('p7'),
+            'p8' => $rapor->pluck('p8'),
         ];
 
-        return view('main.penilaian', compact('users', 'penilaian','rapors', 'data'));
+        return view('main.penilaian', compact('users', 'penilaian','rapor', 'data'));
     }
 
     public function storePenilaian(Request $request)
