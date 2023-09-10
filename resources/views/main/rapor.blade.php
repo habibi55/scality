@@ -17,14 +17,16 @@
       </div>
     </div>
   </div>
-
-  
-
+ 
+    {{-- {{ $raporDiriChart->script() }} --}}
+    
 
   {{-- Rapor Diri --}}
-  <div class="w-4/12 rounded-xl bg-white p-4">
+  <div class="w-7/12 rounded-xl bg-white p-4">
     <div class="text-2xl font-semibold">Hasil Rapor Diri</div>
-    <canvas height="100" id="myChart"></canvas>
+
+    <canvas height="75" id="myChart"></canvas>
+    
       <ul class="list-decimal p-4">
         @foreach ($rapors as $rapor)
           <li>
@@ -32,13 +34,13 @@
             <p>{{ $rapor->receiver_name }}</p>
             <p>P1: {{ $rapor->p1 }}</p>
             <p>P2: {{ $rapor->p2 }}</p>
-            <p>P1: {{ $rapor->p3 }}</p>
-            <p>P2: {{ $rapor->p4 }}</p>
-            <p>P1: {{ $rapor->p5 }}</p>
-            <p>P2: {{ $rapor->p6 }}</p>
-            <p>P1: {{ $rapor->p7 }}</p>
-            <p>P2: {{ $rapor->p8 }}</p>
-            <p>P2: {{ $rapor->keterangan }}</p>
+            <p>P3: {{ $rapor->p3 }}</p>
+            <p>P4: {{ $rapor->p4 }}</p>
+            <p>P5: {{ $rapor->p5 }}</p>
+            <p>P6: {{ $rapor->p6 }}</p>
+            <p>P7: {{ $rapor->p7 }}</p>
+            <p>P8: {{ $rapor->p8 }}</p>
+            <p>Ket: {{ $rapor->keterangan }}</p>
 
             @if (auth()->user()->role == 0)
               <a href="{{ route("export-rapor-pengurus") }}">Download PDF</a>
@@ -62,6 +64,7 @@
 <script type="text/javascript">
   
   const ctx = document.getElementById('myChart');
+  const data = @json($data);
 
   new Chart(ctx, {
     type: 'line',
@@ -69,8 +72,9 @@
       labels: ['p1', 'p2', 'p3', 'p4', 'p5', 'p6' ,'p7', 'p8'],
       datasets: [{
         label: 'Penilaian',
-        data: @json($data),
-        borderWidth: 1
+        data: data,
+        borderWidth: 1,
+        tension: 0.1
       }]
     },
     options: {
@@ -81,8 +85,9 @@
       }
     }
   });
-
   
 </script>
+
+{{-- <script src="{{ $raporDiriChart->cdn() }}"></script> --}}
 
 @endsection

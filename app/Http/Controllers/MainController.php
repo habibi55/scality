@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\RaporDiriChart;
 use App\Models\Absen;
 use App\Models\JadwalAbsen;
 use App\Models\Penilaian;
@@ -85,19 +86,23 @@ class MainController extends Controller
     public function rapor()
     {
          //Show Hasil Rapor Diri
-        $rapors = Penilaian::where('receiver_id', Auth::user()->id)->orderBy('id', 'asc')->get();  
-        
-            //  $users = User::select(DB::raw("COUNT(*) as count"), DB::raw("MONTHNAME(created_at) as month_name"))
-            //         ->whereYear('created_at', date('Y'))
-            //         ->groupBy(DB::raw("Month(created_at)"))
-            //         ->pluck('count', 'month_name');
+        $rapors = Penilaian::where('receiver_id', Auth::user()->id)->get();  
  
-        $labels = $rapors->keys();
-        $data = $rapors->values();
-              
-        // return view('chart', compact('labels', 'data'));
 
-        return view('main.rapor', compact('rapors','labels', 'data'));
+
+         $data = [
+            'p1' => $rapors->pluck('p1'),
+            'p2' => $rapors->pluck('p2'),
+            'p3' => $rapors->pluck('p3'),
+            'p4' => $rapors->pluck('p4'),
+            'p5' => $rapors->pluck('p5'),
+            'p6' => $rapors->pluck('p6'),
+            'p7' => $rapors->pluck('p7'),
+            'p8' => $rapors->pluck('p8'),
+        ];
+              
+        return view('main.rapor', compact('rapors',  'data'));
+
     }
 
     public function penilaian()
