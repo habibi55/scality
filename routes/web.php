@@ -53,9 +53,10 @@ Route::group(['prefix' => 'evaluator','middleware'=>['web','isEvaluator']],funct
     Route::get('/export-rapor',[MainController::class,'exportRapor'])->name('export-rapor-evaluator');
     Route::get('/penilaian',[MainController::class,'penilaian'])->name('penilaian-evaluator');
     Route::post('/penilaian-store',[MainController::class,'storePenilaian'])->name('store-penilaian-evaluator');
+    Route::get('/edit-penilaian/{id}', [MainController::class,'editPenilaian'])->name('edit-penilaian-evaluator');
+    Route::put('/edit-penilaian/{id}', [MainController::class,'updatePenilaian'])->name('update-penilaian-evaluator');
     Route::post('/delete-penilaian/{id}',[MainController::class,'destroyPenilaian'])->name('delete-penilaian-evaluator');
     Route::delete('/delete-penilaian/{id}',[MainController::class,'destroyPenilaian'])->name('delete-penilaian-evaluator');
-
     Route::get('/profile',[MainController::class,'profile'])->name('profile-evaluator');
     Route::post('/profile/{user}',[MainController::class,'update'])->name('profile.update-evaluator');
     Route::put('/profile/{user}',[MainController::class,'update'])->name('profile.update-evaluator');
@@ -74,6 +75,8 @@ Route::group(['prefix' => 'admin','middleware'=>['web','isAdmin']],function(){
     Route::get('/export-rapor',[MainController::class,'exportRapor'])->name('export-rapor-admin');
     Route::get('/penilaian',[MainController::class,'penilaian'])->name('penilaian-admin');
     Route::post('/penilaian-store',[MainController::class,'storePenilaian'])->name('store-penilaian-admin');
+    Route::get('/edit-penilaian/{id}', [MainController::class,'editPenilaian'])->name('edit-penilaian-admin');
+    Route::put('/edit-penilaian/{id}', [MainController::class,'updatePenilaian'])->name('update-penilaian-admin');
     Route::post('/delete-penilaian/{id}',[MainController::class,'destroyPenilaian'])->name('delete-penilaian-admin');
     Route::delete('/delete-penilaian/{id}',[MainController::class,'destroyPenilaian'])->name('delete-penilaian-admin');
     Route::get('/profile',[MainController::class,'profile'])->name('profile-admin');
@@ -91,8 +94,6 @@ Route::group(['prefix' => 'admin','middleware'=>['web','isAdmin']],function(){
     Route::put('/edit-jadwal-absen/{id}', [AdminController::class,'updateJadwalAbsen'])->name('update-jadwal-absen');
     Route::post('/delete-jadwal-absen-destroy/{id}',[AdminController::class,'destroyJadwalAbsen'])->name('delete-jadwal-absen-destroy');
     Route::delete('/delete-jadwal-absen-destroy/{id}',[AdminController::class,'destroyJadwalAbsen'])->name('delete-jadwal-absen-destroy');
-
-
     Route::get('/data-pengurus',[AdminController::class,'dataPengurus'])->name('data-pengurus');
     Route::get('/tambah-pengurus',[AdminController::class,'tambahPengurus'])->name('tambah-pengurus');
     Route::post('/tambah-pengurus-store',[AdminController::class,'store'])->name('tambah-pengurus-store');

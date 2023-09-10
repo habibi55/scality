@@ -15,6 +15,7 @@ class Penilaian extends Model
         'users_id',
         'receiver_id',
         'receiver_name',
+        'bulan_penilaian',
         'p1',
         'p2',
         'p3',

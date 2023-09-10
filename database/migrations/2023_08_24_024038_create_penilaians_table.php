@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('users_id')->constrained('users');
             $table->foreignId('receiver_id')->constrained('users');
             $table->string('receiver_name');
+            $table->integer('bulan_penilaian')->default('0');
             $table->integer('p1')->default('0');
             $table->integer('p2')->default('0');
             $table->integer('p3')->default('0');

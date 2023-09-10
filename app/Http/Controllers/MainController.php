@@ -88,9 +88,7 @@ class MainController extends Controller
          //Show Hasil Rapor Diri
         $rapors = Penilaian::where('receiver_id', Auth::user()->id)->get();  
  
-
-
-         $data = [
+        $data = [
             'p1' => $rapors->pluck('p1'),
             'p2' => $rapors->pluck('p2'),
             'p3' => $rapors->pluck('p3'),
@@ -101,7 +99,7 @@ class MainController extends Controller
             'p8' => $rapors->pluck('p8'),
         ];
               
-        return view('main.rapor', compact('rapors',  'data'));
+        return view('main.rapor', compact('rapors', 'data'));
 
     }
 
@@ -118,9 +116,25 @@ class MainController extends Controller
         $penilaian = Penilaian::where('users_id', Auth::user()->id)
         ->orWhere('receiver_id')
         ->orderBy('id', 'asc')
-        ->get();      
+        ->get();
 
-        return view('main.penilaian', compact('users', 'penilaian'));
+        // Show Hasil Chart
+        $rapors = Penilaian::where('users_id', Auth::user()->id)
+        ->orWhere('receiver_id')
+        ->get();  
+ 
+        $data = [
+            'p1' => $rapors->pluck('p1'),
+            'p2' => $rapors->pluck('p2'),
+            'p3' => $rapors->pluck('p3'),
+            'p4' => $rapors->pluck('p4'),
+            'p5' => $rapors->pluck('p5'),
+            'p6' => $rapors->pluck('p6'),
+            'p7' => $rapors->pluck('p7'),
+            'p8' => $rapors->pluck('p8'),
+        ];
+
+        return view('main.penilaian', compact('users', 'penilaian','rapors', 'data'));
     }
 
     public function storePenilaian(Request $request)
@@ -134,6 +148,7 @@ class MainController extends Controller
 
         $penilaian->receiver_id = $id;
         $penilaian->receiver_name = $name;
+        $penilaian->bulan_penilaian = $request->bulan_penilaian;
         $penilaian->p1 = $request->p1;
         $penilaian->p2 = $request->p2;
         $penilaian->p3 = $request->p3;
@@ -158,7 +173,15 @@ class MainController extends Controller
     {
         $penilaians = Penilaian::findOrFail($id);
 
-        // return view('admin.edit-jadwal-absen', compact('penilaians'));
+        return view('main.edit-penilaian', compact('penilaians'));
+    }
+
+        public function updatePenilaian(Request $request, string $id)
+    {
+        $penilaians = Penilaian::findOrFail($id);
+        $penilaians->update($request->all());
+
+        return view('main.penilaian', compact('penilaians'));
     }
     
     public function destroyPenilaian($id)
