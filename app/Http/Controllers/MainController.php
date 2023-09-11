@@ -89,14 +89,14 @@ class MainController extends Controller
         $rapors = Penilaian::where('receiver_id', Auth::user()->id)->get();  
  
         $data = [
-            'p1' => $rapors->pluck('p1'),
-            'p2' => $rapors->pluck('p2'),
-            'p3' => $rapors->pluck('p3'),
-            'p4' => $rapors->pluck('p4'),
-            'p5' => $rapors->pluck('p5'),
-            'p6' => $rapors->pluck('p6'),
-            'p7' => $rapors->pluck('p7'),
-            'p8' => $rapors->pluck('p8'),
+            'Tanggung Jawab' => $rapors->pluck('p1'),
+            'Keaktifan' => $rapors->pluck('p2'),
+            'Komunikasi' => $rapors->pluck('p3'),
+            'Kedisiplinan' => $rapors->pluck('p4'),
+            'Kontribusi' => $rapors->pluck('p5'),
+            'Sikap' => $rapors->pluck('p6'),
+            'Inisiatif' => $rapors->pluck('p7'),
+            'Problem Solving' => $rapors->pluck('p8'),
         ];
               
         return view('main.rapor', compact('rapors', 'data'));
@@ -171,7 +171,12 @@ class MainController extends Controller
 
     public function editPenilaian(string $id)
     {
-        $penilaians = Penilaian::findOrFail($id);
+        // $penilaians = Penilaian::findOrFail($id);
+
+        $penilaians = Penilaian::where('users_id', Auth::user()->id)
+        ->orWhere('receiver_id')
+        ->orderBy('id', 'asc')
+        ->get();
 
         return view('main.edit-penilaian', compact('penilaians'));
     }
@@ -181,7 +186,13 @@ class MainController extends Controller
         $penilaians = Penilaian::findOrFail($id);
         $penilaians->update($request->all());
 
-        return view('main.penilaian', compact('penilaians'));
+        if (auth()->user()->role == 1) {
+            return redirect()->route('penilaian-evaluator', compact('penilaians'));
+        }
+
+        if (auth()->user()->role == 2) {
+            return redirect()->route('penilaian-admin', compact('penilaians'));
+        }
     }
     
     public function destroyPenilaian($id)

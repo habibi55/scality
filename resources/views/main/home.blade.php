@@ -44,7 +44,7 @@
       {{-- Rapat --}}
       <div class="rounded-xl bg-white">
           @if ($jadwal_absen->isEmpty())
-            <div class="flex flex-col h-40 bg-white rounded-xl justify-center items-center text-3xl font-bold">
+            <div class="flex flex-col h-48 bg-white rounded-xl justify-center items-center text-3xl font-bold">
               <svg class="h-20 stroke-2 stroke-black fill-primary" id="Layer_1" style="enable-background:new 0 0 128 128;" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><style type="text/css">
                 .st0{fill-rule:evenodd;clip-rule:evenodd;}
                 .st1{fill-rule:evenodd;clip-rule:evenodd;fill:#2B87FE;}
@@ -241,7 +241,6 @@
                   
                 </div>
               @endif
-
             @endforeach
           @endif
       </div>
@@ -249,7 +248,7 @@
       {{-- Hasil Absen --}}
       <div class="flex w-full rounded-xl bg-white">
           @if ($absen->isEmpty())
-          <div class="flex flex-col w-full h-40 bg-white rounded-xl justify-center items-center text-3xl font-bold">
+          <div class="flex flex-col w-full h-48 bg-white rounded-xl justify-center items-center text-3xl font-bold">
             <svg class="h-20 stroke-2 stroke-black fill-primary" id="Layer_1" style="enable-background:new 0 0 128 128;" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><style type="text/css">
               .st0{fill-rule:evenodd;clip-rule:evenodd;}
               .st1{fill-rule:evenodd;clip-rule:evenodd;fill:#2B87FE;}

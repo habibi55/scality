@@ -82,17 +82,12 @@
               <div class="flex flex-col">
                 <p>{{ $item->receiver_name }}</p>
                 <canvas height="150" id="myChart"></canvas>
-                <p>{{ $item->p1 }}</p>
-                <p>{{ $item->p2 }}</p>
-                <p>{{ $item->p3 }}</p>
-                <p>{{ $item->p4 }}</p>
-                <p>{{ $item->p5 }}</p>
-                <p>{{ $item->p6 }}</p>
-                <p>{{ $item->p7 }}</p>
-                <p>{{ $item->p8 }}</p>
-                <p>{{ $item->keterangan }}</p>
+                
+                <div>
+                  Keterangan :
+                  <p>{{ $item->keterangan }}</p>
+                </div>
               </div>
-
             </li>
 
             @if (auth()->user()->role == 1)
@@ -233,7 +228,7 @@
               <p>Kolom ini digunakan untuk memberikan kesimpulan, kritik ataupun saran, sehingga dapat
                 dijadikan sebagai
                 evaluasi pengurus supaya lebih baik kedepan nya.</p>
-              <textarea class="flex border-b p-2 rounded-md border-2 border-gray-500" name="keterangan" id="keterangan" rows="5" placeholder="Jawaban Kamu"  required>
+              <textarea class="flex p-2 rounded-md border-2 border-gray-500" name="keterangan" id="keterangan" rows="5" cols="100" placeholder="Jawaban Kamu"  required>
               </textarea>
             </div>
             
