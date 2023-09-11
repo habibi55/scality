@@ -123,18 +123,33 @@ class MainController extends Controller
         ->orWhere('receiver_id')
         ->get();  
  
-        $data = [
-            'p1' => $rapor->pluck('p1'),
-            'p2' => $rapor->pluck('p2'),
-            'p3' => $rapor->pluck('p3'),
-            'p4' => $rapor->pluck('p4'),
-            'p5' => $rapor->pluck('p5'),
-            'p6' => $rapor->pluck('p6'),
-            'p7' => $rapor->pluck('p7'),
-            'p8' => $rapor->pluck('p8'),
-        ];
+        // $data = [
+        //     'p1' => $rapor->pluck('p1'),
+        //     'p2' => $rapor->pluck('p2'),
+        //     'p3' => $rapor->pluck('p3'),
+        //     'p4' => $rapor->pluck('p4'),
+        //     'p5' => $rapor->pluck('p5'),
+        //     'p6' => $rapor->pluck('p6'),
+        //     'p7' => $rapor->pluck('p7'),
+        //     'p8' => $rapor->pluck('p8'),
+        // ];
 
-        return view('main.penilaian', compact('users', 'penilaian','rapor', 'data'));
+                $chartsData = [];
+        foreach ($penilaian as $index => $item) {
+            $chartsData[$index] = [
+                'Tanggung Jawab' => $item->p1,
+                'Keaktifan' => $item->p2,
+                'Komunikasi' => $item->p3,
+                'Kedisiplinan' => $item->p4,
+                'Kontribusi' => $item->p5,
+                'Sikap' => $item->p6,
+                'Inisiatif' => $item->p7,
+                'Problem Solving' => $item->p8,
+            ];
+        }
+                // return view('main.penilaian', compact('users', 'penilaian','rapor', 'data'));
+
+        return view('main.penilaian', compact('users', 'penilaian','rapor','chartsData'));
     }
 
     public function storePenilaian(Request $request)

@@ -9,24 +9,15 @@
     
   {{-- Rapor Diri --}}
   <div class="flex flex-row gap-4">
-    <div class="w-7/12 rounded-xl bg-white p-4">
-
-      {{-- Chart --}}
-      <canvas height="75" id="myChart"></canvas>
-      
+    <div class="w-7/12 rounded-xl bg-white p-4">     
       <ul class="list-decimal p-4">
         @foreach ($rapors as $rapor)
           <li>
-            <p>Penilaian Januari</p>
+            <p class="font-bold">Penilaian Januari</p>
+            {{-- Chart --}}
+            <canvas height="75" id="myChart"></canvas>
             <p>{{ $rapor->receiver_name }}</p>
-            {{-- <p>P1: {{ $rapor->p1 }}</p>
-            <p>P2: {{ $rapor->p2 }}</p>
-            <p>P3: {{ $rapor->p3 }}</p>
-            <p>P4: {{ $rapor->p4 }}</p>
-            <p>P5: {{ $rapor->p5 }}</p>
-            <p>P6: {{ $rapor->p6 }}</p>
-            <p>P7: {{ $rapor->p7 }}</p>
-            <p>P8: {{ $rapor->p8 }}</p> --}}
+
             <p>Ket: {{ $rapor->keterangan }}</p>
 
             @if (auth()->user()->role == 0)
@@ -44,29 +35,48 @@
           </li>
         @endforeach
       </ul>
+
+      <div>
+        Total:
+      </div>
     </div>
 
     <div class="w-5/12 bg-white rounded-xl p-4">
-      <table class="border-collapse border">
+      <div class="font-bold mb-4">
+        Range Penilaian
+      </div>
+      <table class="border-collapse border text-center">
         <thead>
           <tr>
-            <th class="border border-slate-300">Range</th>
-            <th class="border border-slate-300">Keterangan</th>
+            <th class="ket-penilaian px-6">Range</th>
+            <th class="ket-penilaian px-6">Keterangan</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="border border-slate-300">1</td>
-            <td class="border border-slate-300">Buruk</td>
+            <td class="ket-penilaian">1</td>
+            <td class="ket-penilaian">Buruk</td>
+          </tr>
+          <tr>
+            <td class="ket-penilaian">2</td>
+            <td class="ket-penilaian">Kurang</td>
+          </tr>
+          <tr>
+            <td class="ket-penilaian">3</td>
+            <td class="ket-penilaian">Cukup</td>
+          </tr>
+          <tr>
+            <td class="ket-penilaian">4</td>
+            <td class="ket-penilaian">Baik</td>
+          </tr>
+          <tr>
+            <td class="ket-penilaian">5</td>
+            <td class="ket-penilaian">Sangat Baik</td>
           </tr>
         </tbody>
-        
       </table>
-
     </div>
-
   </div>
-  
 </div>
 
 {{-- ChartJS --}}

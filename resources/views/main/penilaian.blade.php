@@ -66,8 +66,7 @@
     <div class="flex flex-col bg-white p-4 rounded-lg w-1/3">
       <div class="font-semibold text-lg">Hasil Penilaian</div>
       <ul class="list-decimal p-4">
-        
-        @foreach ($penilaian as $item)
+        @foreach ($penilaian as $index => $item)
           @if (auth()->user()->role == 1)
             <form action="{{ route('delete-penilaian-evaluator', $item->id) }}" method="POST">
           @endif
@@ -81,8 +80,8 @@
             <li>
               <div class="flex flex-col">
                 <p>{{ $item->receiver_name }}</p>
-                <canvas height="150" id="myChart"></canvas>
-                
+                <canvas height="150" id="myChart{{ $index }}"></canvas>
+
                 <div>
                   Keterangan :
                   <p>{{ $item->keterangan }}</p>
@@ -246,7 +245,7 @@
 </div>
 
 {{-- ChartJS --}}
-<script type="text/javascript">
+{{-- <script type="text/javascript">
   
   const ctx = document.getElementById('myChart');
   const data = @json($data);
@@ -271,7 +270,64 @@
     }
   });
   
+</script> --}}
+
+{{-- <script type="text/javascript">
+
+  @foreach ($penilaian as $index => $item)
+    const ctx{{ $index }} = document.getElementById('myChart{{ $index }}');
+    const data = @json($data);
+
+    new Chart(ctx{{ $index }}, {
+      type: 'line',
+      data: {
+        labels: ['p1', 'p2', 'p3', 'p4', 'p5', 'p6' ,'p7', 'p8'],
+        datasets: [{
+          label: 'Penilaian',
+          data: data,
+          borderWidth: 1,
+          tension: 0.1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  @endforeach
+  
+</script> --}}
+
+<script type="text/javascript">
+    @foreach ($penilaian as $index => $item)
+      const ctx{{ $index }} = document.getElementById('myChart{{ $index }}');
+      const data = @json($chartsData[$index]);
+
+      new Chart(ctx{{ $index }}, {
+          type: 'line',
+          data: {
+              labels: ['Tanggung Jawab', 'Keaktifan', 'Komunikasi', 'Kedisiplinan', 'Kontribusi', 'Sikap', 'Inisiatif', 'Problem Solving'],
+              datasets: [{
+                  label: 'Penilaian',
+                  data: Object.values(data),
+                  borderWidth: 1,
+                  tension: 0.1
+              }]
+          },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  }
+              }
+          }
+      });
+  @endforeach
 </script>
+
 
 
 
