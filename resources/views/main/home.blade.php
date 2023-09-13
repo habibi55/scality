@@ -293,42 +293,44 @@
             <li>
               {{-- <p>Penilaian Januari</p> --}}
               <p>{{ $rapor->receiver_name }}</p>
-                @if ( $rapor->bulan_penilaian == 0 )
-                  <div>Januari</div>
-                @endif
-                @if ( $rapor->bulan_penilaian == 1 )
-                  <div>Februari</div>
-                @endif
-                @if ( $rapor->bulan_penilaian == 2 )
-                  <div>Maret</div>
-                @endif
-                @if ( $rapor->bulan_penilaian == 3 )
-                  <div>April</div>  
-                @endif
-                @if ( $rapor->bulan_penilaian == 4 )
-                  <div>Mei</div>  
-                @endif
-                @if ( $rapor->bulan_penilaian == 5 )
-                  <div>Juni</div>  
-                @endif
-                @if ( $rapor->bulan_penilaian == 6 )
-                  <div>Juli</div>  
-                @endif
-                @if ( $rapor->bulan_penilaian == 7 )
-                  <div>Agustus</div>  
-                @endif
-                @if ( $rapor->bulan_penilaian == 8 )
-                  <div>September</div>  
-                @endif
-                @if ( $rapor->bulan_penilaian == 9 )
-                  <div>Oktober</div> 
-                @endif
-                @if ( $rapor->bulan_penilaian == 10 )
-                  <div>November</div>  
-                @endif
-                @if ( $rapor->bulan_penilaian == 11 )
-                  <div>Desember</div> 
-                @endif
+              @if ( $rapor->bulan_penilaian == 0 )
+                <div>Januari</div>
+              @endif
+              @if ( $rapor->bulan_penilaian == 1 )
+                <div>Februari</div>
+              @endif
+              @if ( $rapor->bulan_penilaian == 2 )
+                <div>Maret</div>
+              @endif
+              @if ( $rapor->bulan_penilaian == 3 )
+                <div>April</div>  
+              @endif
+              @if ( $rapor->bulan_penilaian == 4 )
+                <div>Mei</div>  
+              @endif
+              @if ( $rapor->bulan_penilaian == 5 )
+                <div>Juni</div>  
+              @endif
+              @if ( $rapor->bulan_penilaian == 6 )
+                <div>Juli</div>  
+              @endif
+              @if ( $rapor->bulan_penilaian == 7 )
+                <div>Agustus</div>  
+              @endif
+              @if ( $rapor->bulan_penilaian == 8 )
+                <div>September</div>  
+              @endif
+              @if ( $rapor->bulan_penilaian == 9 )
+                <div>Oktober</div> 
+              @endif
+              @if ( $rapor->bulan_penilaian == 10 )
+                <div>November</div>  
+              @endif
+              @if ( $rapor->bulan_penilaian == 11 )
+                <div>Desember</div> 
+              @endif
+
+              <a class="bg-primary px-4" href="">Lihat Detail</a>
               {{-- <p>{{ $rapor->bulan_penilaian }}</p> --}}
 
               {{-- @if (auth()->user()->role == 0)
