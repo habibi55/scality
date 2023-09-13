@@ -9,10 +9,6 @@
 
   <div class="flex flex-row gap-6">
     <div class="flex flex-col rounded-lg gap-6">
-      <div class="flex bg-white p-4 rounded-lg">
-        <p class="font-semibold text-lg">Bulan Penilaian : Januari</p>
-      </div>
-
       <div class="flex flex-col bg-white p-4 rounded-lg">
         <p class="font-semibold text-lg">Deskripsi Range dan Indikator Penilaian</p>
         <div class="w-full flex flex-col gap-4 text-sm leading-relaxed">
@@ -65,7 +61,7 @@
     
     <div class="flex flex-col bg-white p-4 rounded-lg w-1/3">
       <div class="font-semibold text-lg">Hasil Penilaian</div>
-      <ul class="list-decimal p-4">
+      <ul class="list-decimal p-4 flex flex-col gap-2">
         @foreach ($penilaian as $index => $item)
           @if (auth()->user()->role == 1)
             <form action="{{ route('delete-penilaian-evaluator', $item->id) }}" method="POST">
@@ -78,25 +74,63 @@
             @csrf
             @method('DELETE')
             <li>
-              <div class="flex flex-col">
+              <div class="flex flex-col gap-2">
                 <p>{{ $item->receiver_name }}</p>
-                <canvas height="150" id="myChart{{ $index }}"></canvas>
-
-                <div>
+                {{-- <canvas height="150" id="myChart{{ $index }}"></canvas> --}}
+                @if ( $item->bulan_penilaian == 0 )
+                  <div>Bulan Penilaian : Januari</div>
+                @endif
+                @if ( $item->bulan_penilaian == 1 )
+                  <div>Februari</div>
+                @endif
+                @if ( $item->bulan_penilaian == 2 )
+                  <div>Maret</div>
+                @endif
+                @if ( $item->bulan_penilaian == 3 )
+                  <div>April</div>  
+                @endif
+                @if ( $item->bulan_penilaian == 4 )
+                  <div>Mei</div>  
+                @endif
+                @if ( $item->bulan_penilaian == 5 )
+                  <div>Juni</div>  
+                @endif
+                @if ( $item->bulan_penilaian == 6 )
+                  <div>Juli</div>  
+                @endif
+                @if ( $item->bulan_penilaian == 7 )
+                  <div>Agustus</div>  
+                @endif
+                @if ( $item->bulan_penilaian == 8 )
+                  <div>September</div>  
+                @endif
+                @if ( $item->bulan_penilaian == 9 )
+                  <div>Oktober</div> 
+                @endif
+                @if ( $item->bulan_penilaian == 10 )
+                  <div>November</div>  
+                @endif
+                @if ( $item->bulan_penilaian == 11 )
+                  <div>Desember</div> 
+                @endif
+                 
+                {{-- <div>
                   Keterangan :
                   <p>{{ $item->keterangan }}</p>
+                </div> --}}
+                <div>
+                  @if (auth()->user()->role == 1)
+                    <a href="{{ route('edit-penilaian-evaluator', $item->id)}}" class="rounded-sm bg-primary px-4 text-white">Edit</a>
+                  @endif
+
+                  @if (auth()->user()->role == 2)
+                    <a href="{{ route('edit-penilaian-admin', $item->id)}}" class="rounded-sm bg-primary px-4 text-white">Edit</a>
+                  @endif          
+                  <button type="submit" class="rounded-sm bg-red-500 px-4 text-white">Delete</button>
                 </div>
               </div>
+              
             </li>
-
-            @if (auth()->user()->role == 1)
-              <a href="{{ route('edit-penilaian-evaluator', $item->id)}}" class="rounded-md bg-primary px-4 text-white">Edit</a>
-            @endif
-
-            @if (auth()->user()->role == 2)
-              <a href="{{ route('edit-penilaian-admin', $item->id)}}" class="rounded-md bg-primary px-4 text-white">Edit</a>
-            @endif          
-            <button type="submit" class="rounded-md bg-red-500 px-4 text-white">Delete</button>
           </form>
         @endforeach
       </ul>
@@ -245,7 +279,7 @@
 </div>
 
 {{-- ChartJS --}}
-{{-- <script type="text/javascript">
+<script type="text/javascript">
   
   const ctx = document.getElementById('myChart');
   const data = @json($data);
@@ -270,79 +304,34 @@
     }
   });
   
-</script> --}}
+</script>
 
-{{-- <script type="text/javascript">
-
+{{-- <script>
   @foreach ($penilaian as $index => $item)
-    const ctx{{ $index }} = document.getElementById('myChart{{ $index }}');
-    const data = @json($data);
+    let ctx{{ $index }} = document.getElementById('myChart{{ $index }}');
+    let data = @json($chartsData[$index]);
 
     new Chart(ctx{{ $index }}, {
-      type: 'line',
-      data: {
-        labels: ['p1', 'p2', 'p3', 'p4', 'p5', 'p6' ,'p7', 'p8'],
-        datasets: [{
-          label: 'Penilaian',
-          data: data,
-          borderWidth: 1,
-          tension: 0.1
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
+        type: 'line',
+        data: {
+            labels: ['p1', 'p2', 'p3', 'p4', 'p5', 'p6' ,'p7', 'p8'],
+            datasets: [{
+                label: 'Penilaian',
+                data: Object.values(data),
+                borderWidth: 1,
+                tension: 0.1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
         }
-      }
     });
   @endforeach
-  
 </script> --}}
 
-<script type="text/javascript">
-    @foreach ($penilaian as $index => $item)
-      const ctx{{ $index }} = document.getElementById('myChart{{ $index }}');
-      const data = @json($chartsData[$index]);
-
-      new Chart(ctx{{ $index }}, {
-          type: 'line',
-          data: {
-              labels: ['Tanggung Jawab', 'Keaktifan', 'Komunikasi', 'Kedisiplinan', 'Kontribusi', 'Sikap', 'Inisiatif', 'Problem Solving'],
-              datasets: [{
-                  label: 'Penilaian',
-                  data: Object.values(data),
-                  borderWidth: 1,
-                  tension: 0.1
-              }]
-          },
-          options: {
-              scales: {
-                  y: {
-                      beginAtZero: true
-                  }
-              }
-          }
-      });
-  @endforeach
-</script>
-
-
-
-
-<script>
-document.getElementById("mySelect").addEventListener("change", function() {
-  // Get the selected value
-  var selectedValue = this.value;
-  
-  // Show or hide the form based on the selected value
-  if (selectedValue === "2") {
-    document.getElementById("myForm").style.display = "block";
-  } else {
-    document.getElementById("myForm").style.display = "none";
-  }
-});
-</script>
-
 @endsection
+

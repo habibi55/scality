@@ -40,6 +40,7 @@
   </div>
 
   <div class="flex w-full gap-4">
+    {{-- Absen dan Rapat --}}
     <div class="flex flex-col w-8/12 gap-4">
       {{-- Rapat --}}
       <div class="rounded-xl bg-white">
@@ -51,7 +52,6 @@
                 </style><g id="XMLID_10_"><path class="st0" d="M96.2,59.8l4.5-4.5c6.2-6.2,16.4-6.2,22.6,0c6.2,6.2,6.2,16.4,0,22.6l-25.5,25.5h0.5   c4.6,0,8.4,3.8,8.4,8.4v7.8c0,4.6-3.8,8.4-8.4,8.4H15.2c-4.6,0-8.4-3.8-8.4-8.4v-7.8c0-4.1,3-7.6,6.9-8.3l0-0.1V41.2   C13.7,18.5,32.3,0,55,0c22.7,0,41.2,18.5,41.2,41.2V59.8L96.2,59.8z M17.7,103.3h74.5L120.5,75c4.7-4.7,4.7-12.3,0-17l0,0   c-4.7-4.7-12.3-4.7-17,0L92.2,69.4V41.2C92.2,20.8,75.4,4,55,4l0,0C34.5,4,17.7,20.8,17.7,41.2V103.3L17.7,103.3z M37.2,72   c0-1.1-0.9-2-2-2c-1.1,0-2,0.9-2,2v18c0,1.1,0.9,2,2,2c1.1,0,2-0.9,2-2V72L37.2,72z M57.2,72c0-1.1-0.9-2-2-2c-1.1,0-2,0.9-2,2v18   c0,1.1,0.9,2,2,2c1.1,0,2-0.9,2-2V72L57.2,72z M15.2,107.3c-2.4,0-4.4,2-4.4,4.4v7.8c0,2.4,2,4.4,4.4,4.4h83.1c2.4,0,4.4-2,4.4-4.4   v-7.8c0-2.4-2-4.4-4.4-4.4H15.2z" id="XMLID_15_"/><path class="st1" d="M17.7,103.3h74.5L120.5,75c4.7-4.7,4.7-12.3,0-17l0,0c-4.7-4.7-12.3-4.7-17,0L92.2,69.4V41.2   C92.2,20.8,75.4,4,55,4l0,0C34.5,4,17.7,20.8,17.7,41.2V103.3L17.7,103.3z M37.2,72v18c0,1.1-0.9,2-2,2c-1.1,0-2-0.9-2-2V72   c0-1.1,0.9-2,2-2C36.3,70,37.2,70.9,37.2,72L37.2,72z M57.2,72v18c0,1.1-0.9,2-2,2c-1.1,0-2-0.9-2-2V72c0-1.1,0.9-2,2-2   C56.3,70,57.2,70.9,57.2,72z" id="XMLID_11_"/></g>
               </svg>
               <p>Belum Ada Rapat</p>
-              
             </div>
           @else
             @foreach ($jadwal_absen as $jadwal)
@@ -286,17 +286,52 @@
     </div>
 
     {{-- Rapor Diri --}}
-    <div class="w-4/12 rounded-xl bg-white p-4">
+    <div class="w-4/12 rounded-xl bg-white p-4 h-full">
       <div class="text-2xl font-semibold">Hasil Rapor Diri</div>
-        <ul class="list-decimal p-4">
+        <ul class="flex flex-col gap-4 list-decimal p-4">
           @foreach ($rapors as $rapor)
             <li>
-              <p>Penilaian Januari</p>
+              {{-- <p>Penilaian Januari</p> --}}
               <p>{{ $rapor->receiver_name }}</p>
-              <p>P1: {{ $rapor->p1 }}</p>
-              <p>P2: {{ $rapor->p2 }}</p>
+                @if ( $rapor->bulan_penilaian == 0 )
+                  <div>Januari</div>
+                @endif
+                @if ( $rapor->bulan_penilaian == 1 )
+                  <div>Februari</div>
+                @endif
+                @if ( $rapor->bulan_penilaian == 2 )
+                  <div>Maret</div>
+                @endif
+                @if ( $rapor->bulan_penilaian == 3 )
+                  <div>April</div>  
+                @endif
+                @if ( $rapor->bulan_penilaian == 4 )
+                  <div>Mei</div>  
+                @endif
+                @if ( $rapor->bulan_penilaian == 5 )
+                  <div>Juni</div>  
+                @endif
+                @if ( $rapor->bulan_penilaian == 6 )
+                  <div>Juli</div>  
+                @endif
+                @if ( $rapor->bulan_penilaian == 7 )
+                  <div>Agustus</div>  
+                @endif
+                @if ( $rapor->bulan_penilaian == 8 )
+                  <div>September</div>  
+                @endif
+                @if ( $rapor->bulan_penilaian == 9 )
+                  <div>Oktober</div> 
+                @endif
+                @if ( $rapor->bulan_penilaian == 10 )
+                  <div>November</div>  
+                @endif
+                @if ( $rapor->bulan_penilaian == 11 )
+                  <div>Desember</div> 
+                @endif
+              {{-- <p>{{ $rapor->bulan_penilaian }}</p> --}}
 
-              @if (auth()->user()->role == 0)
+              {{-- @if (auth()->user()->role == 0)
                 <a href="{{ route("export-rapor-pengurus") }}">Download PDF</a>
               @endif
 
@@ -306,7 +341,7 @@
 
               @if (auth()->user()->role == 2)
                 <a href="{{ route("export-rapor-admin") }}">Download PDF</a>
-              @endif
+              @endif --}}
             </li>
           @endforeach
         </ul>

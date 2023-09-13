@@ -103,18 +103,6 @@
           beginAtZero: true
         }
       },
-      plugins: {
-        datalabels: {
-          align: 'end',
-          anchor: 'end',        
-          backgroundColor: function(context) {
-            return context.data.backgroundColor;
-          },
-          borderRadius: 4,
-          color: 'white',
-          formatter: Math.round
-        }
-      }
     }
   });
   

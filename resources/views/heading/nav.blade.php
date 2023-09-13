@@ -597,7 +597,6 @@
     </svg>
     <div class="w-8/12 font-bold text-black text-sm h-full flex items-center ">
       {{ Auth::user()->name }}
-     
     </div>
 </div>
 
