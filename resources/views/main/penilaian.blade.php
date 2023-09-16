@@ -119,9 +119,17 @@
       <li class="m-2">
         <div class="flex flex-col gap-8">
           <select class="p-2 border-b-2 rounded-md w-80 font-semibold text-base" name="receiver_id" id="receiver_id">
-            @foreach ($users as $user)
-                <option value="{{ $user->id }}|{{ $user->name }}">{{ $user->name }}</option>
-            @endforeach   
+            @if (auth()->user()->jabatan == 0 || auth()->user()->jabatan == 1 || auth()->user()->jabatan == 2)
+              @foreach ($penilaianUmum as $item)
+                  <option value="{{ $item->id }}|{{ $item->name }}">{{ $item->name }}</option>
+              @endforeach  
+            @endif 
+
+            @if (auth()->user()->jabatan == 3)
+              @foreach ($penilaianKetua as $item)
+                  <option value="{{ $item->id }}|{{ $item->name }}">{{ $item->name }}</option>
+              @endforeach  
+            @endif 
           </select>
 
           <div class="flex flex-row items-center gap-4">

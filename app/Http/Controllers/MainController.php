@@ -140,10 +140,15 @@ class MainController extends Controller
     {
         //Show yang cuman dinilai
         $jabatan = auth()->user()->jabatan - 1;
-        $users = User::where('jabatan', $jabatan)
+        $penilaianKetua = User::where('jabatan', $jabatan)
         // ->whereIn('departemen', [auth()->user()->departemen])
         ->orderBy('id', 'asc')
-        ->get();       
+        ->get();     
+        
+        $penilaianUmum = User::where('jabatan', $jabatan)
+        ->whereIn('departemen', [auth()->user()->departemen])
+        ->orderBy('id', 'asc')
+        ->get(); 
 
         // Hasil Penilaian
         // $penilaian = Penilaian::where('users_id', Auth::user()->id)
@@ -155,36 +160,6 @@ class MainController extends Controller
         ->orWhere('receiver_id', Auth::user()->id)
         ->orderBy('id', 'asc')
         ->get();
-
-        // // Show Hasil Chart
-        // $rapor = Penilaian::where('users_id', Auth::user()->id)
-        // ->orWhere('receiver_id')
-        // ->get();  
- 
-        // $data = [
-        //     'p1' => $penilaian->pluck('p1'),
-        //     'p2' => $penilaian->pluck('p2'),
-        //     'p3' => $penilaian->pluck('p3'),
-        //     'p4' => $penilaian->pluck('p4'),
-        //     'p5' => $penilaian->pluck('p5'),
-        //     'p6' => $penilaian->pluck('p6'),
-        //     'p7' => $penilaian->pluck('p7'),
-        //     'p8' => $penilaian->pluck('p8'),
-        // ];
-
-        // $chartsData = [];
-        // foreach ($penilaian as $index => $item) {
-        //     $chartsData[$index] = [
-        //         'p1' => $item->p1,
-        //         'p2' => $item->p2,
-        //         'p3' => $item->p3,
-        //         'p4' => $item->p4,
-        //         'p5' => $item->p5,
-        //         'p6' => $item->p6,
-        //         'p7' => $item->p7,
-        //         'p8' => $item->p8,
-        //     ];
-        // }
 
         $chartsData = [];
         foreach ($penilaian as $index => $item) {
@@ -211,7 +186,7 @@ class MainController extends Controller
         //     'Problem Solving' => $rapors->p8,
         // ];
         
-        return view('main.penilaian', compact('users', 'penilaian','chartsData'));
+        return view('main.penilaian', compact('penilaianKetua','penilaianUmum', 'penilaian','chartsData'));
     }
 
     public function storePenilaian(Request $request)

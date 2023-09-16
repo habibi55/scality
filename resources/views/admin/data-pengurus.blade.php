@@ -45,12 +45,12 @@
                 <td>
                   @if ($user->jabatan == 0)
                     <div class="flex">
-                      <div class="px-3 text-center text-white rounded-2xl bg-amber-500">Staff</div>
+                      <div class="px-3 text-center text-white rounded-2xl bg-amber-300">Staff</div>
                     </div>
                   @endif
                   @if ($user->jabatan == 1)
                     <div class="flex">
-                      <div class="px-3 text-center text-white rounded-2xl bg-amber-600">Kepala</div>
+                      <div class="px-3 text-center text-white rounded-2xl bg-amber-500">Kepala</div>
                     </div>
                   @endif
                   @if ($user->jabatan == 2)
@@ -60,7 +60,7 @@
                   @endif
                   @if ($user->jabatan == 3)
                     <div class="flex">
-                      <div class="px-3 text-center text-white rounded-2xl bg-amber-800">Ketua</div>
+                      <div class="px-3 text-center text-white rounded-2xl bg-amber-900">Ketua</div>
                     </div>
                   @endif
                 </td>
