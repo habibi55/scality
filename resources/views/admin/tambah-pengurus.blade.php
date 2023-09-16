@@ -61,6 +61,7 @@
           <option value="0">Staff</option>
           <option value="1">Kepala</option>
           <option value="2">Supervisor</option>
+          <option value="3">Ketua</option>
         </select>
       </div>
 

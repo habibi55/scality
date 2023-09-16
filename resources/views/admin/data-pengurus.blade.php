@@ -39,62 +39,77 @@
           @foreach ($users as $user)
               <tr>
                 <td>{{ $user->name }}</td>
+
                 <td>{{ $user->npm }}</td>
+
                 <td>
                   @if ($user->jabatan == 0)
                     <div class="flex">
-                      <div class="px-3 text-center text-white rounded-2xl bg-stone-500">Staff</div>
+                      <div class="px-3 text-center text-white rounded-2xl bg-amber-500">Staff</div>
                     </div>
                   @endif
                   @if ($user->jabatan == 1)
                     <div class="flex">
-                      <div class="px-3 text-center text-white rounded-2xl bg-stone-500">Kepala</div>
+                      <div class="px-3 text-center text-white rounded-2xl bg-amber-600">Kepala</div>
                     </div>
                   @endif
                   @if ($user->jabatan == 2)
                     <div class="flex">
-                      <div class="px-3 text-center text-white rounded-2xl bg-blue-500">Supervisor</div>
+                      <div class="px-3 text-center text-white rounded-2xl bg-amber-700">Supervisor</div>
                     </div>
                   @endif
-                </td>
-                <td>
-                  @if ($user->departemen == 0)
+                  @if ($user->jabatan == 3)
                     <div class="flex">
-                      <div class="px-3 text-center text-white rounded-2xl bg-stone-500">Departemen A</div>
-                    </div>
-                  @endif
-                  @if ($user->departemen == 1)
-                    <div class="flex">
-                      <div class="px-3 text-center text-white rounded-2xl bg-stone-500">Departemen B</div>
+                      <div class="px-3 text-center text-white rounded-2xl bg-amber-800">Ketua</div>
                     </div>
                   @endif
                 </td>
 
                 <td>
-                  @if ($user->bidang == 0)
+                  @if ($user->departemen === 0)
+                    <div class="flex">
+                      <div class="px-3 text-center text-white rounded-2xl bg-stone-500">Departemen A</div>
+                    </div>
+                  @endif
+                  @if ($user->departemen === 1)
+                    <div class="flex">
+                      <div class="px-3 text-center text-white rounded-2xl bg-stone-500">Departemen B</div>
+                    </div>
+                  @endif
+
+                  @if (is_null($user->departemen))
+                    
+                  @endif
+                </td>
+
+                <td>
+                  @if ($user->bidang === 0)
                     <div class="flex">
                       <div class="px-3 text-center text-white rounded-2xl bg-purple-500">Bidang A</div>
                     </div>
                   @endif
-                  @if ($user->bidang == 1)
+                  @if ($user->bidang === 1)
                     <div class="flex">
                       <div class="px-3 text-center text-white rounded-2xl bg-purple-500">Bidang B</div>
                     </div>
                   @endif
-                  @if ($user->bidang == 2)
+                  @if ($user->bidang === 2)
                     <div class="flex">
                       <div class="px-3 text-center text-white rounded-2xl bg-purple-500">Bidang C</div>
                     </div>
                   @endif
-                  @if ($user->bidang == 3)
+                  @if ($user->bidang === 3)
                     <div class="flex">
                       <div class="px-3 text-center text-white rounded-2xl bg-purple-500">Bidang D</div>
                     </div>
                   @endif
-                  @if ($user->bidang == 4)
+                  @if ($user->bidang === 4)
                     <div class="flex">
                       <div class="px-3 text-center text-white rounded-2xl bg-purple-500">Bidang E</div>
                     </div>
+                  @endif
+                   @if (is_null($user->bidang))
+                    
                   @endif
                 </td>
 

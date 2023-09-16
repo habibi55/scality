@@ -20,7 +20,7 @@
 
             <p>Ket: {{ $rapor->keterangan }}</p>
 
-            @if (auth()->user()->role == 0)
+            {{-- @if (auth()->user()->role == 0)
               <a href="{{ route("export-rapor-pengurus") }}">Download PDF</a>
             @endif
 
@@ -30,7 +30,7 @@
 
             @if (auth()->user()->role == 2)
               <a href="{{ route("export-rapor-admin") }}">Download PDF</a>
-            @endif
+            @endif --}}
 
           </li>
         @endforeach
@@ -82,7 +82,6 @@
 {{-- ChartJS --}}
 
 <script type="text/javascript">
-  
   const ctx = document.getElementById('myChart');
   const data = @json($data);
 

@@ -287,51 +287,63 @@
 
     {{-- Rapor Diri --}}
     <div class="w-4/12 rounded-xl bg-white p-4 h-full">
-      <div class="text-2xl font-semibold">Hasil Rapor Diri</div>
+      <div class="text-2xl font-semibold">Hasil Rapor Diri Bulanan Pengurus</div>
         <ul class="flex flex-col gap-4 list-decimal p-4">
           @foreach ($rapors as $rapor)
             <li>
-              {{-- <p>Penilaian Januari</p> --}}
               <p>{{ $rapor->receiver_name }}</p>
-              @if ( $rapor->bulan_penilaian == 0 )
-                <div>Januari</div>
-              @endif
-              @if ( $rapor->bulan_penilaian == 1 )
-                <div>Februari</div>
-              @endif
-              @if ( $rapor->bulan_penilaian == 2 )
-                <div>Maret</div>
-              @endif
-              @if ( $rapor->bulan_penilaian == 3 )
-                <div>April</div>  
-              @endif
-              @if ( $rapor->bulan_penilaian == 4 )
-                <div>Mei</div>  
-              @endif
-              @if ( $rapor->bulan_penilaian == 5 )
-                <div>Juni</div>  
-              @endif
-              @if ( $rapor->bulan_penilaian == 6 )
-                <div>Juli</div>  
-              @endif
-              @if ( $rapor->bulan_penilaian == 7 )
-                <div>Agustus</div>  
-              @endif
-              @if ( $rapor->bulan_penilaian == 8 )
-                <div>September</div>  
-              @endif
-              @if ( $rapor->bulan_penilaian == 9 )
-                <div>Oktober</div> 
-              @endif
-              @if ( $rapor->bulan_penilaian == 10 )
-                <div>November</div>  
-              @endif
-              @if ( $rapor->bulan_penilaian == 11 )
-                <div>Desember</div> 
+              <div class="flex flex-row justify-start gap-2">
+                <p>Bulan Penilaian : </p>
+                @if ( $rapor->bulan_penilaian == 0 )
+                  <div>Januari</div>
+                @endif
+                @if ( $rapor->bulan_penilaian == 1 )
+                  <div>Februari</div>
+                @endif
+                @if ( $rapor->bulan_penilaian == 2 )
+                  <div>Maret</div>
+                @endif
+                @if ( $rapor->bulan_penilaian == 3 )
+                  <div>April</div>  
+                @endif
+                @if ( $rapor->bulan_penilaian == 4 )
+                  <div>Mei</div>  
+                @endif
+                @if ( $rapor->bulan_penilaian == 5 )
+                  <div>Juni</div>  
+                @endif
+                @if ( $rapor->bulan_penilaian == 6 )
+                  <div>Juli</div>  
+                @endif
+                @if ( $rapor->bulan_penilaian == 7 )
+                  <div>Agustus</div>  
+                @endif
+                @if ( $rapor->bulan_penilaian == 8 )
+                  <div>September</div>  
+                @endif
+                @if ( $rapor->bulan_penilaian == 9 )
+                  <div>Oktober</div> 
+                @endif
+                @if ( $rapor->bulan_penilaian == 10 )
+                  <div>November</div>  
+                @endif
+                @if ( $rapor->bulan_penilaian == 11 )
+                  <div>Desember</div> 
+                @endif
+              </div>
+              
+              
+              @if (auth()->user()->role == 0)
+                <a class="bg-primary rounded-full hover:bg-primary_hover duration-150  text-white px-4" href="{{ route('detail-rapor-pengurus', $rapor->id)}}">Lihat Detail</a>
               @endif
 
-              <a class="bg-primary px-4" href="">Lihat Detail</a>
-              {{-- <p>{{ $rapor->bulan_penilaian }}</p> --}}
+              @if (auth()->user()->role == 1)
+                <a class="bg-primary rounded-full hover:bg-primary_hover duration-150  text-white px-4" href="{{ route('detail-rapor-evaluator', $rapor->id)}}">Lihat Detail</a>
+              @endif
+
+              @if (auth()->user()->role == 2)
+                <a class="bg-primary rounded-full hover:bg-primary_hover duration-150  text-white px-4" href="{{ route('detail-rapor-admin', $rapor->id)}}">Lihat Detail</a>
+              @endif
 
               {{-- @if (auth()->user()->role == 0)
                 <a href="{{ route("export-rapor-pengurus") }}">Download PDF</a>

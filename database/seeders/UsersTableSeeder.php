@@ -28,6 +28,31 @@ class UsersTableSeeder extends Seeder
             'password' => Hash::make('cemara2077'),
         ],
 
+        // Ketua dan Wakil Ketua
+        [
+            'name' => 'Rafi',
+            'email' => 'rafi@gmail.com',
+            'npm' => '99999999',
+            'role' => '1',
+            'jabatan' => '3',
+            'departemen' => NULL,
+            'bidang' => NULL,
+            'password' => Hash::make('cemara2077'),
+        ],
+
+        [
+            'name' => 'Ruben',
+            'email' => 'ruben@gmail.com',
+            'npm' => '88888888',
+            'role' => '1',
+            'jabatan' => '3',
+            'departemen' => NULL,
+            'bidang' => NULL,
+            'password' => Hash::make('cemara2077'),
+        ],
+
+
+        // Supervisor
         [
             'name' => 'Wakil Ketua 0',
             'email' => 'habibi0@gmail.com',

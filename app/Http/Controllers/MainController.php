@@ -85,7 +85,7 @@ class MainController extends Controller
 
     public function rapor()
     {
-         //Show Hasil Rapor Diri
+        //Show Hasil Rapor Diri
         $rapors = Penilaian::where('receiver_id', Auth::user()->id)->get();  
  
         $data = [
@@ -98,9 +98,42 @@ class MainController extends Controller
             'Inisiatif' => $rapors->pluck('p7'),
             'Problem Solving' => $rapors->pluck('p8'),
         ];
+
+        // $data = [
+        //     'Tanggung Jawab' => $rapors->p1,
+        //     'Keaktifan' => $rapors->p2,
+        //     'Komunikasi' => $rapors->p3,
+        //     'Kedisiplinan' => $rapors->p4,
+        //     'Kontribusi' => $rapors->p5,
+        //     'Sikap' => $rapors->p6,
+        //     'Inisiatif' => $rapors->p7,
+        //     'Problem Solving' => $rapors->p8,
+        // ];
               
         return view('main.rapor', compact('rapors', 'data'));
 
+    }
+
+    public function detailRapor(string $id)
+    {
+         //Show Hasil Rapor Diri
+        // $rapors = Penilaian::where('receiver_id', Auth::user()->id)->get(); 
+        $rapors = Penilaian::findOrFail($id);
+
+        $months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+ 
+        $data = [
+            'Tanggung Jawab' => $rapors->p1,
+            'Keaktifan' => $rapors->p2,
+            'Komunikasi' => $rapors->p3,
+            'Kedisiplinan' => $rapors->p4,
+            'Kontribusi' => $rapors->p5,
+            'Sikap' => $rapors->p6,
+            'Inisiatif' => $rapors->p7,
+            'Problem Solving' => $rapors->p8,
+        ];
+              
+        return view('main.detail-rapor', compact('rapors','data','months'));
     }
 
     public function penilaian()
@@ -108,7 +141,7 @@ class MainController extends Controller
         //Show yang cuman dinilai
         $jabatan = auth()->user()->jabatan - 1;
         $users = User::where('jabatan', $jabatan)
-        ->whereIn('departemen', [auth()->user()->departemen])
+        // ->whereIn('departemen', [auth()->user()->departemen])
         ->orderBy('id', 'asc')
         ->get();       
 
@@ -128,16 +161,16 @@ class MainController extends Controller
         // ->orWhere('receiver_id')
         // ->get();  
  
-        $data = [
-            'p1' => $penilaian->pluck('p1'),
-            'p2' => $penilaian->pluck('p2'),
-            'p3' => $penilaian->pluck('p3'),
-            'p4' => $penilaian->pluck('p4'),
-            'p5' => $penilaian->pluck('p5'),
-            'p6' => $penilaian->pluck('p6'),
-            'p7' => $penilaian->pluck('p7'),
-            'p8' => $penilaian->pluck('p8'),
-        ];
+        // $data = [
+        //     'p1' => $penilaian->pluck('p1'),
+        //     'p2' => $penilaian->pluck('p2'),
+        //     'p3' => $penilaian->pluck('p3'),
+        //     'p4' => $penilaian->pluck('p4'),
+        //     'p5' => $penilaian->pluck('p5'),
+        //     'p6' => $penilaian->pluck('p6'),
+        //     'p7' => $penilaian->pluck('p7'),
+        //     'p8' => $penilaian->pluck('p8'),
+        // ];
 
         // $chartsData = [];
         // foreach ($penilaian as $index => $item) {
@@ -152,8 +185,33 @@ class MainController extends Controller
         //         'p8' => $item->p8,
         //     ];
         // }
+
+        $chartsData = [];
+        foreach ($penilaian as $index => $item) {
+            $chartsData[$index] = [
+                'p1' => $item->pluck('p1'),
+                'p2' => $item->pluck('p2'),
+                'p3' => $item->pluck('p3'),
+                'p4' => $item->pluck('p4'),
+                'p5' => $item->pluck('p5'),
+                'p6' => $item->pluck('p6'),
+                'p7' => $item->pluck('p7'),
+                'p8' => $item->pluck('p8'),
+            ];
+        }
+
+        // $data = [
+        //     'Tanggung Jawab' => $rapors->p1,
+        //     'Keaktifan' => $rapors->p2,
+        //     'Komunikasi' => $rapors->p3,
+        //     'Kedisiplinan' => $rapors->p4,
+        //     'Kontribusi' => $rapors->p5,
+        //     'Sikap' => $rapors->p6,
+        //     'Inisiatif' => $rapors->p7,
+        //     'Problem Solving' => $rapors->p8,
+        // ];
         
-        return view('main.penilaian', compact('users', 'penilaian', 'data'));
+        return view('main.penilaian', compact('users', 'penilaian','chartsData'));
     }
 
     public function storePenilaian(Request $request)

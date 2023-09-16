@@ -76,48 +76,16 @@
             <li>
               <div class="flex flex-col gap-2">
                 <p>{{ $item->receiver_name }}</p>
-                {{-- <canvas height="150" id="myChart{{ $index }}"></canvas> --}}
-                @if ( $item->bulan_penilaian == 0 )
-                  <div>Bulan Penilaian : Januari</div>
-                @endif
-                @if ( $item->bulan_penilaian == 1 )
-                  <div>Februari</div>
-                @endif
-                @if ( $item->bulan_penilaian == 2 )
-                  <div>Maret</div>
-                @endif
-                @if ( $item->bulan_penilaian == 3 )
-                  <div>April</div>  
-                @endif
-                @if ( $item->bulan_penilaian == 4 )
-                  <div>Mei</div>  
-                @endif
-                @if ( $item->bulan_penilaian == 5 )
-                  <div>Juni</div>  
-                @endif
-                @if ( $item->bulan_penilaian == 6 )
-                  <div>Juli</div>  
-                @endif
-                @if ( $item->bulan_penilaian == 7 )
-                  <div>Agustus</div>  
-                @endif
-                @if ( $item->bulan_penilaian == 8 )
-                  <div>September</div>  
-                @endif
-                @if ( $item->bulan_penilaian == 9 )
-                  <div>Oktober</div> 
-                @endif
-                @if ( $item->bulan_penilaian == 10 )
-                  <div>November</div>  
-                @endif
-                @if ( $item->bulan_penilaian == 11 )
-                  <div>Desember</div> 
-                @endif
-                 
-                {{-- <div>
-                  Keterangan :
-                  <p>{{ $item->keterangan }}</p>
-                </div> --}}
+                <canvas height="150" id="myChart{{ $index }}"></canvas>
+
+                <div class="flex flex-row justify-start gap-2">
+                  <p>Bulan Penilaian : </p>
+                  @php
+                      $months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+                  @endphp
+                  <div>{{ $months[$item->bulan_penilaian] }}</div>
+                </div>
+
                 <div>
                   @if (auth()->user()->role == 1)
                     <a href="{{ route('edit-penilaian-evaluator', $item->id)}}" class="rounded-sm bg-primary px-4 text-white">Edit</a>
@@ -134,153 +102,151 @@
           </form>
         @endforeach
       </ul>
-    </div>
+    </div>   
   </div>
 
+  <ul class="flex flex-col list-decimal gap-6 bg-white p-4 rounded-lg w-2/4 text-sm leading-relaxed">
+    {{-- @foreach ($users as $user) --}}
+      @if (auth()->user()->role == 1)
+        <form class="w-full" action="{{ route('store-penilaian-evaluator') }}" method="POST">
+      @endif
 
-    <ul class="flex flex-col list-decimal gap-6 bg-white p-4 rounded-lg w-2/4 text-sm leading-relaxed">
-      @foreach ($users as $user)
-        @if (auth()->user()->role == 1)
-          <form class="w-full" action="{{ route('store-penilaian-evaluator') }}" method="POST">
-        @endif
+      @if (auth()->user()->role == 2)
+        <form class="w-full" action="{{ route('store-penilaian-admin') }}" method="POST">
+      @endif      
+      @csrf
 
-        @if (auth()->user()->role == 2)
-          <form class="w-full" action="{{ route('store-penilaian-admin') }}" method="POST">
-        @endif      
-        @csrf
+      <li class="m-2">
+        <div class="flex flex-col gap-8">
+          <select class="p-2 border-b-2 rounded-md w-80 font-semibold text-base" name="receiver_id" id="receiver_id">
+            @foreach ($users as $user)
+                <option value="{{ $user->id }}|{{ $user->name }}">{{ $user->name }}</option>
+            @endforeach   
+          </select>
 
-        <li class="m-2">
-          <div class="flex flex-col gap-8">
-            <select class="p-2 border-b-2 rounded-md w-80 font-semibold text-base" name="receiver_id" id="receiver_id">
-              @foreach ($users as $user)
-                  <option value="{{ $user->id }}|{{ $user->name }}">{{ $user->name }}</option>
-              @endforeach   
+          <div class="flex flex-row items-center gap-4">
+            <p class="text-base font-semibold">Bulan Penilaian :</p>
+            <select class="p-2 border-b-2 rounded-md w-60 font-semibold" name="bulan_penilaian" id="bulan_penilaian">
+              <option value="0">Januari</option>
+              <option value="1">Februari</option>
+              <option value="2">Maret</option>
+              <option value="3">April</option>
+              <option value="4">Mei</option>
+              <option value="5">Juni</option>
+              <option value="6">Juli</option>
+              <option value="7">Agustus</option>
+              <option value="8">September</option>
+              <option value="9">Oktober</option>
+              <option value="10">November</option>
+              <option value="11">Desember</option>
             </select>
-
-            <div class="flex flex-row items-center gap-4">
-              <p class="text-base font-semibold">Bulan Penilaian :</p>
-              <select class="p-2 border-b-2 rounded-md w-60 font-semibold" name="bulan_penilaian" id="bulan_penilaian">
-                <option value="0">Januari</option>
-                <option value="1">Februari</option>
-                <option value="2">Maret</option>
-                <option value="3">April</option>
-                <option value="4">Mei</option>
-                <option value="5">Juni</option>
-                <option value="6">Juli</option>
-                <option value="7">Agustus</option>
-                <option value="8">September</option>
-                <option value="9">Oktober</option>
-                <option value="10">November</option>
-                <option value="11">Desember</option>
-              </select>
-            </div>
-
-            <div class="flex gap-20 text-base text-center">
-              <p class="w-40 invisible">Tanggung Jawab</p>
-              <p class="w-5">1</p>
-              <p class="w-5">2</p>
-              <p class="w-5">3</p>
-              <p class="w-5">4</p>
-              <p class="w-5">5</p>
-            </div>
-
-            <div class="flex gap-20">
-              <p class="w-40">Tanggung Jawab</p>
-              <input class="w-5" type="radio" name="p1" id="0" value="1" required>
-              <input class="w-5" type="radio" name="p1" id="1" value="2" required>
-              <input class="w-5" type="radio" name="p1" id="2" value="3" required>
-              <input class="w-5" type="radio" name="p1" id="3" value="4" required>
-              <input class="w-5" type="radio" name="p1" id="4" value="5" required>
-            </div>
-
-            <div class="flex gap-20">
-              <p class="w-40">Keaktifan</p>
-              <input class="w-5" type="radio" name="p2" id="5" value="1" required>
-              <input class="w-5" type="radio" name="p2" id="6" value="2" required>
-              <input class="w-5" type="radio" name="p2" id="7" value="3" required>
-              <input class="w-5" type="radio" name="p2" id="8" value="4" required>
-              <input class="w-5" type="radio" name="p2" id="9" value="5" required>
-            </div>
-
-            <div class="flex gap-20">
-              <p class="w-40">Komunikasi</p>
-              <input class="w-5" type="radio" name="p3" id="10" value="1" required>
-              <input class="w-5" type="radio" name="p3" id="11" value="2" required>
-              <input class="w-5" type="radio" name="p3" id="20" value="3" required>
-              <input class="w-5" type="radio" name="p3" id="13" value="4" required>
-              <input class="w-5" type="radio" name="p3" id="14" value="5" required>
-            </div>
-
-            <div class="flex gap-20">
-              <p class="w-40">Kedisiplinan</p>
-              <input class="w-5" type="radio" name="p4" id="15" value="1" required>
-              <input class="w-5" type="radio" name="p4" id="16" value="2" required>
-              <input class="w-5" type="radio" name="p4" id="17" value="3" required>
-              <input class="w-5" type="radio" name="p4" id="18" value="4" required>
-              <input class="w-5" type="radio" name="p4" id="19" value="5" required>
-            </div>
-
-            <div class="flex gap-20">
-              <p class="w-40">Kontribusi</p>
-              <input class="w-5" type="radio" name="p5" id="20" value="1" required>
-              <input class="w-5" type="radio" name="p5" id="21" value="2" required>
-              <input class="w-5" type="radio" name="p5" id="22" value="3" required>
-              <input class="w-5" type="radio" name="p5" id="23" value="4" required>
-              <input class="w-5" type="radio" name="p5" id="24" value="5" required>
-            </div>
-
-            <div class="flex gap-20">
-              <p class="w-40">Sikap</p>
-              <input class="w-5" type="radio" name="p6" id="25" value="1" required>
-              <input class="w-5" type="radio" name="p6" id="26" value="2" required>
-              <input class="w-5" type="radio" name="p6" id="27" value="3" required>
-              <input class="w-5" type="radio" name="p6" id="28" value="4" required>
-              <input class="w-5" type="radio" name="p6" id="29" value="5" required>
-            </div>
-
-            <div class="flex gap-20">
-              <p class="w-40">Inisiatif</p>
-              <input class="w-5" type="radio" name="p7" id="30" value="1" required>
-              <input class="w-5" type="radio" name="p7" id="31" value="2" required>
-              <input class="w-5" type="radio" name="p7" id="32" value="3" required>
-              <input class="w-5" type="radio" name="p7" id="33" value="4" required>
-              <input class="w-5" type="radio" name="p7" id="34" value="5" required>
-            </div>
-
-            <div class="flex gap-20">
-              <p class="w-40">Problem Solving</p>
-              <input class="w-5" type="radio" name="p8" id="35" value="1" required>
-              <input class="w-5" type="radio" name="p8" id="36" value="2" required>
-              <input class="w-5" type="radio" name="p8" id="37" value="3" required>
-              <input class="w-5" type="radio" name="p8" id="38" value="4" required>
-              <input class="w-5" type="radio" name="p8" id="39" value="5" required>
-            </div>
-
-            <div class="flex flex-col gap-4">
-              <p class="font-semibold text-lg">Keterangan Penilaian</p>
-              <p>Kolom ini digunakan untuk memberikan kesimpulan, kritik ataupun saran, sehingga dapat
-                dijadikan sebagai
-                evaluasi pengurus supaya lebih baik kedepan nya.</p>
-              <textarea class="flex p-2 rounded-md border-2 border-gray-500" name="keterangan" id="keterangan" rows="5" cols="100" placeholder="Jawaban Kamu"  required>
-              </textarea>
-            </div>
-            
-            <div class="flex justify-end gap-2">
-              <button class="rounded-lg bg-red-500 hover:bg-red-700 duration-150 cursor-pointer text-white px-6 mt-4"
-                type="reset">Cancel</button>
-              <button class="button px-6 mt-4" type="submit">Submit</button>
-            </div>
           </div>
-        </li>
 
-        </form>
-      @endforeach     
-    </ul>
+          <div class="flex gap-20 text-base text-center">
+            <p class="w-40 invisible">Tanggung Jawab</p>
+            <p class="w-5">1</p>
+            <p class="w-5">2</p>
+            <p class="w-5">3</p>
+            <p class="w-5">4</p>
+            <p class="w-5">5</p>
+          </div>
+
+          <div class="flex gap-20">
+            <p class="w-40">Tanggung Jawab</p>
+            <input class="w-5" type="radio" name="p1" id="0" value="1" required>
+            <input class="w-5" type="radio" name="p1" id="1" value="2" required>
+            <input class="w-5" type="radio" name="p1" id="2" value="3" required>
+            <input class="w-5" type="radio" name="p1" id="3" value="4" required>
+            <input class="w-5" type="radio" name="p1" id="4" value="5" required>
+          </div>
+
+          <div class="flex gap-20">
+            <p class="w-40">Keaktifan</p>
+            <input class="w-5" type="radio" name="p2" id="5" value="1" required>
+            <input class="w-5" type="radio" name="p2" id="6" value="2" required>
+            <input class="w-5" type="radio" name="p2" id="7" value="3" required>
+            <input class="w-5" type="radio" name="p2" id="8" value="4" required>
+            <input class="w-5" type="radio" name="p2" id="9" value="5" required>
+          </div>
+
+          <div class="flex gap-20">
+            <p class="w-40">Komunikasi</p>
+            <input class="w-5" type="radio" name="p3" id="10" value="1" required>
+            <input class="w-5" type="radio" name="p3" id="11" value="2" required>
+            <input class="w-5" type="radio" name="p3" id="20" value="3" required>
+            <input class="w-5" type="radio" name="p3" id="13" value="4" required>
+            <input class="w-5" type="radio" name="p3" id="14" value="5" required>
+          </div>
+
+          <div class="flex gap-20">
+            <p class="w-40">Kedisiplinan</p>
+            <input class="w-5" type="radio" name="p4" id="15" value="1" required>
+            <input class="w-5" type="radio" name="p4" id="16" value="2" required>
+            <input class="w-5" type="radio" name="p4" id="17" value="3" required>
+            <input class="w-5" type="radio" name="p4" id="18" value="4" required>
+            <input class="w-5" type="radio" name="p4" id="19" value="5" required>
+          </div>
+
+          <div class="flex gap-20">
+            <p class="w-40">Kontribusi</p>
+            <input class="w-5" type="radio" name="p5" id="20" value="1" required>
+            <input class="w-5" type="radio" name="p5" id="21" value="2" required>
+            <input class="w-5" type="radio" name="p5" id="22" value="3" required>
+            <input class="w-5" type="radio" name="p5" id="23" value="4" required>
+            <input class="w-5" type="radio" name="p5" id="24" value="5" required>
+          </div>
+
+          <div class="flex gap-20">
+            <p class="w-40">Sikap</p>
+            <input class="w-5" type="radio" name="p6" id="25" value="1" required>
+            <input class="w-5" type="radio" name="p6" id="26" value="2" required>
+            <input class="w-5" type="radio" name="p6" id="27" value="3" required>
+            <input class="w-5" type="radio" name="p6" id="28" value="4" required>
+            <input class="w-5" type="radio" name="p6" id="29" value="5" required>
+          </div>
+
+          <div class="flex gap-20">
+            <p class="w-40">Inisiatif</p>
+            <input class="w-5" type="radio" name="p7" id="30" value="1" required>
+            <input class="w-5" type="radio" name="p7" id="31" value="2" required>
+            <input class="w-5" type="radio" name="p7" id="32" value="3" required>
+            <input class="w-5" type="radio" name="p7" id="33" value="4" required>
+            <input class="w-5" type="radio" name="p7" id="34" value="5" required>
+          </div>
+
+          <div class="flex gap-20">
+            <p class="w-40">Problem Solving</p>
+            <input class="w-5" type="radio" name="p8" id="35" value="1" required>
+            <input class="w-5" type="radio" name="p8" id="36" value="2" required>
+            <input class="w-5" type="radio" name="p8" id="37" value="3" required>
+            <input class="w-5" type="radio" name="p8" id="38" value="4" required>
+            <input class="w-5" type="radio" name="p8" id="39" value="5" required>
+          </div>
+
+          <div class="flex flex-col gap-4">
+            <p class="font-semibold text-lg">Keterangan Penilaian</p>
+            <p>Kolom ini digunakan untuk memberikan kesimpulan, kritik ataupun saran, sehingga dapat
+              dijadikan sebagai
+              evaluasi pengurus supaya lebih baik kedepan nya.</p>
+            <textarea class="flex p-2 rounded-md border-2 border-gray-500" name="keterangan" id="keterangan" rows="5" cols="100" placeholder="Jawaban Kamu"  required>
+            </textarea>
+          </div>
+          
+          <div class="flex justify-end gap-2">
+            <button class="rounded-lg bg-red-500 hover:bg-red-700 duration-150 cursor-pointer text-white px-6 mt-4"
+              type="reset">Cancel</button>
+            <button class="button px-6 mt-4" type="submit">Submit</button>
+          </div>
+        </div>
+      </li>
+
+      </form>
+    {{-- @endforeach      --}}
+  </ul>
 </div>
 
 {{-- ChartJS --}}
-<script type="text/javascript">
-  
+{{-- <script type="text/javascript">
   const ctx = document.getElementById('myChart');
   const data = @json($data);
 
@@ -304,9 +270,9 @@
     }
   });
   
-</script>
+</script> --}}
 
-{{-- <script>
+<script>
   @foreach ($penilaian as $index => $item)
     let ctx{{ $index }} = document.getElementById('myChart{{ $index }}');
     let data = @json($chartsData[$index]);
@@ -331,7 +297,7 @@
         }
     });
   @endforeach
-</script> --}}
+</script>
 
 @endsection
 

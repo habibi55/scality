@@ -36,6 +36,7 @@ Route::group(['prefix' => 'pengurus','middleware'=>['web','isPengurus']],functio
     Route::post('/absen',[MainController::class,'storeAbsen'])->name('store-absen-pengurus');
     Route::get('/rapor',[MainController::class,'rapor'])->name('rapor-pengurus');
     Route::get('/export-rapor',[MainController::class,'exportRapor'])->name('export-rapor-pengurus');
+    Route::get('/detail-rapor/{id}',[MainController::class,'detailRapor'])->name('detail-rapor-pengurus');
     Route::get('/profile',[MainController::class,'profile'])->name('profile-pengurus');
     Route::post('/profile/{user}',[MainController::class,'update'])->name('profile.update-pengurus');
     Route::put('/profile/{user}',[MainController::class,'update'])->name('profile.update-pengurus');
@@ -51,6 +52,7 @@ Route::group(['prefix' => 'evaluator','middleware'=>['web','isEvaluator']],funct
     Route::post('/absen',[MainController::class,'storeAbsen'])->name('store-absen-evaluator');
     Route::get('/rapor',[MainController::class,'rapor'])->name('rapor-evaluator');
     Route::get('/export-rapor',[MainController::class,'exportRapor'])->name('export-rapor-evaluator');
+    Route::get('/detail-rapor/{id}',[MainController::class,'detailRapor'])->name('detail-rapor-evaluator');
     Route::get('/penilaian',[MainController::class,'penilaian'])->name('penilaian-evaluator');
     Route::post('/penilaian-store',[MainController::class,'storePenilaian'])->name('store-penilaian-evaluator');
     Route::get('/edit-penilaian/{id}', [MainController::class,'editPenilaian'])->name('edit-penilaian-evaluator');
@@ -73,6 +75,7 @@ Route::group(['prefix' => 'admin','middleware'=>['web','isAdmin']],function(){
     Route::post('/absen',[MainController::class,'storeAbsen'])->name('store-absen-admin');
     Route::get('/rapor',[MainController::class,'rapor'])->name('rapor-admin');
     Route::get('/export-rapor',[MainController::class,'exportRapor'])->name('export-rapor-admin');
+    Route::get('/detail-rapor/{id}',[MainController::class,'detailRapor'])->name('detail-rapor-admin');
     Route::get('/penilaian',[MainController::class,'penilaian'])->name('penilaian-admin');
     Route::post('/penilaian-store',[MainController::class,'storePenilaian'])->name('store-penilaian-admin');
     Route::get('/edit-penilaian/{id}', [MainController::class,'editPenilaian'])->name('edit-penilaian-admin');
