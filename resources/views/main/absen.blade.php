@@ -40,7 +40,7 @@
 
         @foreach ($jadwal_absen as $jadwal)
         <div class="">
-          <input type="text" name="judul" id="judul" value="{{ $jadwal->judul }}">
+          <input class="hidden" type="text" name="judul" id="judul" value="{{ $jadwal->judul }}">
         </div>
         @endforeach
         

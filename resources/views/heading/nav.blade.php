@@ -21,7 +21,7 @@
           <div class="w-full">Home</div>
         </a>
 
-        <a href="{{ route('rapor-pengurus') }}" class="nav">
+        {{-- <a href="{{ route('rapor-pengurus') }}" class="nav">
           <svg class="w-10" viewBox=" 0 0 256 256" xmlns="http://www.w3.org/2000/svg">
             <rect fill="none" height="256" width="256" />
             <rect fill="none" height="136" rx="8" stroke="#000" stroke-linecap="round" stroke-linejoin="round"
@@ -39,7 +39,7 @@
             <line fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="14" x1="128"
               x2="128" y1="48" y2="24" /></svg>
           <div class="w-full">Rapor Diri</div>
-        </a>
+        </a> --}}
 
         <div class="border border-black"></div>
 
@@ -78,7 +78,7 @@
           <div class="w-full">Home</div>
         </a>
 
-        <a href="{{ route('rapor-evaluator') }}" class="nav">
+        {{-- <a href="{{ route('rapor-evaluator') }}" class="nav">
           <svg class="w-10" viewBox=" 0 0 256 256" xmlns="http://www.w3.org/2000/svg">
             <rect fill="none" height="256" width="256" />
             <rect fill="none" height="136" rx="8" stroke="#000" stroke-linecap="round" stroke-linejoin="round"
@@ -96,7 +96,7 @@
             <line fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="14" x1="128"
               x2="128" y1="48" y2="24" /></svg>
           <div class="w-full">Rapor Diri</div>
-        </a>
+        </a> --}}
 
         <a href="{{ route('penilaian-evaluator') }}" class="nav">
           <svg class="w-10" id="Слой_1" style="enable-background:new 0 0 50 50;" version="1.1" viewBox="0 0 50 50"
@@ -295,7 +295,7 @@
           <div class="w-full">Home</div>
         </a>
 
-        <a href="{{ route('rapor-admin') }}" class="nav">
+        {{-- <a href="{{ route('rapor-admin') }}" class="nav">
           <svg class="w-10" viewBox=" 0 0 256 256" xmlns="http://www.w3.org/2000/svg">
             <rect fill="none" height="256" width="256" />
             <rect fill="none" height="136" rx="8" stroke="#000" stroke-linecap="round" stroke-linejoin="round"
@@ -313,7 +313,7 @@
             <line fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="14" x1="128"
               x2="128" y1="48" y2="24" /></svg>
           <div class="w-full">Rapor Diri</div>
-        </a>
+        </a> --}}
 
         <a href="{{ route('penilaian-admin') }}" class="nav">
           <svg class="w-10" id="Слой_1" style="enable-background:new 0 0 50 50;" version="1.1" viewBox="0 0 50 50"

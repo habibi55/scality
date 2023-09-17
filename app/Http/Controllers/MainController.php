@@ -27,9 +27,10 @@ class MainController extends Controller
         $absen = Absen::where('users_id', Auth::user()->id)->orderBy('id', 'asc')->get();
 
         //Show Hasil Rapor Diri
-        $rapors = Penilaian::where('receiver_id', Auth::user()->id)->orderBy('id', 'asc')->get();       
+        $rapors = Penilaian::where('receiver_id', Auth::user()->id)->orderBy('id', 'asc')->get();
+        $months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];       
 
-        return view('main.home', compact('jadwal_absen' , 'absen', 'rapors'));
+        return view('main.home', compact('jadwal_absen' , 'absen', 'rapors', 'months'));
     }
 
     public function exportRapor()
@@ -98,17 +99,6 @@ class MainController extends Controller
             'Inisiatif' => $rapors->pluck('p7'),
             'Problem Solving' => $rapors->pluck('p8'),
         ];
-
-        // $data = [
-        //     'Tanggung Jawab' => $rapors->p1,
-        //     'Keaktifan' => $rapors->p2,
-        //     'Komunikasi' => $rapors->p3,
-        //     'Kedisiplinan' => $rapors->p4,
-        //     'Kontribusi' => $rapors->p5,
-        //     'Sikap' => $rapors->p6,
-        //     'Inisiatif' => $rapors->p7,
-        //     'Problem Solving' => $rapors->p8,
-        // ];
               
         return view('main.rapor', compact('rapors', 'data'));
 
@@ -151,10 +141,6 @@ class MainController extends Controller
         ->get(); 
 
         // Hasil Penilaian
-        // $penilaian = Penilaian::where('users_id', Auth::user()->id)
-        // ->orWhere('receiver_id')
-        // ->orderBy('id', 'asc')
-        // ->get();
 
         $penilaian = Penilaian::where('users_id', Auth::user()->id)
         ->orWhere('receiver_id', Auth::user()->id)
@@ -174,17 +160,6 @@ class MainController extends Controller
                 'p8' => $item->pluck('p8'),
             ];
         }
-
-        // $data = [
-        //     'Tanggung Jawab' => $rapors->p1,
-        //     'Keaktifan' => $rapors->p2,
-        //     'Komunikasi' => $rapors->p3,
-        //     'Kedisiplinan' => $rapors->p4,
-        //     'Kontribusi' => $rapors->p5,
-        //     'Sikap' => $rapors->p6,
-        //     'Inisiatif' => $rapors->p7,
-        //     'Problem Solving' => $rapors->p8,
-        // ];
         
         return view('main.penilaian', compact('penilaianKetua','penilaianUmum', 'penilaian','chartsData'));
     }
@@ -223,12 +198,7 @@ class MainController extends Controller
 
     public function editPenilaian(string $id)
     {
-        // $penilaians = Penilaian::findOrFail($id);
-
-        $penilaians = Penilaian::where('users_id', Auth::user()->id)
-        ->orWhere('receiver_id')
-        ->orderBy('id', 'asc')
-        ->get();
+        $penilaians = Penilaian::findOrFail($id);
 
         return view('main.edit-penilaian', compact('penilaians'));
     }

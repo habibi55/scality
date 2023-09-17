@@ -91,7 +91,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Aska',
             'email' => 'aska@gmail.com',
             'npm' => '66666666',
-            'role' => '0',
+            'role' => '1',
             'jabatan' => '1',
             'departemen' => '0',
             'bidang' => '0',
@@ -108,6 +108,41 @@ class UsersTableSeeder extends Seeder
             'bidang' => '1',
             'password' => Hash::make('cemara2077'),
         ],
+
+        [
+            'name' => 'Erlangga',
+            'email' => 'erlangga@gmail.com',
+            'npm' => '88888888',
+            'role' => '1',
+            'jabatan' => '1',
+            'departemen' => '1',
+            'bidang' => '2',
+            'password' => Hash::make('cemara2077'),
+        ],
+
+        [
+            'name' => 'Yahay',
+            'email' => 'yahay@gmail.com',
+            'npm' => '12121212',
+            'role' => '1',
+            'jabatan' => '1',
+            'departemen' => '1',
+            'bidang' => '3',
+            'password' => Hash::make('cemara2077'),
+        ],
+
+        [
+            'name' => 'Awang',
+            'email' => 'awang@gmail.com',
+            'npm' => '13131313',
+            'role' => '1',
+            'jabatan' => '1',
+            'departemen' => '1',
+            'bidang' => '4',
+            'password' => Hash::make('cemara2077'),
+        ],
+
+        //Staff
 
     ]);
 

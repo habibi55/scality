@@ -10,7 +10,6 @@ class Penilaian extends Model
     use HasFactory;
 
     protected $fillable = [
-        // P1 = Penilaian 1
         
         'users_id',
         'receiver_id',
@@ -36,10 +35,5 @@ class Penilaian extends Model
     {
         return $this->belongsTo(User::class, 'receiver_id');                    
     }
-
-    // public function receiverName()
-    // {
-    //     return $this->belongsTo(User::class, 'receiver_name');                    
-    // }
 
 }

@@ -4,7 +4,7 @@
 
 <div class="flex flex-col bg-primary_back p-6 gap-6 ml-72 min-h-full">
   <div class="flex w-full mt-4">
-    <div class="w-8/12 font-semibold text-4xl">Penilaian Bulanan Pengurus - Bidang Manajemen Kontrol</div>
+    <div class="w-8/12 font-semibold text-4xl">Penilaian Bulanan Pengurus</div>
   </div>
 
   <div class="flex flex-row gap-6">
@@ -76,7 +76,7 @@
             <li>
               <div class="flex flex-col gap-2">
                 <p>{{ $item->receiver_name }}</p>
-                <canvas height="150" id="myChart{{ $index }}"></canvas>
+                {{-- <canvas height="150" id="myChart{{ $index }}"></canvas> --}}
 
                 <div class="flex flex-row justify-start gap-2">
                   <p>Bulan Penilaian : </p>
@@ -280,7 +280,7 @@
   
 </script> --}}
 
-<script>
+{{-- <script>
   @foreach ($penilaian as $index => $item)
     let ctx{{ $index }} = document.getElementById('myChart{{ $index }}');
     let data = @json($chartsData[$index]);
@@ -305,7 +305,7 @@
         }
     });
   @endforeach
-</script>
+</script> --}}
 
 @endsection
 

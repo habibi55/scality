@@ -22,7 +22,6 @@ class User extends Authenticatable
         'email',
         'npm',
         'password',
-        'photo',
         'role',
         'jabatan',
         'departemen',

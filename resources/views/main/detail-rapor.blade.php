@@ -5,7 +5,7 @@
 <!-- Main -->
 <div class="flex flex-col bg-primary_back p-6 gap-6 ml-72 min-h-screen">
   <div class="flex w-full mt-4">
-    <div class="w-8/12 font-bold text-4xl">RAPOR DIRI BULANAN PENGURUS</div>
+    <div class="w-8/12 font-bold text-4xl">Rapor Diri Bulanan Pengurus</div>
   </div>
 
   <div class="flex flex-row rounded-xl gap-4">
@@ -40,9 +40,6 @@
 
       <div class="flex flex-row justify-start gap-2">
         <p>Bulan Penilaian : </p>
-        @php
-            $months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-        @endphp
         <div>{{ $months[$rapors->bulan_penilaian] }}</div>
       </div>
 

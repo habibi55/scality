@@ -12,7 +12,6 @@ class Absen extends Model
         protected $fillable = [
         'image',
         'users_id',
-        // 'jadwal_absen_id',
         'judul'
     ];
 

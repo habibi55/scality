@@ -45,17 +45,21 @@
         <tbody class="divide-y-8">
           <!-- Rest of your data (refer to https://datatables.net/examples/server_side/ for server side processing)-->
           @foreach ($jadwal_absen as $jadwal)
-            <tr>
+            <tr class="text-center">
               <td>{{ $jadwal->judul }}</td>
               <td>{{ $jadwal->tempat }}</td>
               <td>{{ \Carbon\Carbon::parse($jadwal->waktu)->isoFormat('dddd, D MMMM Y') }} ({{ \Carbon\Carbon::parse($jadwal->waktu)->format('H:i') }})</td>
               <td>
                 @if ($jadwal->status == 1 )
+                  <div class="bg-green-500 w-20 text-white rounded-full">
                     ON
+                  </div>
                 @endif
 
                 @if ($jadwal->status == 0)
+                  <div class="bg-red-500 w-20 text-white rounded-full">
                     OFF
+                  </div>
                 @endif
                 
               </td>
