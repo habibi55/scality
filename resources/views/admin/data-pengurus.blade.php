@@ -45,22 +45,22 @@
                 <td>
                   @if ($user->jabatan == 0)
                     <div class="flex">
-                      <div class="px-3 text-center text-white rounded-2xl bg-amber-300">Staff</div>
+                      <div class="px-3 text-center text-white rounded-2xl bg-amber-900">Staff</div>
                     </div>
                   @endif
                   @if ($user->jabatan == 1)
                     <div class="flex">
-                      <div class="px-3 text-center text-white rounded-2xl bg-amber-500">Kepala</div>
+                      <div class="px-3 text-center text-white rounded-2xl bg-amber-700">Kepala</div>
                     </div>
                   @endif
                   @if ($user->jabatan == 2)
                     <div class="flex">
-                      <div class="px-3 text-center text-white rounded-2xl bg-amber-700">Supervisor</div>
+                      <div class="px-3 text-center text-white rounded-2xl bg-amber-500">Supervisor</div>
                     </div>
                   @endif
                   @if ($user->jabatan == 3)
                     <div class="flex">
-                      <div class="px-3 text-center text-white rounded-2xl bg-amber-900">Ketua</div>
+                      <div class="px-3 text-center text-white rounded-2xl bg-amber-300">Ketua</div>
                     </div>
                   @endif
                 </td>
@@ -68,12 +68,22 @@
                 <td>
                   @if ($user->departemen === 0)
                     <div class="flex">
-                      <div class="px-3 text-center text-white rounded-2xl bg-stone-500">Departemen A</div>
+                      <div class="px-3 text-center text-white rounded-2xl bg-cyan-900">Departemen A</div>
                     </div>
                   @endif
                   @if ($user->departemen === 1)
                     <div class="flex">
-                      <div class="px-3 text-center text-white rounded-2xl bg-stone-500">Departemen B</div>
+                      <div class="px-3 text-center text-white rounded-2xl bg-cyan-700">Departemen B</div>
+                    </div>
+                  @endif
+                  @if ($user->departemen === 2)
+                    <div class="flex">
+                      <div class="px-3 text-center text-white rounded-2xl bg-cyan-500">Departemen C</div>
+                    </div>
+                  @endif
+                  @if ($user->departemen === 3)
+                    <div class="flex">
+                      <div class="px-3 text-center text-white rounded-2xl bg-cyan-300">Departemen D</div>
                     </div>
                   @endif
 
@@ -85,27 +95,27 @@
                 <td>
                   @if ($user->bidang === 0)
                     <div class="flex">
-                      <div class="px-3 text-center text-white rounded-2xl bg-purple-500">Bidang A</div>
+                      <div class="px-3 text-center text-white rounded-2xl bg-green-900">Bidang A</div>
                     </div>
                   @endif
                   @if ($user->bidang === 1)
                     <div class="flex">
-                      <div class="px-3 text-center text-white rounded-2xl bg-purple-500">Bidang B</div>
+                      <div class="px-3 text-center text-white rounded-2xl bg-green-800">Bidang B</div>
                     </div>
                   @endif
                   @if ($user->bidang === 2)
                     <div class="flex">
-                      <div class="px-3 text-center text-white rounded-2xl bg-purple-500">Bidang C</div>
+                      <div class="px-3 text-center text-white rounded-2xl bg-green-700">Bidang C</div>
                     </div>
                   @endif
                   @if ($user->bidang === 3)
                     <div class="flex">
-                      <div class="px-3 text-center text-white rounded-2xl bg-purple-500">Bidang D</div>
+                      <div class="px-3 text-center text-white rounded-2xl bg-green-600">Bidang D</div>
                     </div>
                   @endif
                   @if ($user->bidang === 4)
                     <div class="flex">
-                      <div class="px-3 text-center text-white rounded-2xl bg-purple-500">Bidang E</div>
+                      <div class="px-3 text-center text-white rounded-2xl bg-green-500">Bidang E</div>
                     </div>
                   @endif
                    @if (is_null($user->bidang))

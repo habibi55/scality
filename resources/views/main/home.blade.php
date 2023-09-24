@@ -246,16 +246,28 @@
       </div>
 
       {{-- Hasil Absen --}}
-      <div class="flex w-full rounded-xl bg-white">
+      <div class="flex flex-col w-full rounded-xl bg-white">
         @if ($absen->isEmpty())
-        <div class="flex flex-col w-full h-48 bg-white rounded-xl justify-center items-center text-3xl font-bold">
-          <svg class="h-20 stroke-2 stroke-black fill-primary" id="Layer_1" style="enable-background:new 0 0 128 128;" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><style type="text/css">
-            .st0{fill-rule:evenodd;clip-rule:evenodd;}
-            .st1{fill-rule:evenodd;clip-rule:evenodd;fill:#2B87FE;}
-            </style><g id="XMLID_10_"><path class="st0" d="M96.2,59.8l4.5-4.5c6.2-6.2,16.4-6.2,22.6,0c6.2,6.2,6.2,16.4,0,22.6l-25.5,25.5h0.5   c4.6,0,8.4,3.8,8.4,8.4v7.8c0,4.6-3.8,8.4-8.4,8.4H15.2c-4.6,0-8.4-3.8-8.4-8.4v-7.8c0-4.1,3-7.6,6.9-8.3l0-0.1V41.2   C13.7,18.5,32.3,0,55,0c22.7,0,41.2,18.5,41.2,41.2V59.8L96.2,59.8z M17.7,103.3h74.5L120.5,75c4.7-4.7,4.7-12.3,0-17l0,0   c-4.7-4.7-12.3-4.7-17,0L92.2,69.4V41.2C92.2,20.8,75.4,4,55,4l0,0C34.5,4,17.7,20.8,17.7,41.2V103.3L17.7,103.3z M37.2,72   c0-1.1-0.9-2-2-2c-1.1,0-2,0.9-2,2v18c0,1.1,0.9,2,2,2c1.1,0,2-0.9,2-2V72L37.2,72z M57.2,72c0-1.1-0.9-2-2-2c-1.1,0-2,0.9-2,2v18   c0,1.1,0.9,2,2,2c1.1,0,2-0.9,2-2V72L57.2,72z M15.2,107.3c-2.4,0-4.4,2-4.4,4.4v7.8c0,2.4,2,4.4,4.4,4.4h83.1c2.4,0,4.4-2,4.4-4.4   v-7.8c0-2.4-2-4.4-4.4-4.4H15.2z" id="XMLID_15_"/><path class="st1" d="M17.7,103.3h74.5L120.5,75c4.7-4.7,4.7-12.3,0-17l0,0c-4.7-4.7-12.3-4.7-17,0L92.2,69.4V41.2   C92.2,20.8,75.4,4,55,4l0,0C34.5,4,17.7,20.8,17.7,41.2V103.3L17.7,103.3z M37.2,72v18c0,1.1-0.9,2-2,2c-1.1,0-2-0.9-2-2V72   c0-1.1,0.9-2,2-2C36.3,70,37.2,70.9,37.2,72L37.2,72z M57.2,72v18c0,1.1-0.9,2-2,2c-1.1,0-2-0.9-2-2V72c0-1.1,0.9-2,2-2   C56.3,70,57.2,70.9,57.2,72z" id="XMLID_11_"/></g>
-          </svg>
-          <p>Belum Pernah Mengisi Absen</p>
-        </div>
+          <div class="flex flex-col p-5 gap-2">
+            <div class="flex items-center gap-3">
+              <div class="w-10">
+                <svg class="fill-primary" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M336 64h-53.88C268.9 26.8 233.7 0 192 0S115.1 26.8 101.9 64H48C21.5 64 0 85.48 0 112v352C0 490.5 21.5 512 48 512h288c26.5 0 48-21.48 48-48v-352C384 85.48 362.5 64 336 64zM192 64c17.67 0 32 14.33 32 32s-14.33 32-32 32S160 113.7 160 96S174.3 64 192 64zM282.9 262.8l-88 112c-4.047 5.156-10.02 8.438-16.53 9.062C177.6 383.1 176.8 384 176 384c-5.703 0-11.25-2.031-15.62-5.781l-56-48c-10.06-8.625-11.22-23.78-2.594-33.84c8.609-10.06 23.77-11.22 33.84-2.594l36.98 31.69l72.52-92.28c8.188-10.44 23.3-12.22 33.7-4.062C289.3 237.3 291.1 252.4 282.9 262.8z" />
+                </svg>
+              </div>
+              <div class="text-2xl font-semibold">Hasil Absen</div>        
+            </div>  
+          </div> 
+
+          <div class="flex flex-col w-full h-48 bg-white rounded-xl justify-center items-center text-3xl font-bold">
+            <svg class="h-20 stroke-2 stroke-black fill-primary" id="Layer_1" style="enable-background:new 0 0 128 128;" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><style type="text/css">
+              .st0{fill-rule:evenodd;clip-rule:evenodd;}
+              .st1{fill-rule:evenodd;clip-rule:evenodd;fill:#2B87FE;}
+              </style><g id="XMLID_10_"><path class="st0" d="M96.2,59.8l4.5-4.5c6.2-6.2,16.4-6.2,22.6,0c6.2,6.2,6.2,16.4,0,22.6l-25.5,25.5h0.5   c4.6,0,8.4,3.8,8.4,8.4v7.8c0,4.6-3.8,8.4-8.4,8.4H15.2c-4.6,0-8.4-3.8-8.4-8.4v-7.8c0-4.1,3-7.6,6.9-8.3l0-0.1V41.2   C13.7,18.5,32.3,0,55,0c22.7,0,41.2,18.5,41.2,41.2V59.8L96.2,59.8z M17.7,103.3h74.5L120.5,75c4.7-4.7,4.7-12.3,0-17l0,0   c-4.7-4.7-12.3-4.7-17,0L92.2,69.4V41.2C92.2,20.8,75.4,4,55,4l0,0C34.5,4,17.7,20.8,17.7,41.2V103.3L17.7,103.3z M37.2,72   c0-1.1-0.9-2-2-2c-1.1,0-2,0.9-2,2v18c0,1.1,0.9,2,2,2c1.1,0,2-0.9,2-2V72L37.2,72z M57.2,72c0-1.1-0.9-2-2-2c-1.1,0-2,0.9-2,2v18   c0,1.1,0.9,2,2,2c1.1,0,2-0.9,2-2V72L57.2,72z M15.2,107.3c-2.4,0-4.4,2-4.4,4.4v7.8c0,2.4,2,4.4,4.4,4.4h83.1c2.4,0,4.4-2,4.4-4.4   v-7.8c0-2.4-2-4.4-4.4-4.4H15.2z" id="XMLID_15_"/><path class="st1" d="M17.7,103.3h74.5L120.5,75c4.7-4.7,4.7-12.3,0-17l0,0c-4.7-4.7-12.3-4.7-17,0L92.2,69.4V41.2   C92.2,20.8,75.4,4,55,4l0,0C34.5,4,17.7,20.8,17.7,41.2V103.3L17.7,103.3z M37.2,72v18c0,1.1-0.9,2-2,2c-1.1,0-2-0.9-2-2V72   c0-1.1,0.9-2,2-2C36.3,70,37.2,70.9,37.2,72L37.2,72z M57.2,72v18c0,1.1-0.9,2-2,2c-1.1,0-2-0.9-2-2V72c0-1.1,0.9-2,2-2   C56.3,70,57.2,70.9,57.2,72z" id="XMLID_11_"/></g>
+            </svg>
+            <p>Belum ada pengisian absen</p>
+          </div>
         @else
           <div class="flex flex-col p-5 gap-2">
             <div class="flex items-center gap-3">
@@ -274,10 +286,7 @@
                 <li>
                   <div class="font-semibold">Absen {{ $item->judul }} - {{ \Carbon\Carbon::parse($item->waktu)->isoFormat('dddd, D MMMM Y') }}</div>
                   <div>Waktu Absen : {{ \Carbon\Carbon::parse($item->created_at)->format('H:i') }}</div>
-                  {{-- <img class="max-h-80 object-contain mb-2" src="/storage/app/public/images/ {{ $item->image}}" width="500px"> --}}
                   <img class="max-h-80 object-contain mb-2" src="{{ asset('storage/images/' . $item->image) }}" width="500px">
-
-                  {{-- <img class="max-h-80 object-contain mb-2" src="/images/{{ $item->image }}" src="{{ asset('images/' . $item->image) }}" width="500px"> --}}
                 </li>               
                 @endforeach
               </ul>
@@ -290,6 +299,16 @@
     {{-- Rapor Diri --}}
     <div class="w-4/12 rounded-xl bg-white p-4 h-full">
       <div class="text-2xl font-semibold">Hasil Rapor Diri Bulanan Pengurus</div>
+        @if ($rapors->isEmpty())
+        <div class="flex flex-col items-center gap-4 mt-2">
+          <svg class="w-14 rounded-xl bg-primary_back p-2" height="100%" style="enable-background:new 0 0 1701 1701;" version="1.1" viewBox="0 0 1701 1701" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="empty_inbox"><path d="M1701,162.902C1701,72.934,1628.066,0,1538.098,0H162.902C72.934,0,0,72.934,0,162.902v1375.195   C0,1628.066,72.934,1701,162.902,1701h1375.195c89.969,0,162.902-72.934,162.902-162.902V162.902z M164.832,132h1375.517   c16.963,0,28.651,11.502,28.651,28.465V935h-398.719c-36.494,0-66.07,28.313-66.07,64.801   c0,143.903-117.076,260.348-260.979,260.348c-140.287,0-255.075-111.57-260.76-250.487c0.581-3.517,0.881-6.02,0.881-9.7   c0-36.49-29.581-64.961-66.071-64.961H132V160.465C132,143.502,147.87,132,164.832,132z M1540.349,1569H164.832   c-16.962,0-32.832-16.057-32.832-33.02V1067h323.663c31.503,185,193.305,327.05,387.568,327.05   c194.26,0,356.063-142.05,387.565-327.05H1569v468.98C1569,1552.943,1557.312,1569,1540.349,1569z"/></g><g id="Layer_1"/></svg>
+          <p class="">Belum ada hasil rapor diri</p>
+        </div>
+          
+        @else
+            
+        @endif
+
         <ul class="flex flex-col gap-4 list-decimal p-4">
           @foreach ($rapors as $rapor)
             <li>
@@ -312,8 +331,6 @@
                   <a class="bg-primary rounded-full hover:bg-primary_hover duration-150  text-white px-4" href="{{ route('detail-rapor-admin', $rapor->id)}}">Lihat Detail</a>
                 @endif
               </div>
-                            
-              
 
               {{-- @if (auth()->user()->role == 0)
                 <a href="{{ route("export-rapor-pengurus") }}">Download PDF</a>
@@ -329,6 +346,7 @@
             </li>
           @endforeach
         </ul>
+      </div>
     </div>
   </div>
 </div>
