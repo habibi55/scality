@@ -274,7 +274,10 @@
                 <li>
                   <div class="font-semibold">Absen {{ $item->judul }} - {{ \Carbon\Carbon::parse($item->waktu)->isoFormat('dddd, D MMMM Y') }}</div>
                   <div>Waktu Absen : {{ \Carbon\Carbon::parse($item->created_at)->format('H:i') }}</div>
-                  <img class="max-h-80 object-contain mb-2" src="/images/{{ $item->image }}" width="500px">
+                  {{-- <img class="max-h-80 object-contain mb-2" src="/storage/app/public/images/ {{ $item->image}}" width="500px"> --}}
+                  <img class="max-h-80 object-contain mb-2" src="{{ asset('storage/images/' . $item->image) }}" width="500px">
+
+                  {{-- <img class="max-h-80 object-contain mb-2" src="/images/{{ $item->image }}" src="{{ asset('images/' . $item->image) }}" width="500px"> --}}
                 </li>               
                 @endforeach
               </ul>

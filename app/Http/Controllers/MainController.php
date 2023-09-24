@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Browsershot\Browsershot;
 
 
@@ -56,18 +57,32 @@ class MainController extends Controller
 
     public function storeAbsen(Request $request)
     {
+        // $request->validate([
+        //     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+        // ]);
+
+        // $image = $request->file('image');
+        // $imageName = time().'.'.$image->extension();  
+        // $image->move(public_path('images'), $imageName);
+
+        // $absen = new Absen();
+        // $absen->image = $imageName;
+        // $absen->users_id = Auth::id();
+        // $absen->judul = $request->judul;
+        // $absen->save();
+
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'image' => 'required', // Adjusted validation rule
         ]);
 
-        $image = $request->file('image');
-        $imageName = time().'.'.$image->extension();
-        $image->move(public_path('images'), $imageName);
+        $image_parts = explode(";base64,", $request->input('image'));
+        $image_base64 = base64_decode($image_parts[1]);
+        $imageName = time().'.png';  
+        Storage::disk('public')->put('images/'.$imageName, $image_base64);
 
         $absen = new Absen();
         $absen->image = $imageName;
         $absen->users_id = Auth::id();
-        // $absen->jadwal_absen_id = JadwalAbsen::id();
         $absen->judul = $request->judul;
         $absen->save();
 

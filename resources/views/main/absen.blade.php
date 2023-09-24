@@ -10,19 +10,19 @@
   <div class="flex">
     <div class="w-1/3 rounded-xl bg-white">
       @if (auth()->user()->role == 0)
-          <form class="flex flex-col p-5 gap-4" action="{{ route('store-absen-pengurus') }}" method="POST" enctype="multipart/form-data">
+        <form class="flex flex-col p-5 gap-4" action="{{ route('store-absen-pengurus') }}" method="POST" enctype="multipart/form-data">
       @endif
 
       @if (auth()->user()->role == 1)
-          <form class="flex flex-col p-5 gap-4" action="{{ route('store-absen-evaluator') }}" method="POST" enctype="multipart/form-data">
+        <form class="flex flex-col p-5 gap-4" action="{{ route('store-absen-evaluator') }}" method="POST" enctype="multipart/form-data">
       @endif
 
       @if (auth()->user()->role == 2)
-          <form class="flex flex-col p-5 gap-4" action="{{ route('store-absen-admin') }}" method="POST" enctype="multipart/form-data">
+        <form class="flex flex-col p-5 gap-4" action="{{ route('store-absen-admin') }}" method="POST" enctype="multipart/form-data">
       @endif
 
         @csrf
-        <div class="flex items-center">
+        {{-- <div class="flex items-center">
           <div class="w-16">
             <svg enable-background="new 0 0 48 48" height="48px" id="Layer_1" version="1.1" viewBox="0 0 48 48"
               width="48px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
@@ -36,7 +36,18 @@
 
         <div class="flex flex-col gap-3">
             <input type="file" name="image" id="image" class="form-control" placeholder="image">
+        </div> --}}
+
+        <div class="flex">
+            <div id="my_camera"></div>
+            <br/>
+            <input type = "button" value="Take Snapshot" onClick="take_snapshot()">
+            <input type="hidden" name="image" id="image" class="form-control">
         </div>
+        <div class="flex">
+            <div id="results">Your captured image will appear here...</div>
+        </div>
+
 
         @foreach ($jadwal_absen as $jadwal)
         <div class="">
@@ -44,7 +55,6 @@
         </div>
         @endforeach
         
-
         <div class="flex justify-end gap-3">
           <button type="reset"
             class="rounded-md text-white bg-red-400 px-4 py-2 font-medium hover:bg-red-500">Cancel</button>
@@ -56,5 +66,23 @@
   </div>
 
 </div>
+
+<script language="JavaScript">
+    Webcam.set({
+        width: 320,
+        height: 240,
+        image_format: 'jpeg',
+        jpeg_quality: 90
+    });
+    Webcam.attach( '#my_camera' );
+
+    function take_snapshot() {
+        Webcam.snap( function(data_uri) {
+            document.getElementById('results').innerHTML = '<img src="'+data_uri+'"/>';
+            document.querySelector('input[name="image"]').value = data_uri;
+        } );
+    }
+</script>
+
 
 @endsection
